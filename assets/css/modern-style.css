@@ -120,6 +120,16 @@ body {
     border-radius: 8px;
 }
 
+.brand-logo {
+    height: 40px;
+    width: auto;
+    transition: all 0.3s ease;
+}
+
+.brand-logo:hover {
+    opacity: 0.8;
+}
+
 .nav-menu {
     display: flex;
     gap: 30px;
@@ -678,10 +688,10 @@ body {
 }
 
 .footer-logo {
-    width: 50px;
     height: 50px;
-    border-radius: 10px;
+    width: auto;
     margin-bottom: 15px;
+    transition: all 0.3s ease;
 }
 
 .footer-links {
