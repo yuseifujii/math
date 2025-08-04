@@ -278,7 +278,7 @@
     padding: 25px;
     border-radius: 10px;
     margin-bottom: 30px;
-    border-left: 5px solid #2196f3;
+    border-left: 3px solid #666;
 }
 
 .breadcrumb {
@@ -288,7 +288,7 @@
 }
 
 .breadcrumb a {
-    color: #2196f3;
+    color: #555;
     text-decoration: none;
 }
 
@@ -305,38 +305,44 @@
 
 .meta-info {
     display: flex;
-    gap: 20px;
+    gap: 15px;
     margin-bottom: 15px;
     flex-wrap: wrap;
+    font-size: 0.9em;
+    color: #666;
 }
 
 .meta-info span {
-    background: #e3f2fd;
-    padding: 5px 12px;
-    border-radius: 15px;
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
     font-size: 0.9em;
-    color: #1976d2;
-    font-weight: 500;
+    color: #666;
+    font-weight: 400;
+    border-right: 1px solid #ddd;
+    padding-right: 15px;
 }
 
-.difficulty {
-    background: #e8f5e8 !important;
-    color: #388e3c !important;
+.meta-info span:last-child {
+    border-right: none;
+    padding-right: 0;
 }
 
+.difficulty,
 .niche-score {
-    background: #fff3e0 !important;
-    color: #f57c00 !important;
+    background: transparent !important;
+    color: #666 !important;
 }
 
 .article-summary {
-    background: white;
+    background: #fafafa;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 5px;
     margin: 15px 0;
     border: 1px solid #e0e0e0;
-    font-size: 1.1em;
+    font-size: 1.0em;
     line-height: 1.6;
+    color: #555;
 }
 
 /* タグ表示 */
@@ -346,13 +352,14 @@
 
 .tag {
     display: inline-block;
-    background: #667eea;
-    color: white;
-    padding: 4px 12px;
-    border-radius: 12px;
-    font-size: 0.85em;
+    background: #f0f0f0;
+    color: #666;
+    padding: 4px 10px;
+    border-radius: 3px;
+    font-size: 0.8em;
     margin: 2px 5px 2px 0;
-    font-weight: 500;
+    font-weight: 400;
+    border: 1px solid #ddd;
 }
 
 /* ローディングスピナー */

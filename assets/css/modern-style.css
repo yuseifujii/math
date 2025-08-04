@@ -535,34 +535,29 @@ body {
 }
 
 .article-category {
-    background: var(--sky-blue);
-    color: var(--primary-blue);
-    padding: 5px 12px;
-    border-radius: 12px;
-    font-size: 0.85rem;
-    font-weight: 600;
+    background: #f0f0f0;
+    color: #666;
+    padding: 4px 10px;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    font-weight: 400;
+    border: 1px solid #ddd;
 }
 
 .article-difficulty {
     display: flex;
     gap: 10px;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
+    color: #666;
 }
 
-.difficulty-badge {
-    background: #E8F5E8;
-    color: #388E3C;
-    padding: 3px 8px;
-    border-radius: 8px;
-    font-weight: 500;
-}
-
+.difficulty-badge,
 .niche-badge {
-    background: #FFF3E0;
-    color: #F57C00;
-    padding: 3px 8px;
-    border-radius: 8px;
-    font-weight: 500;
+    background: transparent;
+    color: #666;
+    padding: 0;
+    border-radius: 0;
+    font-weight: 400;
 }
 
 .article-card h3 {
@@ -587,17 +582,24 @@ body {
 
 .article-tags {
     display: flex;
-    gap: 8px;
+    gap: 6px;
     flex-wrap: wrap;
 }
 
 .article-tag {
-    background: var(--light-gray);
-    color: var(--dark-gray);
-    padding: 3px 8px;
-    border-radius: 8px;
-    font-size: 0.75rem;
-    font-weight: 500;
+    background: transparent;
+    color: #888;
+    padding: 2px 0;
+    border-radius: 0;
+    font-size: 0.7rem;
+    font-weight: 400;
+    border-right: 1px solid #ddd;
+    padding-right: 6px;
+}
+
+.article-tag:last-child {
+    border-right: none;
+    padding-right: 0;
 }
 
 .read-more {
