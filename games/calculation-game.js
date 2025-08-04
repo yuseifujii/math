@@ -40,52 +40,13 @@ const LEVEL_CONFIG = {
     }
 };
 
-// DOM要素の取得
-const scoreElement = document.getElementById('score');
-const streakElement = document.getElementById('streak');
-const timerElement = document.getElementById('timer');
-const problemDisplay = document.getElementById('problem-display');
-const answerInput = document.getElementById('answer-input');
-const submitBtn = document.getElementById('submit-btn');
-const resultMessage = document.getElementById('result-message');
-// ヒント関連のDOM要素は削除済み
-const startBtn = document.getElementById('start-btn');
-const gameContent = document.querySelector('.game-content');
-const levelSelection = document.getElementById('level-selection');
-const levelButtons = document.querySelectorAll('.level-btn');
-const gameContainer = document.getElementById('calculation-game');
-const gameInfo = document.querySelector('.game-info');
-const highScoreDisplay = document.getElementById('high-score-display');
-const progressBar = document.getElementById('progress-bar');
-const progressText = document.getElementById('progress-text');
-const gameOverScreen = document.getElementById('game-over');
-const finalScoreElement = document.getElementById('final-score');
-const finalProblemsElement = document.getElementById('final-problems');
-const finalAccuracyElement = document.getElementById('final-accuracy');
-const gameOverMessage = document.getElementById('game-over-message');
-const restartBtn = document.getElementById('restart-btn');
-
-// ユーザー情報関連
-const userInfoForm = document.getElementById('user-info-form');
-const userAffiliationInput = document.getElementById('user-affiliation');
-const userNicknameInput = document.getElementById('user-nickname');
-const backToLevelBtn = document.getElementById('back-to-level-btn');
-const affiliationCounter = document.getElementById('affiliation-counter');
-const nicknameCounter = document.getElementById('nickname-counter');
-
-// ランキング関連
-const rankingDashboardBtn = document.getElementById('ranking-dashboard-btn');
-const rankingModal = document.getElementById('ranking-modal');
-const closeRankingBtn = document.getElementById('close-ranking-btn');
-const rankingTableBody = document.getElementById('ranking-table-body');
-const rankingUpdateTime = document.getElementById('ranking-update-time');
-const rankingEmpty = document.getElementById('ranking-empty');
-const rankingLoading = document.getElementById('ranking-loading');
-const rankingError = document.getElementById('ranking-error');
-const rankingErrorMessage = document.getElementById('ranking-error-message');
-const rankingRetryBtn = document.getElementById('ranking-retry-btn');
-const totalParticipantsElement = document.getElementById('total-participants');
-const rankingBtn = document.getElementById('ranking-btn');
+// DOM要素の取得（DOMContentLoaded内で実行）
+let scoreElement, streakElement, timerElement, problemDisplay, answerInput, submitBtn, resultMessage;
+let startBtn, gameContent, levelSelection, levelButtons, gameContainer, gameInfo, highScoreDisplay;
+let progressBar, progressText, gameOverScreen, finalScoreElement, finalProblemsElement, finalAccuracyElement, gameOverMessage, restartBtn;
+let userInfoForm, userAffiliationInput, userNicknameInput, backToLevelBtn, affiliationCounter, nicknameCounter;
+let rankingDashboardBtn, rankingModal, closeRankingBtn, rankingTableBody, rankingUpdateTime, rankingEmpty, rankingLoading;
+let rankingError, rankingErrorMessage, rankingRetryBtn, totalParticipantsElement, rankingBtn;
 
 // ユーザー情報
 let userInfo = {
@@ -715,6 +676,58 @@ async function updateRankingDisplay() {
 document.addEventListener('DOMContentLoaded', () => {
     console.log('🧮 計算チャレンジゲーム: DOMContentLoaded開始！');
     
+    // DOM要素の取得
+    scoreElement = document.getElementById('score');
+    streakElement = document.getElementById('streak');
+    timerElement = document.getElementById('timer');
+    problemDisplay = document.getElementById('problem-display');
+    answerInput = document.getElementById('answer-input');
+    submitBtn = document.getElementById('submit-btn');
+    resultMessage = document.getElementById('result-message');
+    startBtn = document.getElementById('start-btn');
+    gameContent = document.querySelector('.game-content');
+    levelSelection = document.getElementById('level-selection');
+    levelButtons = document.querySelectorAll('.level-btn');
+    gameContainer = document.getElementById('calculation-game');
+    gameInfo = document.querySelector('.game-info');
+    highScoreDisplay = document.getElementById('high-score-display');
+    progressBar = document.getElementById('progress-bar');
+    progressText = document.getElementById('progress-text');
+    gameOverScreen = document.getElementById('game-over');
+    finalScoreElement = document.getElementById('final-score');
+    finalProblemsElement = document.getElementById('final-problems');
+    finalAccuracyElement = document.getElementById('final-accuracy');
+    gameOverMessage = document.getElementById('game-over-message');
+    restartBtn = document.getElementById('restart-btn');
+    
+    // ユーザー情報関連
+    userInfoForm = document.getElementById('user-info-form');
+    userAffiliationInput = document.getElementById('user-affiliation');
+    userNicknameInput = document.getElementById('user-nickname');
+    backToLevelBtn = document.getElementById('back-to-level-btn');
+    affiliationCounter = document.getElementById('affiliation-counter');
+    nicknameCounter = document.getElementById('nickname-counter');
+    
+    // ランキング関連
+    rankingDashboardBtn = document.getElementById('ranking-dashboard-btn');
+    rankingModal = document.getElementById('ranking-modal');
+    closeRankingBtn = document.getElementById('close-ranking-btn');
+    rankingTableBody = document.getElementById('ranking-table-body');
+    rankingUpdateTime = document.getElementById('ranking-update-time');
+    rankingEmpty = document.getElementById('ranking-empty');
+    rankingLoading = document.getElementById('ranking-loading');
+    rankingError = document.getElementById('ranking-error');
+    rankingErrorMessage = document.getElementById('ranking-error-message');
+    rankingRetryBtn = document.getElementById('ranking-retry-btn');
+    totalParticipantsElement = document.getElementById('total-participants');
+    rankingBtn = document.getElementById('ranking-btn');
+    
+    console.log('🔍 DOM要素取得完了:', {
+        scoreElement: !!scoreElement,
+        rankingDashboardBtn: !!rankingDashboardBtn,
+        gameInfo: !!gameInfo
+    });
+    
     // 初期状態：ゲーム情報を非表示
     if (gameInfo) {
         gameInfo.style.display = 'none';
@@ -851,14 +864,35 @@ document.addEventListener('DOMContentLoaded', () => {
         rankingDashboardBtn_id: rankingDashboardBtn?.id,
         rankingDashboardBtn_className: rankingDashboardBtn?.className,
         rankingDashboardBtn_style_display: rankingDashboardBtn?.style.display,
-        rankingDashboardBtn_disabled: rankingDashboardBtn?.disabled
+        rankingDashboardBtn_disabled: rankingDashboardBtn?.disabled,
+        rankingDashboardBtn_style_pointerEvents: rankingDashboardBtn?.style.pointerEvents,
+        rankingDashboardBtn_style_position: rankingDashboardBtn?.style.position,
+        rankingDashboardBtn_style_zIndex: rankingDashboardBtn?.style.zIndex,
+        rankingDashboardBtn_offsetParent: rankingDashboardBtn?.offsetParent,
+        rankingDashboardBtn_getBoundingClientRect: rankingDashboardBtn?.getBoundingClientRect()
     });
     
     if (rankingDashboardBtn) {
+        // 複数のイベントリスナーを追加してテスト
         rankingDashboardBtn.addEventListener('click', function(event) {
             console.log('🎯 ランキングダッシュボードボタンがクリックされました！', event);
             showRankingDashboard();
         });
+        
+        rankingDashboardBtn.addEventListener('mousedown', function(event) {
+            console.log('🖱️ ランキングボタンがマウスダウンされました！', event);
+        });
+        
+        rankingDashboardBtn.addEventListener('mouseup', function(event) {
+            console.log('🖱️ ランキングボタンがマウスアップされました！', event);
+        });
+        
+        // 直接onclickも設定
+        rankingDashboardBtn.onclick = function(event) {
+            console.log('🎯 ランキングボタンonclick発火！', event);
+            showRankingDashboard();
+        };
+        
         console.log('✅ ランキングダッシュボードボタンのイベントリスナー設定完了');
     } else {
         console.error('❌ ランキングダッシュボードボタンが見つかりません');
