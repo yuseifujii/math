@@ -542,22 +542,7 @@ body {
     transition: all 0.1s ease;
 }
 
-.read-more-indicator {
-    color: var(--accent-blue);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.9rem;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    transition: all 0.3s ease;
-    pointer-events: none;
-}
-
-.clickable-card:hover .read-more-indicator {
-    color: var(--primary-blue);
-    transform: translateX(3px);
-}
+/* 詳しく読むボタンを削除したのでスタイルも削除 */
 
 .article-meta-top {
     display: flex;
@@ -572,7 +557,7 @@ body {
     padding: 4px 10px;
     border-radius: 3px;
     font-size: 0.8rem;
-    font-weight: 400;
+    font-weight: 600;
     border: 1px solid #ddd;
 }
 
@@ -581,7 +566,6 @@ body {
     gap: 10px;
     font-size: 0.8rem;
     color: #666;
-    align-items: center;
 }
 
 .difficulty-badge,
@@ -590,33 +574,7 @@ body {
     color: #666;
     padding: 0;
     border-radius: 0;
-    font-weight: 400;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.difficulty-dots,
-.niche-dots {
-    display: inline-flex;
-    gap: 2px;
-    margin-left: 3px;
-}
-
-.dot {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    display: inline-block;
-}
-
-.dot.filled {
-    background-color: #666;
-}
-
-.dot.empty {
-    background-color: #ddd;
-    border: 1px solid #ccc;
+    font-weight: 600;
 }
 
 .article-card h3 {

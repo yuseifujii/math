@@ -95,17 +95,9 @@ class ArticleLoader {
         document.getElementById('article-title-breadcrumb').textContent = article.title;
         document.getElementById('article-category').textContent = this.getCategoryName(article.category);
         
-        // 難易度・ニッチ度にドット表現を追加
-        const difficultyElement = document.getElementById('article-difficulty');
-        const nicheElement = document.getElementById('article-niche');
-        difficultyElement.textContent = article.difficulty_level;
-        nicheElement.textContent = article.niche_score;
-        
-        // ドット表現を追加
-        const difficultyDots = this.createDots(article.difficulty_level, 10);
-        const nicheDots = this.createDots(article.niche_score, 10);
-        difficultyElement.parentElement.innerHTML += difficultyDots;
-        nicheElement.parentElement.innerHTML += nicheDots;
+        // 難易度・ニッチ度を表示
+        document.getElementById('article-difficulty').textContent = article.difficulty_level;
+        document.getElementById('article-niche').textContent = article.niche_score;
         
         document.getElementById('article-author').textContent = article.author;
         // Summary内の数式をMathJax処理するためinnerHTML使用
@@ -148,24 +140,7 @@ class ArticleLoader {
         }
     }
 
-    /**
-     * ドット表現作成
-     */
-    createDots(value, max) {
-        const normalizedValue = Math.min(Math.max(Math.round(value / 2), 1), 5); // 10段階を5段階に変換
-        let dotsHtml = '<span class="difficulty-dots">';
-        
-        for (let i = 1; i <= 5; i++) {
-            if (i <= normalizedValue) {
-                dotsHtml += '<span class="dot filled"></span>';
-            } else {
-                dotsHtml += '<span class="dot empty"></span>';
-            }
-        }
-        
-        dotsHtml += '</span>';
-        return dotsHtml;
-    }
+
 
     /**
      * カテゴリ名を日本語に変換

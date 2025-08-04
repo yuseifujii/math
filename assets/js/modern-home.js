@@ -178,25 +178,18 @@ class ModernHomePage {
             `<span class="article-tag">${tag}</span>`
         ).join('');
 
-        // 難易度・ニッチ度のドット表現
-        const difficultyDots = this.createDots(article.difficulty_level, 10);
-        const nicheDots = this.createDots(article.niche_score, 10);
-
         card.innerHTML = `
             <div class="article-meta-top">
                 <span class="article-category">${categoryName}</span>
                 <div class="article-difficulty">
-                    <span class="difficulty-badge">難易度 ${article.difficulty_level}/10${difficultyDots}</span>
-                    <span class="niche-badge">ニッチ度 ${article.niche_score}/10${nicheDots}</span>
+                    <span class="difficulty-badge">難易度 ${article.difficulty_level}/10</span>
+                    <span class="niche-badge">ニッチ度 ${article.niche_score}/10</span>
                 </div>
             </div>
             <h3>${article.title}</h3>
             <p>${truncatedSummary}</p>
             <div class="article-footer">
                 <div class="article-tags">${tagsHtml}</div>
-                <span class="read-more-indicator">
-                    詳しく読む <span>→</span>
-                </span>
             </div>
         `;
 
@@ -207,25 +200,6 @@ class ModernHomePage {
         });
 
         return card;
-    }
-
-    /**
-     * ドット表現作成
-     */
-    createDots(value, max) {
-        const normalizedValue = Math.min(Math.max(Math.round(value / 2), 1), 5); // 10段階を5段階に変換
-        let dotsHtml = '<span class="difficulty-dots">';
-        
-        for (let i = 1; i <= 5; i++) {
-            if (i <= normalizedValue) {
-                dotsHtml += '<span class="dot filled"></span>';
-            } else {
-                dotsHtml += '<span class="dot empty"></span>';
-            }
-        }
-        
-        dotsHtml += '</span>';
-        return dotsHtml;
     }
 
     /**
