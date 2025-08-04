@@ -53,6 +53,7 @@ const gameContent = document.querySelector('.game-content');
 const levelSelection = document.getElementById('level-selection');
 const levelButtons = document.querySelectorAll('.level-btn');
 const gameContainer = document.getElementById('calculation-game');
+const gameInfo = document.querySelector('.game-info');
 const highScoreDisplay = document.getElementById('high-score-display');
 const progressBar = document.getElementById('progress-bar');
 const progressText = document.getElementById('progress-text');
@@ -604,6 +605,11 @@ function startGame() {
     gameContent.style.display = 'block';
     gameContent.classList.add('active');
     
+    // ゲーム情報を表示
+    if (gameInfo) {
+        gameInfo.style.display = 'block';
+    }
+    
     updateHighScoreDisplay();
     updateProgressDisplay();
     showNewProblem();
@@ -706,6 +712,13 @@ async function updateRankingDisplay() {
 
 // イベントリスナーの設定
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('🧮 計算チャレンジゲーム: DOMContentLoaded開始！');
+    
+    // 初期状態：ゲーム情報を非表示
+    if (gameInfo) {
+        gameInfo.style.display = 'none';
+        console.log('✅ 初期状態：ゲーム情報を非表示に設定');
+    }
     // レベル選択
     levelButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -736,6 +749,11 @@ document.addEventListener('DOMContentLoaded', () => {
         startBtn.style.display = 'none';
         backToLevelBtn.style.display = 'none';
         selectedLevel = null;
+        
+        // ゲーム情報を非表示
+        if (gameInfo) {
+            gameInfo.style.display = 'none';
+        }
         
         // ゲーム状態をリセット
         score = 0;
@@ -775,6 +793,11 @@ document.addEventListener('DOMContentLoaded', () => {
         backToLevelBtn.style.display = 'none';
         userInfoForm.style.display = 'none';
         selectedLevel = null;
+        
+        // ゲーム情報を非表示
+        if (gameInfo) {
+            gameInfo.style.display = 'none';
+        }
         
         // ゲーム状態をリセット
         score = 0;

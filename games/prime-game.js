@@ -26,6 +26,7 @@ const gameContent = document.querySelector('.game-content');
 const levelSelection = document.getElementById('level-selection');
 const levelButtons = document.querySelectorAll('.level-btn');
 const gameContainer = document.getElementById('prime-game');
+const gameInfo = document.querySelector('.game-info');
 const highScoreDisplay = document.getElementById('high-score-display');
 const livesDisplay = document.getElementById('lives-display');
 const gameOverScreen = document.getElementById('game-over');
@@ -563,6 +564,11 @@ function startGame() {
     gameContent.style.display = 'block';
     gameContent.classList.add('active');
     
+    // ゲーム情報を表示
+    if (gameInfo) {
+        gameInfo.style.display = 'block';
+    }
+    
     updateHighScoreDisplay();
     updateLivesDisplay();
     showNewNumber();
@@ -662,6 +668,13 @@ async function updateRankingDisplay() {
 
 // イベントリスナーの設定
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('🎮 素数判定ゲーム: DOMContentLoaded開始！');
+    
+    // 初期状態：ゲーム情報を非表示
+    if (gameInfo) {
+        gameInfo.style.display = 'none';
+        console.log('✅ 初期状態：ゲーム情報を非表示に設定');
+    }
     // レベル選択の処理
     levelButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -708,6 +721,11 @@ document.addEventListener('DOMContentLoaded', () => {
         backToLevelBtn.style.display = 'none';
         selectedLevel = null;
         
+        // ゲーム情報を非表示
+        if (gameInfo) {
+            gameInfo.style.display = 'none';
+        }
+        
         // ゲーム状態をリセット
         score = 0;
         streak = 0;
@@ -741,6 +759,11 @@ document.addEventListener('DOMContentLoaded', () => {
         backToLevelBtn.style.display = 'none';
         userInfoForm.style.display = 'none';
         selectedLevel = null;
+        
+        // ゲーム情報を非表示
+        if (gameInfo) {
+            gameInfo.style.display = 'none';
+        }
         
         // ゲーム状態をリセット
         score = 0;
