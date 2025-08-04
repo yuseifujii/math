@@ -12,5 +12,47 @@ service cloud.firestore {
       allow read: if true;
       allow write: if false; // 書き込みは無効化（セキュリティ）
     }
+    
+    // ゲームランキングコレクション（素数判定ゲーム）
+    match /primeGameRankings/{document} {
+      allow read: if true;
+      allow create: if true; // ランキングスコアの新規作成を許可
+      allow update, delete: if false; // 更新・削除は禁止
+    }
+    
+    // ゲームランキングコレクション（計算チャレンジゲーム）
+    match /calculationGameRankings/{document} {
+      allow read: if true;
+      allow create: if true; // ランキングスコアの新規作成を許可
+      allow update, delete: if false; // 更新・削除は禁止
+    }
+    
+    // ゲームランキングコレクション（倍数・約数ゲーム）
+    match /factorsGameRankings/{document} {
+      allow read: if true;
+      allow create: if true; // ランキングスコアの新規作成を許可
+      allow update, delete: if false; // 更新・削除は禁止
+    }
+    
+    // ゲームランキングコレクション（数当てゲーム）
+    match /guessGameRankings/{document} {
+      allow read: if true;
+      allow create: if true; // ランキングスコアの新規作成を許可
+      allow update, delete: if false; // 更新・削除は禁止
+    }
+    
+    // ゲームランキングコレクション（式作成ゲーム）
+    match /formulaGameRankings/{document} {
+      allow read: if true;
+      allow create: if true; // ランキングスコアの新規作成を許可
+      allow update, delete: if false; // 更新・削除は禁止
+    }
+    
+    // 掲示板コレクション（参考用）
+    match /boardPosts/{document} {
+      allow read: if true;
+      allow create: if true; // 投稿の新規作成を許可
+      allow update, delete: if false; // 更新・削除は禁止
+    }
   }
 }

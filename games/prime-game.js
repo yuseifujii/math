@@ -155,6 +155,11 @@ class RankingSystem {
 
             const { db, collection, addDoc } = window.firebase;
             
+            // Firebaseメソッドの存在確認
+            if (!collection || !addDoc) {
+                throw new Error('Firebase メソッドが利用できません');
+            }
+            
             // primeGameRankings コレクションに新しいドキュメントを追加
             const docRef = await addDoc(collection(db, 'primeGameRankings'), {
                 score: parseInt(score),
@@ -576,8 +581,15 @@ function escapeHtml(text) {
 
 // ランキング表示関連
 async function showRankingDashboard() {
-    rankingModal.style.display = 'block';
-    await updateRankingDisplay();
+    console.log('🏆 ランキングダッシュボードを表示中...');
+    try {
+        rankingModal.style.display = 'block';
+        await updateRankingDisplay();
+        console.log('✅ ランキングダッシュボード表示完了');
+    } catch (error) {
+        console.error('❌ ランキングダッシュボード表示エラー:', error);
+        alert('ランキングの表示に失敗しました: ' + error.message);
+    }
 }
 
 function closeRankingDashboard() {
@@ -749,11 +761,28 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ランキング関連
-    rankingDashboardBtn.addEventListener('click', showRankingDashboard);
+    console.log('🔍 ランキングボタンの設定:', {
+        rankingDashboardBtn: !!rankingDashboardBtn,
+        rankingBtn: !!rankingBtn,
+        closeRankingBtn: !!closeRankingBtn
+    });
+    
+    if (rankingDashboardBtn) {
+        rankingDashboardBtn.addEventListener('click', showRankingDashboard);
+        console.log('✅ ランキングダッシュボードボタンのイベントリスナー設定完了');
+    } else {
+        console.error('❌ ランキングダッシュボードボタンが見つかりません');
+    }
+    
     if (rankingBtn) {
         rankingBtn.addEventListener('click', showRankingDashboard);
+        console.log('✅ ランキングボタンのイベントリスナー設定完了');
     }
-    closeRankingBtn.addEventListener('click', closeRankingDashboard);
+    
+    if (closeRankingBtn) {
+        closeRankingBtn.addEventListener('click', closeRankingDashboard);
+        console.log('✅ ランキング閉じるボタンのイベントリスナー設定完了');
+    }
 
     // モーダルの外側をクリックしたときに閉じる
     rankingModal.addEventListener('click', (e) => {
@@ -793,4 +822,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     console.log('🎮 素数判定ゲーム初期化完了');
+    
+    // Firebase初期化状況をチェック
+    setTimeout(() => {
+        console.log('🔥 Firebase状況:', {
+            windowFirebase: !!window.firebase,
+            db: !!(window.firebase && window.firebase.db),
+            addDoc: !!(window.firebase && window.firebase.addDoc),
+            collection: !!(window.firebase && window.firebase.collection)
+        });
+    }, 1000);
 });

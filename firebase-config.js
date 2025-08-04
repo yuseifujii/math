@@ -1,6 +1,6 @@
 // Firebase 設定
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-import { getFirestore, collection, getDocs, doc, getDoc, query, where, orderBy, limit } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+import { getFirestore, collection, getDocs, doc, getDoc, addDoc, query, where, orderBy, limit } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 
 // Firebase設定オブジェクト  
 const firebaseConfig = {
@@ -17,6 +17,6 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 // エクスポート
-window.firebase = { db, collection, getDocs, doc, getDoc, query, where, orderBy, limit };
+window.firebase = { db, collection, getDocs, doc, getDoc, addDoc, query, where, orderBy, limit };
 
 console.log('✅ Firebase 初期化完了');
