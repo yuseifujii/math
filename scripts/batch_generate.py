@@ -188,6 +188,9 @@ class BatchGenerator:
                 tags=topic.tags
             )
             
+            # 自動公開設定
+            article.status = "published"
+            
             return article
             
         except Exception as e:
