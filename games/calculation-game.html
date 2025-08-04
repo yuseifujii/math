@@ -49,21 +49,6 @@
                 四則演算問題を素早く解いて高スコアを目指そう！<br>
                 制限時間内により多くの問題を解いて、ランキング上位を狙え！
             </p>
-            
-            <!-- ランキングボタン -->
-            <div class="ranking-button-container">
-                <button id="ranking-dashboard-btn" class="ranking-dashboard-btn" onclick="openRankingModal()">
-                    🏆 上級レベル ランキング
-                </button>
-                <!-- 確実に動作するための追加ボタン -->
-                <button id="ranking-dashboard-btn-new" class="ranking-dashboard-btn" style="margin-top: 10px;" onclick="openRankingModal()">
-                    🏆 ランキングを表示
-                </button>
-                <!-- 緊急用シンプルボタン -->
-                <button style="background: red; color: white; padding: 10px; margin-top: 10px; border: none; border-radius: 5px; cursor: pointer;" onclick="alert('クリック動作確認'); openRankingModal();">
-                    🚨 テスト用ランキングボタン
-                </button>
-            </div>
         </div>
     </section>
 
@@ -71,6 +56,13 @@
     <section class="main-game-section">
         <div class="container">
             <div id="calculation-game" class="game-container">
+                
+                <!-- ランキングボタン（ゲームコンテナ内に配置） -->
+                <div class="ranking-button-container">
+                    <button id="ranking-dashboard-btn" class="ranking-dashboard-btn">
+                        🏆 上級レベル ランキング
+                    </button>
+                </div>
                 
                 <!-- ゲーム情報表示 -->
                 <div class="game-info">

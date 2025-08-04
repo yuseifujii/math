@@ -44,7 +44,6 @@ const nicknameCounter = document.getElementById('nickname-counter');
 
 // ランキング関連
 const rankingDashboardBtn = document.getElementById('ranking-dashboard-btn');
-const rankingDashboardBtnNew = document.getElementById('ranking-dashboard-btn-new');
 const rankingModal = document.getElementById('ranking-modal');
 const closeRankingBtn = document.getElementById('close-ranking-btn');
 const rankingTableBody = document.getElementById('ranking-table-body');
@@ -84,7 +83,7 @@ class RankingSystem {
         this.lastError = null;
 
         try {
-            console.log('🔥 Firestore からランキングデータを取得中...');
+    
             
             // Firebase設定の確認
             if (!window.firebase || !window.firebase.db) {
@@ -112,7 +111,7 @@ class RankingSystem {
                 });
             });
 
-            console.log(`✅ ${rankings.length}件のランキングデータを取得`);
+
 
             // バックアップとして localStorage に保存
             localStorage.setItem('primeGameRanking_backup', JSON.stringify(rankings));
@@ -149,7 +148,7 @@ class RankingSystem {
         this.lastError = null;
 
         try {
-            console.log('🔥 Firestore にスコアを送信中...');
+
             
             // Firebase設定の確認
             if (!window.firebase || !window.firebase.db) {
@@ -173,7 +172,7 @@ class RankingSystem {
                 }
             });
 
-            console.log('✅ スコア送信完了, ID:', docRef.id);
+
 
             // 成功時は最新ランキングを取得してバックアップとして保存
             const latestData = await this.getRankings();
@@ -584,11 +583,10 @@ function escapeHtml(text) {
 
 // ランキング表示関連
 async function showRankingDashboard() {
-    console.log('🏆 ランキングダッシュボードを表示中...');
     try {
         rankingModal.style.display = 'block';
         await updateRankingDisplay();
-        console.log('✅ ランキングダッシュボード表示完了');
+
     } catch (error) {
         console.error('❌ ランキングダッシュボード表示エラー:', error);
         alert('ランキングの表示に失敗しました: ' + error.message);
@@ -669,12 +667,9 @@ async function updateRankingDisplay() {
 
 // イベントリスナーの設定
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('🎮 素数判定ゲーム: DOMContentLoaded開始！');
-    
     // 初期状態：ゲーム情報を非表示
     if (gameInfo) {
         gameInfo.style.display = 'none';
-        console.log('✅ 初期状態：ゲーム情報を非表示に設定');
     }
     // レベル選択の処理
     levelButtons.forEach(button => {
@@ -805,50 +800,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ランキング関連
-    console.log('🔍 ランキングボタンの設定:', {
-        rankingDashboardBtn: !!rankingDashboardBtn,
-        rankingBtn: !!rankingBtn,
-        closeRankingBtn: !!closeRankingBtn
-    });
-    
-    console.log('🔍 要素詳細情報:', {
-        rankingDashboardBtn_element: rankingDashboardBtn,
-        rankingDashboardBtn_id: rankingDashboardBtn?.id,
-        rankingDashboardBtn_className: rankingDashboardBtn?.className,
-        rankingDashboardBtn_style_display: rankingDashboardBtn?.style.display,
-        rankingDashboardBtn_disabled: rankingDashboardBtn?.disabled,
-        rankingDashboardBtnNew_element: rankingDashboardBtnNew,
-        rankingDashboardBtnNew_id: rankingDashboardBtnNew?.id
-    });
-    
     if (rankingDashboardBtn) {
-        rankingDashboardBtn.addEventListener('click', function(event) {
-            console.log('🎯 ランキングダッシュボードボタン（元）がクリックされました！', event);
-            showRankingDashboard();
-        });
-        console.log('✅ ランキングダッシュボードボタンのイベントリスナー設定完了');
-    } else {
-        console.error('❌ ランキングダッシュボードボタンが見つかりません');
-    }
-    
-    if (rankingDashboardBtnNew) {
-        rankingDashboardBtnNew.addEventListener('click', function(event) {
-            console.log('🎯 ランキングダッシュボードボタン（新）がクリックされました！', event);
-            showRankingDashboard();
-        });
-        console.log('✅ 新しいランキングダッシュボードボタンのイベントリスナー設定完了');
-    } else {
-        console.error('❌ 新しいランキングダッシュボードボタンが見つかりません');
+        rankingDashboardBtn.addEventListener('click', showRankingDashboard);
     }
     
     if (rankingBtn) {
         rankingBtn.addEventListener('click', showRankingDashboard);
-        console.log('✅ ランキングボタンのイベントリスナー設定完了');
     }
     
     if (closeRankingBtn) {
         closeRankingBtn.addEventListener('click', closeRankingDashboard);
-        console.log('✅ ランキング閉じるボタンのイベントリスナー設定完了');
     }
 
     // モーダルの外側をクリックしたときに閉じる
@@ -888,26 +849,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    console.log('🎮 素数判定ゲーム初期化完了');
-    
-    // Firebase初期化状況をチェック
-    setTimeout(() => {
-        console.log('🔥 Firebase状況:', {
-            windowFirebase: !!window.firebase,
-            db: !!(window.firebase && window.firebase.db),
-            addDoc: !!(window.firebase && window.firebase.addDoc),
-            collection: !!(window.firebase && window.firebase.collection)
-        });
-    }, 1000);
 });
-
-// グローバル関数：HTMLのonclickから直接呼び出し可能
-window.openRankingModal = function() {
-    console.log('🚀 openRankingModal が呼び出されました！');
-    try {
-        showRankingDashboard();
-    } catch (error) {
-        console.error('❌ ランキング表示エラー:', error);
-        alert('ランキングの表示に失敗しました: ' + error.message);
-    }
-};
