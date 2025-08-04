@@ -93,11 +93,12 @@
 }
 
 .article-summary {
-    background: #e8f5e9;
+    background: #f8f9fa;
     padding: 20px;
     border-radius: 8px;
     margin-bottom: 20px;
-    color: #2e7d32;
+    color: #555;
+    border: 1px solid #e0e0e0;
 }
 
 /* レスポンシブ対応 */

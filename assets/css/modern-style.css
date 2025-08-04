@@ -527,6 +527,38 @@ body {
     box-shadow: var(--shadow-medium);
 }
 
+.clickable-card {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.clickable-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-heavy);
+}
+
+.clickable-card:active {
+    transform: translateY(-2px);
+    transition: all 0.1s ease;
+}
+
+.read-more-indicator {
+    color: var(--accent-blue);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.clickable-card:hover .read-more-indicator {
+    color: var(--primary-blue);
+    transform: translateX(3px);
+}
+
 .article-meta-top {
     display: flex;
     justify-content: space-between;
@@ -549,6 +581,7 @@ body {
     gap: 10px;
     font-size: 0.8rem;
     color: #666;
+    align-items: center;
 }
 
 .difficulty-badge,
@@ -558,6 +591,32 @@ body {
     padding: 0;
     border-radius: 0;
     font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.difficulty-dots,
+.niche-dots {
+    display: inline-flex;
+    gap: 2px;
+    margin-left: 3px;
+}
+
+.dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot.filled {
+    background-color: #666;
+}
+
+.dot.empty {
+    background-color: #ddd;
+    border: 1px solid #ccc;
 }
 
 .article-card h3 {

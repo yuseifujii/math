@@ -170,7 +170,7 @@ class ModernHomePage {
      */
     createArticleCard(article) {
         const card = document.createElement('div');
-        card.className = 'article-card';
+        card.className = 'article-card clickable-card';
         
         const categoryName = this.getCategoryName(article.category);
         const truncatedSummary = this.truncateText(article.summary, 120);
@@ -178,34 +178,54 @@ class ModernHomePage {
             `<span class="article-tag">${tag}</span>`
         ).join('');
 
+        // 難易度・ニッチ度のドット表現
+        const difficultyDots = this.createDots(article.difficulty_level, 10);
+        const nicheDots = this.createDots(article.niche_score, 10);
+
         card.innerHTML = `
             <div class="article-meta-top">
                 <span class="article-category">${categoryName}</span>
                 <div class="article-difficulty">
-                    <span class="difficulty-badge">難易度 ${article.difficulty_level}/10</span>
-                    <span class="niche-badge">ニッチ度 ${article.niche_score}/10</span>
+                    <span class="difficulty-badge">難易度 ${article.difficulty_level}/10${difficultyDots}</span>
+                    <span class="niche-badge">ニッチ度 ${article.niche_score}/10${nicheDots}</span>
                 </div>
             </div>
             <h3>${article.title}</h3>
             <p>${truncatedSummary}</p>
             <div class="article-footer">
                 <div class="article-tags">${tagsHtml}</div>
-                <a href="article.html?slug=${article.id}" class="read-more">
+                <span class="read-more-indicator">
                     詳しく読む <span>→</span>
-                </a>
+                </span>
             </div>
         `;
 
-        // カードホバーエフェクト
-        card.addEventListener('mouseenter', () => {
-            card.style.transform = 'translateY(-5px)';
-        });
-
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'translateY(0)';
+        // カード全体をクリック可能に
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', () => {
+            window.location.href = `article.html?slug=${article.id}`;
         });
 
         return card;
+    }
+
+    /**
+     * ドット表現作成
+     */
+    createDots(value, max) {
+        const normalizedValue = Math.min(Math.max(Math.round(value / 2), 1), 5); // 10段階を5段階に変換
+        let dotsHtml = '<span class="difficulty-dots">';
+        
+        for (let i = 1; i <= 5; i++) {
+            if (i <= normalizedValue) {
+                dotsHtml += '<span class="dot filled"></span>';
+            } else {
+                dotsHtml += '<span class="dot empty"></span>';
+            }
+        }
+        
+        dotsHtml += '</span>';
+        return dotsHtml;
     }
 
     /**

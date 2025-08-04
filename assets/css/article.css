@@ -321,6 +321,9 @@
     font-weight: 400;
     border-right: 1px solid #ddd;
     padding-right: 15px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .meta-info span:last-child {
@@ -332,6 +335,29 @@
 .niche-score {
     background: transparent !important;
     color: #666 !important;
+}
+
+.difficulty-dots,
+.niche-dots {
+    display: inline-flex;
+    gap: 2px;
+    margin-left: 5px;
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot.filled {
+    background-color: #666;
+}
+
+.dot.empty {
+    background-color: #ddd;
+    border: 1px solid #ccc;
 }
 
 .article-summary {
