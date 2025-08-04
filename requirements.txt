@@ -1,0 +1,19 @@
+# Google Cloud & Firebase
+google-cloud-firestore>=2.13.1
+firebase-admin>=6.2.0
+
+# Google Generative AI (Gemini)
+google-generativeai>=0.3.2
+
+# Utilities
+python-dotenv>=1.0.0
+requests>=2.31.0
+beautifulsoup4>=4.12.2
+
+# Data handling
+pandas>=2.1.0
+numpy>=1.24.0
+
+# Web framework (for future API)
+flask>=2.3.0
+flask-cors>=4.0.0

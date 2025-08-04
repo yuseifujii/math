@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Mt.MATH">
-    <meta name="keywords" content="Mt.MATH, 数学, 定理, 証明, 中学数学, 高校数学, YFIT Japan">
-    <meta name="author" content="YFIT Japan">
-    <title>Mt.MATH</title>
-	<link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="Mt.MATH - 数学の定理を探求し、ゲームで学ぶ革新的な学習プラットフォーム">
+    <meta name="keywords" content="数学, 定理, 証明, ゲーム, 学習, 代数学, 解析学, 整数論">
+    <title>Mt.MATH | 数学の頂を目指そう</title>
+    <link rel="icon" href="Mt.MATH_icon.png" type="image/png">
+    <link rel="stylesheet" href="assets/css/modern-style.css">
+    <link rel="stylesheet" href="assets/css/article.css">
     <script type="text/javascript" async 
         src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script type="text/javascript" id="MathJax-script" async 
@@ -16,93 +16,234 @@
 </head>
    
 <body>
-    <!-- Header Section -->
-    <header class="mountain-header">
-        <img src="Mt.MATH_header(transparent).png" alt="Header Image" class="header-image">
-        <div class="header-text">
-            <h1>マウント・マス</h1>
-            <p>数学の定理とその証明</p>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-background">
+            <div class="mathematical-symbols">
+                <span class="symbol">∑</span>
+                <span class="symbol">∮</span>
+                <span class="symbol">∞</span>
+                <span class="symbol">π</span>
+                <span class="symbol">∇</span>
+                <span class="symbol">∂</span>
+                <span class="symbol">∫</span>
+                <span class="symbol">√</span>
+            </div>
         </div>
-    </header>
-
-    <!-- Articles List Section -->
-    <section>
-        <div class="container">
-            <h2>記事一覧</h2>
-            <h3>幾何学 (Geometry)</h3>
-            <ul>
-                <li><a href="zg001-pythagoras.html">ピタゴラスの定理(三平方の定理)</a></li>
-                <li><a href="zg002-triangle.html">三角形の内角の和</a></li>
-                <li><a href="zg003-exterior_angle.html">外角の定理</a></li>
-                <li><a href="zg004-midline.html">中点連結定理</a></li>
-                <li><a href="zg005-angle_bisector.html">角の二等分線の定理</a></li>
-                <li><a href="zg006-ceva.html">チェバの定理</a></li>
-                <li><a href="zg007-menelaus.html">メネラウスの定理</a></li>
-                <li><a href="zg008-median.html">中線定理(パップスの定理)</a></li>
-                <li><a href="zg009-thales.html">タレスの定理</a></li>
-                <li><a href="zg010-inscribed_angle.html">円周角の定理</a></li>
-                <li><a href="zg011-power_point.html">方べきの定理</a></li>
-                <li><a href="zg012-cyclic_quad.html">内接四角形の性質</a></li>
-                <li><a href="zg013-tangent_secant.html">接弦定理</a></li>
-                <li><a href="zg014-ptolemy.html">トレミーの定理</a></li>
-                <li><a href="zg015-heron.html">ヘロンの公式</a></li>
-                <li><a href="zg016-sine.html">正弦定理</a></li>
-                <li><a href="zg017-cosine.html">余弦定理</a></li>
-                
-            </ul>
-            <h3>整数論 (Number Theory)</h3>
-            <ul>
-                <li><a href="zn001-arithmetic.html">算術の基本定理</a></li>
-                <li><a href="zn002-euclidean_algorithm.html">ユークリッドの互除法</a></li>
-                <li><a href="zn003-prime_infinitude.html">素数の無限性</a></li>
-                <li><a href="zn004-fermat_little.html">フェルマーの小定理</a></li>
-                <li><a href="zg005-euler.html">オイラーの定理</a></li>
-                <li><a href="zg006-china.html">中国剰余定理</a></li>
-                <li><a href="zg007-extended_euclid.html">拡張ユークリッドの互除法</a></li>
-                <li><a href="zg008-quadratic_recip.html">平方剰余の相互法則</a></li>
-            </ul>
-            <h3>代数学 (Algebra)</h3>
-            <ul>
-                <li><a href="zal001-factorization.html">因数分解の基本公式</a></li>
-                <li><a href="zal002-quadratic_formula.html">二次方程式の解の公式</a></li>
-                <li><a href="zal003-factor.html">因数定理</a></li>
-                <li><a href="zal004-remainder.html">剰余定理</a></li>
-                <li><a href="zal005-binomial.html">二項定理</a></li>
-                <li><a href="zal006-vieta.html">方程式の解と係数の関係(Vietaの公式)</a></li>
-            </ul>
-            <h3>解析学 (Analysis)</h3>
-            <ul>
-                <li><a href="zan001-intermediate.html">中間値の定理</a></li>
-                <li><a href="zan002-mean.html">平均値の定理</a></li>
-            </ul>
-            <h3>確率論・統計学 (Probability and Statistics)</h3>
-            <ul>
-                <li><a href="zps001-addition_prob.html">確率の加法定理</a></li>
-                <li><a href="zps002-multiplication_prob.html">確率の乗法定理</a></li>
-            </ul>
-            <h3>その他 (Others)</h3>
-            <ul>
-                <li><a href="zo001-stokes.html">ストークスの定理</a></li>
-                <li><a href="zo002-pigeonhole.html">鳩の巣原理(ディリクレの部屋割り論法)</a></li>
-            </ul>
+        
+        <header class="modern-header">
+            <nav class="navbar">
+                <div class="nav-brand">
+                    <img src="Mt.MATH_icon.png" alt="Mt.MATH" class="brand-icon">
+                    <span class="brand-name">Mt.MATH</span>
+                </div>
+                <div class="nav-menu" id="nav-menu">
+                    <a href="#articles" class="nav-link">記事</a>
+                    <a href="#games" class="nav-link">ゲーム</a>
+                    <a href="about.html" class="nav-link">概要</a>
+                    <a href="contact.html" class="nav-link">お問い合わせ</a>
+                </div>
+                <div class="nav-toggle" id="nav-toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
             
-            <h3>🎮 数学ゲーム</h3>
-            <ul>
-                <li><a href="games/index.html">数学ゲーム - ランキング機能付き！</a></li>
-            </ul>
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    数学の<span class="highlight">頂</span>を目指そう
+                </h1>
+                <p class="hero-subtitle">
+                    定理の美しさを探求し、ゲームで楽しく学ぶ<br>
+                    革新的な数学学習プラットフォーム
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="article-count">0</span>
+                        <span class="stat-label">記事</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">5</span>
+                        <span class="stat-label">ゲーム</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">∞</span>
+                        <span class="stat-label">発見</span>
+                    </div>
+                </div>
+                <div class="hero-actions">
+                    <a href="#articles" class="btn btn-primary">
+                        <span class="btn-icon">📚</span>
+                        記事を探索
+                    </a>
+                    <a href="#games" class="btn btn-secondary">
+                        <span class="btn-icon">🎮</span>
+                        ゲームで学習
+                    </a>
+                </div>
+            </div>
+        </header>
+    </section>
+
+    <!-- Featured Games Section -->
+    <section id="games" class="games-showcase">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="icon">🎮</span>
+                    数学ゲーム体験
+                </h2>
+                <p class="section-subtitle">
+                    楽しみながら数学力を向上させる革新的なゲーム群
+                </p>
+            </div>
+            
+            <div class="games-grid">
+                <div class="game-card featured">
+                    <div class="game-icon">🧮</div>
+                    <h3>計算チャレンジ</h3>
+                    <p>時間制限内により多くの問題を解き、世界ランキングを目指そう！</p>
+                    <div class="game-stats">
+                        <span class="difficulty">★★★☆☆</span>
+                        <span class="players">120人プレイ中</span>
+                    </div>
+                    <a href="games/calculation.html" class="game-btn">今すぐプレイ</a>
+                </div>
+                
+                <div class="game-card">
+                    <div class="game-icon">🔢</div>
+                    <h3>数列マスター</h3>
+                    <p>パターンを見抜いて数列を完成させる思考力ゲーム</p>
+                    <div class="game-stats">
+                        <span class="difficulty">★★★★☆</span>
+                        <span class="players">85人プレイ中</span>
+                    </div>
+                    <a href="games/sequence.html" class="game-btn">挑戦する</a>
+                </div>
+                
+                <div class="game-card">
+                    <div class="game-icon">📐</div>
+                    <h3>証明パズル</h3>
+                    <p>論理的思考で数学的証明を組み立てるパズルゲーム</p>
+                    <div class="game-stats">
+                        <span class="difficulty">★★★★★</span>
+                        <span class="players">45人プレイ中</span>
+                    </div>
+                    <a href="games/proof.html" class="game-btn">挑戦する</a>
+                </div>
+            </div>
+            
+            <div class="games-footer">
+                <a href="games/index.html" class="btn btn-outline">
+                    全てのゲームを見る
+                    <span class="btn-arrow">→</span>
+                </a>
+            </div>
         </div>
     </section>
 
-    <!-- Footer Section -->
-    <footer>
+    <!-- Articles Section -->
+    <section id="articles" class="articles-section">
         <div class="container">
-            <ul>
-                <li><a href="privacy.html">プライバシーポリシー</a></li>
-                <li><a href="contact.html">お問い合わせ</a></li>
-                <li><a href="about.html">運営者情報</a></li>
-            </ul>
-            <p>&copy; 2025 YFIT Japan. All Rights Reserved.</p>
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="icon">📖</span>
+                    数学記事コレクション
+                </h2>
+                <p class="section-subtitle">
+                    厳密な証明と美しい数式で構成された高品質な数学記事
+                </p>
+            </div>
+            
+            <!-- Category Tabs -->
+            <div class="category-tabs">
+                <button class="tab-btn active" data-category="all">全て</button>
+                <button class="tab-btn" data-category="algebra">代数学</button>
+                <button class="tab-btn" data-category="analysis">解析学</button>
+                <button class="tab-btn" data-category="number_theory">整数論</button>
+                <button class="tab-btn" data-category="probability">確率論</button>
+                <button class="tab-btn" data-category="others">その他</button>
+            </div>
+            
+            <!-- Articles Grid -->
+            <div class="articles-grid" id="articles-grid">
+                <!-- 動的に記事が読み込まれる -->
+                <div class="loading-articles">
+                    <div class="spinner"></div>
+                    <p>記事を読み込み中...</p>
+                </div>
+            </div>
+            
+            <div class="articles-footer">
+                <button id="load-more-btn" class="btn btn-outline" style="display: none;">
+                    さらに記事を読み込む
+                    <span class="btn-arrow">↓</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔬</div>
+                    <h3>厳密な証明</h3>
+                    <p>数学的に正確で完全な証明を重視し、深い理解を促進します</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>ニッチな内容</h3>
+                    <p>他では見つからない専門的で興味深い数学トピックを扱います</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>レスポンシブ</h3>
+                    <p>スマートフォンからデスクトップまで、あらゆるデバイスで最適表示</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3>ランキング</h3>
+                    <p>ゲームでスコアを競い、数学力を客観的に測定できます</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="modern-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="Mt.MATH_icon.png" alt="Mt.MATH" class="footer-logo">
+                    <h3>Mt.MATH</h3>
+                    <p>数学の美しさを探求し、知識の頂点を目指す</p>
+                </div>
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h4>コンテンツ</h4>
+                        <a href="#articles">数学記事</a>
+                        <a href="#games">ゲーム</a>
+                        <a href="games/rankings.html">ランキング</a>
+                    </div>
+                    <div class="link-group">
+                        <h4>サイト情報</h4>
+                        <a href="about.html">概要</a>
+                        <a href="contact.html">お問い合わせ</a>
+                        <a href="privacy.html">プライバシー</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Mt.MATH | Powered by YFIT Japan</p>
+            </div>
         </div>
     </footer>
+
+    <!-- Scripts -->
+    <script type="module" src="firebase-config.js"></script>
+    <script src="assets/js/modern-home.js"></script>
 </body>
 </html>

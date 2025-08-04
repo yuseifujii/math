@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>記事詳細 | Mt.MATH</title>
+    <link rel="icon" href="Mt.MATH_icon.png" type="image/png">
+    <link rel="stylesheet" href="assets/css/modern-style.css">
+    <link rel="stylesheet" href="assets/css/article.css">
+    <script type="text/javascript" async 
+        src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script type="text/javascript" id="MathJax-script" async 
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+   
+<body>
+    <!-- Modern Header -->
+    <header class="modern-article-header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <img src="Mt.MATH_icon.png" alt="Mt.MATH" class="brand-icon">
+                <a href="index.html" class="brand-link">Mt.MATH</a>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html#articles" class="nav-link">記事一覧</a>
+                <a href="index.html#games" class="nav-link">ゲーム</a>
+                <a href="about.html" class="nav-link">概要</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Loading Section -->
+    <section id="loading-section">
+        <div class="container">
+            <div class="loading-spinner">
+                <div class="spinner"></div>
+                <p>記事を読み込み中...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Section -->
+    <section id="article-section" style="display: none;">
+        <div class="container">
+            <!-- 記事メタデータ -->
+            <div class="article-meta">
+                <div class="breadcrumb">
+                    <a href="index.html">ホーム</a> > 
+                    <span id="article-category">カテゴリ</span> > 
+                    <span id="article-title-breadcrumb">記事タイトル</span>
+                </div>
+                <h1 id="article-title">記事タイトル</h1>
+                <div class="meta-info">
+                    <span class="difficulty">難易度: <span id="article-difficulty">-</span>/10</span>
+                    <span class="niche-score">ニッチ度: <span id="article-niche">-</span>/10</span>
+                    <span class="author">by <span id="article-author">Mt.MATH AI</span></span>
+                </div>
+                <div class="article-summary">
+                    <p id="article-summary">記事の要約が表示されます</p>
+                </div>
+                <div class="article-tags">
+                    <div id="article-tags-container"></div>
+                </div>
+            </div>
+
+            <!-- 記事本文 -->
+            <div class="article-content">
+                <div id="article-content-html">
+                    <!-- Firebaseから取得したHTMLコンテンツがここに表示 -->
+                </div>
+            </div>
+
+            <!-- 関連記事 -->
+            <div class="related-articles">
+                <h3>関連記事</h3>
+                <div id="related-articles-list">
+                    <!-- 関連記事が動的に表示 -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Error Section -->
+    <section id="error-section" style="display: none;">
+        <div class="container">
+            <div class="error-message">
+                <h2>記事が見つかりません</h2>
+                <p>指定された記事は存在しないか、削除された可能性があります。</p>
+                <p><a href="index.html">ホームページに戻る</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <ul>
+                <li><a href="privacy.html">プライバシーポリシー</a></li>
+                <li><a href="contact.html">お問い合わせ</a></li>
+                <li><a href="about.html">運営者情報</a></li>
+            </ul>
+            <p>&copy; 2025 YFIT Japan. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Firebase & Article Loading Script -->
+    <script type="module" src="firebase-config.js"></script>
+    <script src="assets/js/article-loader.js"></script>
+</body>
+</html>
