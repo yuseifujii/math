@@ -256,7 +256,51 @@
     </div>
 
     <!-- Scripts -->
-    <script src="../firebase-config.js"></script>
+    <!-- Firebase v8 (レガシー版) CDN -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    
+    <!-- Firebase Config -->
+    <script>
+        // Firebase設定
+        const firebaseConfig = {
+            apiKey: "AIzaSyDVJE5keiOOD73rdA07atxomRxmTVMQApE",
+            authDomain: "math-52da7.firebaseapp.com",
+            projectId: "math-52da7", 
+            storageBucket: "math-52da7.firebasestorage.app",
+            messagingSenderId: "755846899439",
+            appId: "1:755846899439:web:57e59294d641caa6cc1d1a"
+        };
+
+        // Firebase初期化
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        
+        // v8形式のAPIをv9風に使えるよう変換
+        window.firebase = {
+            db: db,
+            collection: (db, path) => db.collection(path),
+            getDocs: (ref) => ref.get(),
+            doc: (db, path) => db.doc(path),
+            getDoc: (ref) => ref.get(),
+            addDoc: (ref, data) => ref.add(data),
+            query: (ref, ...constraints) => {
+                let query = ref;
+                constraints.forEach(constraint => {
+                    query = query.orderBy(constraint.field, constraint.direction || 'asc');
+                    if (constraint.limitValue) {
+                        query = query.limit(constraint.limitValue);
+                    }
+                });
+                return query;
+            },
+            orderBy: (field, direction = 'asc') => ({ field, direction }),
+            limit: (value) => ({ limitValue: value })
+        };
+        
+        console.log('✅ Firebase v8 初期化完了');
+    </script>
+    
     <script src="calculation-game.js"></script>
 </body>
 </html>

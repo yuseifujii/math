@@ -111,11 +111,13 @@ class RankingSystem {
                 throw new Error('Firebase が初期化されていません');
             }
 
-            const { db, collection, getDocs, query, orderBy, limit } = window.firebase;
+            const { db } = window.firebase;
             
-            const rankingsRef = collection(db, this.collectionName);
-            const q = query(rankingsRef, orderBy('score', 'desc'), limit(20));
-            const querySnapshot = await getDocs(q);
+            // v8形式でクエリを実行
+            const querySnapshot = await db.collection(this.collectionName)
+                .orderBy('score', 'desc')
+                .limit(20)
+                .get();
             
             const rankings = [];
             querySnapshot.forEach((doc) => {
@@ -173,14 +175,10 @@ class RankingSystem {
                 throw new Error('Firebase が初期化されていません');
             }
 
-            const { db, collection, addDoc } = window.firebase;
+            const { db } = window.firebase;
             
-            // Firebaseメソッドの存在確認
-            if (!collection || !addDoc) {
-                throw new Error('Firebase メソッドが利用できません');
-            }
-            
-            const docRef = await addDoc(collection(db, this.collectionName), {
+            // v8形式でドキュメントを追加
+            const docRef = await db.collection(this.collectionName).add({
                 score: parseInt(score),
                 problemsSolved: parseInt(problemsSolved),
                 accuracy: parseFloat(accuracy),

@@ -89,12 +89,13 @@ class RankingSystem {
                 throw new Error('Firebase が初期化されていません');
             }
 
-            const { db, collection, getDocs, query, orderBy, limit } = window.firebase;
+            const { db } = window.firebase;
             
-            // primeGameRankings コレクションから上位20件を取得
-            const rankingsRef = collection(db, 'primeGameRankings');
-            const q = query(rankingsRef, orderBy('score', 'desc'), limit(20));
-            const querySnapshot = await getDocs(q);
+            // v8形式でクエリを実行
+            const querySnapshot = await db.collection('primeGameRankings')
+                .orderBy('score', 'desc')
+                .limit(20)
+                .get();
             
             const rankings = [];
             querySnapshot.forEach((doc) => {
@@ -153,15 +154,10 @@ class RankingSystem {
                 throw new Error('Firebase が初期化されていません');
             }
 
-            const { db, collection, addDoc } = window.firebase;
+            const { db } = window.firebase;
             
-            // Firebaseメソッドの存在確認
-            if (!collection || !addDoc) {
-                throw new Error('Firebase メソッドが利用できません');
-            }
-            
-            // primeGameRankings コレクションに新しいドキュメントを追加
-            const docRef = await addDoc(collection(db, 'primeGameRankings'), {
+            // v8形式でドキュメントを追加
+            const docRef = await db.collection('primeGameRankings').add({
                 score: parseInt(score),
                 nickname: nickname.trim(),
                 affiliation: affiliation.trim(),
