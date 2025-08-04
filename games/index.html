@@ -68,26 +68,26 @@
         <div class="container">
             <div class="featured-content">
                 <div class="featured-info">
-                    <span class="featured-badge">🏆 人気No.1</span>
+                    <span class="featured-badge">🔥 最新完成</span>
                     <h2>計算チャレンジ</h2>
-                    <p>制限時間内により多くの計算問題を解いて、世界ランキングを目指そう！四則演算から複雑な計算まで、レベル別に挑戦できます。</p>
+                    <p>四則演算問題を素早く解いて高スコアを目指そう！制限時間内により多くの問題を解いて、ランキング上位を狙え！ヒント機能やレベル別難易度調整も完備！</p>
                     <div class="game-features">
                         <div class="feature">
-                            <span class="feature-icon">⏱️</span>
+                            <span class="feature-icon">⏰</span>
                             <span>時間制限バトル</span>
                         </div>
                         <div class="feature">
-                            <span class="feature-icon">🌟</span>
-                            <span>レベル別難易度</span>
+                            <span class="feature-icon">💡</span>
+                            <span>ヒント機能付き</span>
                         </div>
                         <div class="feature">
-                            <span class="feature-icon">🏅</span>
-                            <span>世界ランキング</span>
+                            <span class="feature-icon">🏆</span>
+                            <span>ランキング対応</span>
                         </div>
                     </div>
                     <div class="featured-actions">
-                        <a href="calculation.html" class="btn btn-primary btn-large">
-                            <span class="btn-icon">🚀</span>
+                        <a href="calculation-game.html" class="btn btn-primary btn-large">
+                            <span class="btn-icon">🧮</span>
                             今すぐプレイ
                         </a>
                         <a href="#rankings" class="btn btn-outline">
@@ -98,16 +98,17 @@
                 <div class="featured-preview">
                     <div class="game-screen">
                         <div class="screen-header">
-                            <span class="score">スコア: 2,450</span>
-                            <span class="timer">残り時間: 00:45</span>
+                            <span class="score">スコア: 240</span>
+                            <span class="timer">残り時間: 45秒</span>
                         </div>
                         <div class="screen-content">
-                            <div class="problem">47 × 83 = ?</div>
+                            <div class="problem">47 × 13 = ?</div>
                             <div class="options">
-                                <button class="option">3,901</button>
-                                <button class="option active">3,901</button>
-                                <button class="option">3,811</button>
-                                <button class="option">3,991</button>
+                                <input type="number" class="calc-input" placeholder="答えを入力..." value="611">
+                                <button class="option calc-submit">回答</button>
+                            </div>
+                            <div class="lives-demo">
+                                <span>連続正解: 8問 🔥</span>
                             </div>
                         </div>
                     </div>
@@ -130,124 +131,110 @@
             </div>
             
             <div class="games-grid">
+                <!-- 素数判定ゲーム（完成済み）-->
                 <div class="game-card premium">
-                    <div class="game-badge">🏆 人気</div>
+                    <div class="game-badge">✨ 完成</div>
+                    <div class="game-icon">🔢</div>
+                    <h3>素数判定ゲーム</h3>
+                    <p>表示される数字が素数かどうかを当てよう！連続正解でボーナス獲得！</p>
+                    <div class="game-stats">
+                        <div class="stat">
+                            <span class="stat-label">難易度</span>
+                            <span class="difficulty-stars">★★★☆☆</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">ランキング</span>
+                            <span class="player-count">対応済み</span>
+                        </div>
+                    </div>
+                    <div class="game-actions">
+                        <a href="prime-game.html" class="game-btn primary">プレイ</a>
+                        <button class="game-btn secondary" onclick="window.open('prime-game.html', '_blank')">詳細</button>
+                    </div>
+                </div>
+
+                <!-- 計算チャレンジ（完成済み）-->
+                <div class="game-card">
+                    <div class="game-badge">✨ 完成</div>
                     <div class="game-icon">🧮</div>
                     <h3>計算チャレンジ</h3>
-                    <p>四則演算から複雑な計算まで、時間内により多くの問題を解こう！</p>
+                    <p>四則演算問題を素早く解いて高スコアを目指そう！時間制限とヒント機能付き！</p>
                     <div class="game-stats">
                         <div class="stat">
                             <span class="stat-label">難易度</span>
                             <span class="difficulty-stars">★★★☆☆</span>
                         </div>
                         <div class="stat">
-                            <span class="stat-label">プレイヤー</span>
-                            <span class="player-count">120人</span>
+                            <span class="stat-label">ランキング</span>
+                            <span class="player-count">対応済み</span>
                         </div>
                     </div>
                     <div class="game-actions">
-                        <a href="calculation.html" class="game-btn primary">プレイ</a>
-                        <button class="game-btn secondary" onclick="showRanking('calculation')">ランキング</button>
+                        <a href="calculation-game.html" class="game-btn primary">プレイ</a>
+                        <button class="game-btn secondary" onclick="window.open('calculation-game.html', '_blank')">詳細</button>
                     </div>
                 </div>
 
-                <div class="game-card">
-                    <div class="game-icon">🔢</div>
-                    <h3>数列マスター</h3>
-                    <p>パターンを見抜いて数列を完成させる思考力ゲーム</p>
-                    <div class="game-stats">
-                        <div class="stat">
-                            <span class="stat-label">難易度</span>
-                            <span class="difficulty-stars">★★★★☆</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-label">プレイヤー</span>
-                            <span class="player-count">85人</span>
-                        </div>
-                    </div>
-                    <div class="game-actions">
-                        <a href="sequence.html" class="game-btn primary">プレイ</a>
-                        <button class="game-btn secondary" onclick="showRanking('sequence')">ランキング</button>
-                    </div>
-                </div>
-
-                <div class="game-card">
-                    <div class="game-icon">📐</div>
-                    <h3>証明パズル</h3>
-                    <p>論理的思考で数学的証明を組み立てるパズルゲーム</p>
-                    <div class="game-stats">
-                        <div class="stat">
-                            <span class="stat-label">難易度</span>
-                            <span class="difficulty-stars">★★★★★</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-label">プレイヤー</span>
-                            <span class="player-count">45人</span>
-                        </div>
-                    </div>
-                    <div class="game-actions">
-                        <a href="proof.html" class="game-btn primary">プレイ</a>
-                        <button class="game-btn secondary" onclick="showRanking('proof')">ランキング</button>
-                    </div>
-                </div>
-
-                <div class="game-card">
-                    <div class="game-icon">📊</div>
-                    <h3>統計クイズ</h3>
-                    <p>確率と統計の問題に挑戦して分析力を鍛えよう</p>
-                    <div class="game-stats">
-                        <div class="stat">
-                            <span class="stat-label">難易度</span>
-                            <span class="difficulty-stars">★★★☆☆</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-label">プレイヤー</span>
-                            <span class="player-count">62人</span>
-                        </div>
-                    </div>
-                    <div class="game-actions">
-                        <a href="statistics.html" class="game-btn primary">プレイ</a>
-                        <button class="game-btn secondary" onclick="showRanking('statistics')">ランキング</button>
-                    </div>
-                </div>
-
-                <div class="game-card">
-                    <div class="game-icon">🔺</div>
-                    <h3>三角関数バトル</h3>
-                    <p>sin, cos, tanの値を素早く計算して高スコアを狙おう</p>
-                    <div class="game-stats">
-                        <div class="stat">
-                            <span class="stat-label">難易度</span>
-                            <span class="difficulty-stars">★★★★☆</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-label">プレイヤー</span>
-                            <span class="player-count">38人</span>
-                        </div>
-                    </div>
-                    <div class="game-actions">
-                        <a href="trigonometry.html" class="game-btn primary">プレイ</a>
-                        <button class="game-btn secondary" onclick="showRanking('trigonometry')">ランキング</button>
-                    </div>
-                </div>
-
+                <!-- 倍数・約数ゲーム（開発予定）-->
                 <div class="game-card coming-soon">
-                    <div class="game-badge">🚧 開発中</div>
-                    <div class="game-icon">🎲</div>
-                    <h3>確率シミュレーター</h3>
-                    <p>様々な確率現象をシミュレーションして直感を鍛えよう</p>
+                    <div class="game-badge">📋 予定</div>
+                    <div class="game-icon">📊</div>
+                    <h3>倍数・約数ゲーム</h3>
+                    <p>数の性質を理解して、倍数や約数の判定問題に挑戦しよう！</p>
                     <div class="game-stats">
                         <div class="stat">
                             <span class="stat-label">難易度</span>
-                            <span class="difficulty-stars">★★★☆☆</span>
+                            <span class="difficulty-stars">★★☆☆☆</span>
                         </div>
                         <div class="stat">
-                            <span class="stat-label">リリース予定</span>
-                            <span class="player-count">近日公開</span>
+                            <span class="stat-label">ステータス</span>
+                            <span class="player-count">開発予定</span>
                         </div>
                     </div>
                     <div class="game-actions">
-                        <button class="game-btn disabled">開発中</button>
+                        <button class="game-btn disabled">開発予定</button>
+                    </div>
+                </div>
+
+                <!-- 数当てゲーム（開発予定）-->
+                <div class="game-card coming-soon">
+                    <div class="game-badge">📋 予定</div>
+                    <div class="game-icon">🎯</div>
+                    <h3>数当てゲーム</h3>
+                    <p>High&Lowヒントを使って、隠された数字を推理で当てよう！</p>
+                    <div class="game-stats">
+                        <div class="stat">
+                            <span class="stat-label">難易度</span>
+                            <span class="difficulty-stars">★★☆☆☆</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">ステータス</span>
+                            <span class="player-count">開発予定</span>
+                        </div>
+                    </div>
+                    <div class="game-actions">
+                        <button class="game-btn disabled">開発予定</button>
+                    </div>
+                </div>
+
+                <!-- 式作成ゲーム（開発予定）-->
+                <div class="game-card coming-soon">
+                    <div class="game-badge">📋 予定</div>
+                    <div class="game-icon">🧩</div>
+                    <h3>式作成ゲーム</h3>
+                    <p>与えられた数字を使って、目標の値を作る式を組み立てよう！</p>
+                    <div class="game-stats">
+                        <div class="stat">
+                            <span class="stat-label">難易度</span>
+                            <span class="difficulty-stars">★★★★☆</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">ステータス</span>
+                            <span class="player-count">開発予定</span>
+                        </div>
+                    </div>
+                    <div class="game-actions">
+                        <button class="game-btn disabled">開発予定</button>
                     </div>
                 </div>
             </div>

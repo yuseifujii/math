@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>かずけん2025 部誌公開ページ</title>
+    <!-- SEO & Social Meta -->
+    <meta name="description" content="千葉県立千葉高校の数学研究会『かずけん』による部誌を公開。素数判定ゲームで数学を楽しもう！">
+    <meta name="keywords" content="千葉高校,数学研究会,かずけん,部誌,数学,素数,千秋祭,PDF,Prime Number Game">
+    <meta name="author" content="千葉県立千葉高校 数学研究会 かずけん">
+    <!-- Open Graph -->
+    <meta property="og:title" content="かずけん2025 部誌公開ページ">
+    <meta property="og:description" content="千葉県立千葉高校の数学研究会『かずけん』による部誌を公開。素数判定ゲームで数学を楽しもう！">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="logo.png">
+    <meta property="og:locale" content="ja_JP">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="かずけん2025 部誌公開ページ">
+    <meta name="twitter:description" content="千葉県立千葉高校の数学研究会『かずけん』による部誌を公開。素数判定ゲームで数学を楽しもう！">
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon" sizes="any">
+    <link rel="icon" href="icon.png" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="icon.png" sizes="180x180">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="かずけん ロゴ" class="logo">
+        <h1>千葉県立千葉高等学校 数学研究会「かずけん」</h1>
+        <h2>千秋祭 部誌公開ページ 2025</h2>
+    </header>
+    <main>
+        <p>
+            こちらは、千葉高校数学研究会「かずけん」の部誌公開ページです。<br>
+            以下のリンクから、今年度および昨年度の部誌(PDF)を閲覧できます。
+        </p>
+        <div class="pdf-links">
+            <a href="pdfs/kazuken-2025.pdf" target="_blank" class="pdf-link">
+                <span class="year">2025年度</span>
+                <span class="file-name">かずけん 部誌</span>
+            </a>
+            <a href="pdfs/kazuken-2024.pdf" target="_blank" class="pdf-link">
+                <span class="year">2024年度</span>
+                <span class="file-name">かずけん 部誌</span>
+            </a>
+        </div>
+        
+        <!-- 感想・質問掲示板セクション -->
+        <section class="board-section">
+            <h3>📝 かずけん掲示板</h3>
+            <p class="board-description">部誌やかずけんについての感想・質問をお気軽にどうぞ！運営からの回答もここに表示されます。</p>
+            
+            <!-- 投稿フォーム -->
+            <div class="post-form">
+                <div class="form-header">
+                    <h4>💬 投稿する</h4>
+                </div>
+                <div class="form-body">
+                    <div class="input-group">
+                        <label for="post-nickname">
+                            ニックネーム:
+                            <span class="char-counter" id="post-nickname-counter">0/15</span>
+                        </label>
+                        <input type="text" id="post-nickname" placeholder="例: 数学太郎" maxlength="15">
+                    </div>
+                    <div class="input-group">
+                        <label for="post-content">
+                            感想・質問:
+                            <span class="char-counter" id="post-content-counter">0/300</span>
+                        </label>
+                        <textarea id="post-content" placeholder="例: 部誌の記事が面白かったです！ / 研究会の活動内容を教えてください..." maxlength="300" rows="3"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button id="submit-post-btn" class="submit-post-btn">投稿する</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 投稿一覧 -->
+            <div class="posts-container">
+                <div class="posts-header">
+                    <h4>💭 みんなの投稿</h4>
+                    <span class="posts-count">総投稿数: <span id="total-posts">0</span>件</span>
+                </div>
+                
+                <!-- ローディング表示 -->
+                <div id="posts-loading" class="posts-loading" style="display: none;">
+                    <div class="loading-spinner"></div>
+                    <p>投稿を読み込み中...</p>
+                </div>
+                
+                <!-- エラー表示 -->
+                <div id="posts-error" class="posts-error" style="display: none;">
+                    <div class="error-icon">⚠️</div>
+                    <p id="posts-error-message">投稿の読み込みに失敗しました</p>
+                    <button id="posts-retry-btn" class="retry-btn">再試行</button>
+                </div>
+                
+                <!-- 投稿なしの表示 -->
+                <div id="posts-empty" class="posts-empty" style="display: none;">
+                    <div class="empty-icon">📝</div>
+                    <p>まだ投稿がありません</p>
+                    <p class="empty-subtitle">かずけんへの感想をお聞かせください！</p>
+                </div>
+                
+                <!-- 投稿リスト -->
+                <div id="posts-list" class="posts-list">
+                    <!-- 投稿がここに動的に追加される -->
+                </div>
+                
+                <!-- もっと見るボタン -->
+                <div id="load-more-container" class="load-more-container" style="display: none;">
+                    <button id="load-more-btn" class="load-more-btn">
+                        <span class="load-more-text">もっと見る</span>
+                        <span class="load-more-count" id="load-more-count">(残り X件)</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 数学ゲームセクション -->
+        <section class="math-game-section">
+            <h3>素数判定ゲーム</h3>
+            <p class="game-description">表示される数字が素数かどうかを当てよう！</p>
+            
+            <!-- ランキングダッシュボードボタン（説明文の下に固定配置） -->
+            <div class="ranking-button-container">
+                <button id="ranking-dashboard-btn" class="ranking-dashboard-btn">
+                    🏆 上級レベル ランキング
+                </button>
+            </div>
+            
+            <div id="prime-game" class="game-container">
+
+                <div class="score-board">
+                    <span>スコア: <span id="score">0</span></span>
+                    <span>連続正解: <span id="streak">0</span></span>
+                </div>
+                
+                <div class="lives-container">
+                    <span class="lives-label">ライフ:</span>
+                    <div class="lives" id="lives-display">
+                        <span class="life-icon">❤️</span>
+                        <span class="life-icon">❤️</span>
+                        <span class="life-icon">❤️</span>
+                    </div>
+                </div>
+                
+                <div class="high-score" id="high-score-display"></div>
+                
+                <div class="progress-container" style="display: none;">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+                
+                <div class="game-content">
+                    <div id="number-display" class="number-display">
+                        <!-- 数字がここに表示される -->
+                    </div>
+                    
+                    <div id="result-message" class="result-message"></div>
+                    
+                    <div class="button-container">
+                        <button id="prime-btn" class="game-btn prime-btn">素数だ！</button>
+                        <button id="not-prime-btn" class="game-btn not-prime-btn">素数じゃない！</button>
+                    </div>
+                </div>
+                
+                <div id="game-over" class="game-over" style="display: none;">
+                    <h3>ゲームオーバー！</h3>
+                    <p class="final-score">最終スコア: <span id="final-score">0</span></p>
+                    <p class="game-over-message" id="game-over-message"></p>
+                    <button id="restart-btn" class="restart-btn">もう一度プレイ</button>
+                </div>
+                
+                <div id="level-selection" class="level-selection">
+                    <h4>レベルを選択してください</h4>
+                    <div class="level-buttons">
+                        <button class="level-btn" data-level="easy">
+                            <span class="level-name">初級</span>
+                            <span class="level-range">3 ~ 99</span>
+                        </button>
+                        <button class="level-btn" data-level="medium">
+                            <span class="level-name">中級</span>
+                            <span class="level-range">3 ~ 299</span>
+                        </button>
+                        <button class="level-btn" data-level="hard">
+                            <span class="level-name">上級</span>
+                            <span class="level-range">3 ~ 999</span>
+                            <small class="ranking-note">※ランキング対象</small>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 上級レベル用の追加情報入力フォーム -->
+                <div id="user-info-form" class="user-info-form" style="display: none;">
+                    <h4>ランキング参加情報</h4>
+                    <p class="form-description">上級レベルではランキングに参加できます！</p>
+                    <div class="input-group">
+                        <label for="user-affiliation">
+                            所属（学校名など）:
+                            <span class="char-counter" id="affiliation-counter">0/10</span>
+                        </label>
+                        <input type="text" id="user-affiliation" placeholder="例: 千葉高校" maxlength="10">
+                    </div>
+                    <div class="input-group">
+                        <label for="user-nickname">
+                            ニックネーム:
+                            <span class="char-counter" id="nickname-counter">0/10</span>
+                        </label>
+                        <input type="text" id="user-nickname" placeholder="例: 数学太郎" maxlength="10">
+                    </div>
+                    <p class="privacy-note">※入力いただいた情報はランキングの表示のみに使用されます</p>
+                </div>
+                
+                <button id="start-btn" class="start-btn" style="display: none;">ゲームスタート</button>
+                <button id="back-to-level-btn" class="back-to-level-btn" style="display: none;">⬅️ レベル選択に戻る</button>
+                
+                <div class="game-credit">
+                    <small>Game by Yusei Fujii</small>
+                </div>
+            </div>
+
+            <!-- ランキングダッシュボード（モーダル） -->
+            <div id="ranking-modal" class="ranking-modal" style="display: none;">
+                <div class="ranking-modal-content">
+                    <div class="ranking-header">
+                        <div class="ranking-header-content">
+                            <h3>🏆 上級レベル ランキング</h3>
+                            <p class="ranking-note">※上級レベル（3〜999）専用のランキングです</p>
+                        </div>
+                        <button id="close-ranking-btn" class="close-btn">&times;</button>
+                    </div>
+                    <div class="ranking-content">
+                        <div class="ranking-stats">
+                            <div class="ranking-update-time">
+                                最終更新: <span id="ranking-update-time">--</span>
+                            </div>
+                            <div class="ranking-participants">
+                                総参加者数: <span id="total-participants">--</span>人
+                            </div>
+                        </div>
+                        
+                        <!-- ローディング表示 -->
+                        <div class="ranking-loading" id="ranking-loading" style="display: none;">
+                            <div class="loading-spinner"></div>
+                            <p>ランキングを読み込み中...</p>
+                        </div>
+                        
+                        <!-- エラー表示 -->
+                        <div class="ranking-error" id="ranking-error" style="display: none;">
+                            <div class="error-icon">⚠️</div>
+                            <p id="ranking-error-message">エラーが発生しました</p>
+                            <button id="ranking-retry-btn" class="retry-btn">再試行</button>
+                        </div>
+                        
+                        <div class="ranking-table-container">
+                            <table class="ranking-table">
+                                <thead>
+                                    <tr>
+                                        <th>順位</th>
+                                        <th>得点</th>
+                                        <th>名前</th>
+                                        <th>所属</th>
+                                        <th>記録時刻</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="ranking-table-body">
+                                    <!-- ランキングデータがここに表示される -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="ranking-empty" id="ranking-empty" style="display: none;">
+                            <p>まだランキングデータがありません。<br>最初のランキング参加者になりましょう！</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 千葉県立千葉高等学校 数学研究会 かずけん</p>
+    </footer>
+    
+    <script src="game.js"></script>
+</body>
+</html> 

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="計算チャレンジゲーム - 四則演算問題を素早く解いて高スコアを目指そう！">
+    <title>計算チャレンジ | Mt.MATH</title>
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../assets/css/modern-style.css">
+    <link rel="stylesheet" href="../assets/css/games.css">
+    <link rel="stylesheet" href="calculation-game.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="modern-header">
+        <nav class="navbar navbar-with-menu">
+            <div class="nav-brand">
+                <a href="../index.html">
+                    <img src="../logo.png" alt="Mt.MATH" class="brand-logo">
+                </a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="../index.html#articles" class="nav-link">記事</a>
+                <a href="index.html" class="nav-link">ゲーム一覧</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Game Hero Section -->
+    <section class="game-hero">
+        <div class="hero-background">
+            <div class="math-particles">
+                <span class="particle">+</span>
+                <span class="particle">-</span>
+                <span class="particle">×</span>
+                <span class="particle">÷</span>
+                <span class="particle">=</span>
+                <span class="particle">√</span>
+                <span class="particle">²</span>
+                <span class="particle">%</span>
+            </div>
+        </div>
+        
+        <div class="hero-content">
+            <h1 class="game-title">
+                🧮 計算<span class="highlight">チャレンジ</span>
+            </h1>
+            <p class="game-subtitle">
+                四則演算問題を素早く解いて高スコアを目指そう！<br>
+                制限時間内により多くの問題を解いて、ランキング上位を狙え！
+            </p>
+            
+            <!-- ランキングボタン -->
+            <div class="ranking-button-container">
+                <button id="ranking-dashboard-btn" class="ranking-dashboard-btn">
+                    🏆 ランキングを見る
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Game Section -->
+    <section class="main-game-section">
+        <div class="container">
+            <div id="calculation-game" class="game-container">
+                
+                <!-- ゲーム情報表示 -->
+                <div class="game-info">
+                    <div class="score-board">
+                        <div class="score-item">
+                            <span class="label">スコア</span>
+                            <span class="value" id="score">0</span>
+                        </div>
+                        <div class="score-item">
+                            <span class="label">連続正解</span>
+                            <span class="value" id="streak">0</span>
+                        </div>
+                        <div class="score-item">
+                            <span class="label">残り時間</span>
+                            <span class="value" id="timer">60</span>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-container">
+                        <div class="progress-bar" id="progress-bar"></div>
+                        <span class="progress-text" id="progress-text">準備中...</span>
+                    </div>
+                    
+                    <div class="high-score" id="high-score-display"></div>
+                </div>
+                
+                <!-- メインゲーム画面 -->
+                <div class="game-content">
+                    <div id="problem-display" class="problem-display">
+                        <!-- 問題がここに表示される -->
+                    </div>
+                    
+                    <div class="answer-section">
+                        <div class="answer-input-container">
+                            <input type="number" id="answer-input" class="answer-input" placeholder="答えを入力..." autocomplete="off">
+                            <button id="submit-btn" class="submit-btn">
+                                <span class="btn-icon">✓</span>
+                                回答
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="result-message" class="result-message"></div>
+                    
+                    <!-- ヒントボタン（上級レベルでは無効） -->
+                    <div class="hint-container">
+                        <button id="hint-btn" class="hint-btn" title="ヒントを見る（スコア-5点）">
+                            💡 ヒント
+                        </button>
+                        <div id="hint-display" class="hint-display"></div>
+                    </div>
+                </div>
+                
+                <!-- ゲームオーバー画面 -->
+                <div id="game-over" class="game-over" style="display: none;">
+                    <div class="game-over-content">
+                        <h3>⏰ 時間終了！</h3>
+                        <p class="final-score">最終スコア: <span id="final-score">0</span></p>
+                        <p class="final-stats">
+                            解答数: <span id="final-problems">0</span>問 | 
+                            正答率: <span id="final-accuracy">0</span>%
+                        </p>
+                        <p class="game-over-message" id="game-over-message"></p>
+                        <div class="game-over-actions">
+                            <button id="restart-btn" class="restart-btn">もう一度プレイ</button>
+                            <button id="ranking-btn" class="ranking-btn">ランキングを見る</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- レベル選択画面 -->
+                <div id="level-selection" class="level-selection">
+                    <h4>レベルを選択してください</h4>
+                    <div class="level-buttons">
+                        <button class="level-btn" data-level="easy">
+                            <div class="level-info">
+                                <span class="level-name">初級</span>
+                                <span class="level-range">1桁 ± × ÷</span>
+                                <span class="level-desc">基本的な計算問題</span>
+                                <span class="level-time">⏰ 90秒</span>
+                            </div>
+                        </button>
+                        <button class="level-btn" data-level="medium">
+                            <div class="level-info">
+                                <span class="level-name">中級</span>
+                                <span class="level-range">2桁 ± × ÷</span>
+                                <span class="level-desc">やや複雑な計算問題</span>
+                                <span class="level-time">⏰ 75秒</span>
+                            </div>
+                        </button>
+                        <button class="level-btn" data-level="hard">
+                            <div class="level-info">
+                                <span class="level-name">上級</span>
+                                <span class="level-range">3桁 + 混合問題</span>
+                                <span class="level-desc">ランキング対象</span>
+                                <span class="level-time">⏰ 60秒</span>
+                            </div>
+                            <div class="level-badge">🏆 ランキング</div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 上級レベル用のユーザー情報入力フォーム -->
+                <div id="user-info-form" class="user-info-form" style="display: none;">
+                    <h4>🏆 ランキング参加情報</h4>
+                    <p class="form-description">上級レベルではランキングに参加できます！</p>
+                    <div class="form-fields">
+                        <div class="input-group">
+                            <label for="user-affiliation">
+                                所属（学校名など）:
+                                <span class="char-counter" id="affiliation-counter">0/10</span>
+                            </label>
+                            <input type="text" id="user-affiliation" placeholder="例: 千葉高校" maxlength="10">
+                        </div>
+                        <div class="input-group">
+                            <label for="user-nickname">
+                                ニックネーム:
+                                <span class="char-counter" id="nickname-counter">0/10</span>
+                            </label>
+                            <input type="text" id="user-nickname" placeholder="例: 計算王" maxlength="10">
+                        </div>
+                    </div>
+                    <p class="privacy-note">※入力いただいた情報はランキングの表示のみに使用されます</p>
+                </div>
+                
+                <!-- ゲーム制御ボタン -->
+                <div class="game-controls">
+                    <button id="start-btn" class="start-btn" style="display: none;">ゲームスタート</button>
+                    <button id="back-to-level-btn" class="back-to-level-btn" style="display: none;">
+                        ⬅️ レベル選択に戻る
+                    </button>
+                </div>
+                
+                <div class="game-credit">
+                    <small>Game by Mt.MATH | Calculation Challenge System</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ランキングモーダル -->
+    <div id="ranking-modal" class="ranking-modal" style="display: none;">
+        <div class="ranking-modal-content">
+            <div class="ranking-header">
+                <div class="ranking-header-content">
+                    <h3>🏆 上級レベル ランキング</h3>
+                    <p class="ranking-note">※上級レベル（60秒制限）専用のランキングです</p>
+                </div>
+                <button id="close-ranking-btn" class="close-btn">&times;</button>
+            </div>
+            <div class="ranking-content">
+                <div class="ranking-stats">
+                    <div class="ranking-update-time">
+                        最終更新: <span id="ranking-update-time">--</span>
+                    </div>
+                    <div class="ranking-participants">
+                        総参加者数: <span id="total-participants">--</span>人
+                    </div>
+                </div>
+                
+                <!-- ローディング表示 -->
+                <div class="ranking-loading" id="ranking-loading" style="display: none;">
+                    <div class="loading-spinner"></div>
+                    <p>ランキングを読み込み中...</p>
+                </div>
+                
+                <!-- エラー表示 -->
+                <div class="ranking-error" id="ranking-error" style="display: none;">
+                    <div class="error-icon">⚠️</div>
+                    <p id="ranking-error-message">エラーが発生しました</p>
+                    <button id="ranking-retry-btn" class="retry-btn">再試行</button>
+                </div>
+                
+                <div class="ranking-table-container">
+                    <table class="ranking-table">
+                        <thead>
+                            <tr>
+                                <th>順位</th>
+                                <th>得点</th>
+                                <th>解答数</th>
+                                <th>正答率</th>
+                                <th>名前</th>
+                                <th>所属</th>
+                                <th>記録時刻</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ranking-table-body">
+                            <!-- ランキングデータがここに表示される -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="ranking-empty" id="ranking-empty" style="display: none;">
+                    <p>まだランキングデータがありません。<br>最初のランキング参加者になりましょう！</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../firebase-config.js"></script>
+    <script src="calculation-game.js"></script>
+</body>
+</html>
