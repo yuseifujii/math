@@ -335,6 +335,11 @@
     font-weight: 600 !important;
 }
 
+#article-difficulty,
+#article-niche {
+    font-weight: 600 !important;
+}
+
 .article-summary {
     background: #fafafa;
     padding: 20px;
