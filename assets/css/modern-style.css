@@ -97,13 +97,28 @@ body {
     z-index: 100;
 }
 
+.modern-article-header {
+    position: relative;
+    z-index: 100;
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+}
+
 .navbar {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 20px 50px;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
+    position: relative;
+}
+
+.navbar-with-menu {
+    justify-content: space-between;
+}
+
+.navbar-center-logo {
+    justify-content: center;
 }
 
 .nav-brand {
@@ -731,6 +746,14 @@ body {
 
 /* === Responsive Design === */
 @media (max-width: 768px) {
+    .navbar {
+        padding: 15px 20px;
+    }
+    
+    .navbar-center-logo {
+        justify-content: center;
+    }
+    
     .nav-menu {
         position: fixed;
         left: -100%;
@@ -815,6 +838,14 @@ body {
 }
 
 @media (max-width: 480px) {
+    .navbar {
+        padding: 10px 15px;
+    }
+    
+    .brand-logo {
+        height: 35px;
+    }
+    
     .hero-title {
         font-size: 2rem;
     }
