@@ -918,3 +918,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, 1000);
 });
+
+// グローバル関数：HTMLのonclickから直接呼び出し可能
+window.openRankingModal = function() {
+    console.log('🚀 openRankingModal が呼び出されました！');
+    try {
+        showRankingDashboard();
+    } catch (error) {
+        console.error('❌ ランキング表示エラー:', error);
+        alert('ランキングの表示に失敗しました: ' + error.message);
+    }
+};
