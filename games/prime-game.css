@@ -69,7 +69,7 @@
 
 .ranking-dashboard-btn {
     background: rgba(255, 255, 255, 0.2);
-    color: var(--white);
+    color: #333;
     border: 2px solid rgba(255, 255, 255, 0.3);
     padding: 15px 30px;
     border-radius: 30px;
