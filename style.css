@@ -128,9 +128,59 @@ img.shadow {
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1); /* 画像に影を付ける */
 }
 
-/* 画像のレスポンシブデザイン */
+/* レスポンシブデザイン */
 @media screen and (max-width: 768px) {
+    /* ヘッダーのモバイル対応 */
+    header.mountain-header {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px 10px;
+    }
+    
+    header.mountain-header .header-image {
+        height: 50px;
+        margin: 0 0 10px 0;
+    }
+    
+    header.mountain-header .header-text h1 {
+        font-size: 20px;
+    }
+    
+    header.mountain-header .header-text p {
+        font-size: 14px;
+    }
+    
+    /* コンテナの調整 */
+    .container {
+        width: 95%;
+        padding: 15px;
+    }
+    
+    /* セクションの調整 */
+    section {
+        margin: 15px auto;
+        padding: 15px;
+    }
+    
+    /* リストアイテムの調整 */
+    li {
+        padding: 12px;
+        margin: 8px 0;
+    }
+    
+    /* フッターの調整 */
+    footer {
+        padding: 15px 10px;
+    }
+    
+    footer ul {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    /* 画像のレスポンシブデザイン */
     img {
         width: 100%; /* スマホやタブレットなど画面が狭い場合に画像の幅を100%に設定 */
-    }
+    }
 }
