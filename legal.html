@@ -11,12 +11,21 @@
    
 <body>
     <!-- Modern Header -->
-    <header class="modern-article-header">
-        <nav class="navbar navbar-center-logo">
+    <header class="modern-header">
+        <nav class="navbar navbar-with-menu">
             <div class="nav-brand">
                 <a href="index.html">
                     <img src="logo.png" alt="Mt.MATH" class="brand-logo">
                 </a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html#articles" class="nav-link">記事</a>
+                <a href="games/index.html" class="nav-link">ゲーム</a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
             </div>
         </nav>
     </header>
@@ -109,5 +118,29 @@
             </div>
         </div>
     </footer>
+
+    <!-- Navigation Script -->
+    <script>
+        // モバイルナビゲーション
+        document.addEventListener('DOMContentLoaded', function() {
+            const navToggle = document.getElementById('nav-toggle');
+            const navMenu = document.getElementById('nav-menu');
+
+            if (navToggle && navMenu) {
+                navToggle.addEventListener('click', () => {
+                    navMenu.classList.toggle('active');
+                    navToggle.classList.toggle('active');
+                });
+
+                // メニューリンククリック時にメニューを閉じる
+                navMenu.querySelectorAll('.nav-link').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navMenu.classList.remove('active');
+                        navToggle.classList.remove('active');
+                    });
+                });
+            }
+        });
+    </script>
 </body>
 </html>
