@@ -708,6 +708,18 @@ document.addEventListener('DOMContentLoaded', () => {
         backToLevelBtn.style.display = 'none';
         selectedLevel = null;
         
+        // ゲーム状態をリセット
+        score = 0;
+        streak = 0;
+        questionsAnswered = 0;
+        lives = MAX_LIVES;
+        isGameActive = false;
+        
+        // UI表示をリセット
+        scoreElement.textContent = '0';
+        streakElement.textContent = '0';
+        updateLivesDisplay();
+        
         // ユーザー情報をリセット
         userInfo.affiliation = '';
         userInfo.nickname = '';
@@ -729,6 +741,18 @@ document.addEventListener('DOMContentLoaded', () => {
         backToLevelBtn.style.display = 'none';
         userInfoForm.style.display = 'none';
         selectedLevel = null;
+        
+        // ゲーム状態をリセット
+        score = 0;
+        streak = 0;
+        questionsAnswered = 0;
+        lives = MAX_LIVES;
+        isGameActive = false;
+        
+        // UI表示をリセット
+        scoreElement.textContent = '0';
+        streakElement.textContent = '0';
+        updateLivesDisplay();
         
         // ユーザー情報をリセット
         userInfo.affiliation = '';
@@ -763,8 +787,19 @@ document.addEventListener('DOMContentLoaded', () => {
         closeRankingBtn: !!closeRankingBtn
     });
     
+    console.log('🔍 要素詳細情報:', {
+        rankingDashboardBtn_element: rankingDashboardBtn,
+        rankingDashboardBtn_id: rankingDashboardBtn?.id,
+        rankingDashboardBtn_className: rankingDashboardBtn?.className,
+        rankingDashboardBtn_style_display: rankingDashboardBtn?.style.display,
+        rankingDashboardBtn_disabled: rankingDashboardBtn?.disabled
+    });
+    
     if (rankingDashboardBtn) {
-        rankingDashboardBtn.addEventListener('click', showRankingDashboard);
+        rankingDashboardBtn.addEventListener('click', function(event) {
+            console.log('🎯 ランキングダッシュボードボタンがクリックされました！', event);
+            showRankingDashboard();
+        });
         console.log('✅ ランキングダッシュボードボタンのイベントリスナー設定完了');
     } else {
         console.error('❌ ランキングダッシュボードボタンが見つかりません');
