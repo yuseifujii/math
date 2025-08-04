@@ -86,16 +86,16 @@ class ArticleGenerator:
 - **ブロック数式**: 重要な式は必ず `\\[ x^2 + y^2 = z^2 \\]`
 - **数式番号**: 不要、LaTeXコマンドのみ使用
 
-### 【強調表現ルール】
-- **重要語句**: `<span style="color: #2196F3; font-weight: bold;">重要語句</span>`
-- **定義語**: `<span style="color: #4CAF50; font-weight: bold; background: #E8F5E8; padding: 2px 6px; border-radius: 3px;">定義語</span>`
-- **注意点**: `<span style="color: #FF5722; font-weight: bold;">注意</span>`
+### 【強調表現ルール（シンプル・統一）】
+- **重要語句・定義語**: `<strong>重要語句</strong>`
+- **特に重要な定義**: `<strong style="color: #1976d2;">定義語</strong>`
+- **注意点**: `<em>注意</em>`
 
 ### 【CSSクラス使用ルール】
 ```html
 <div class="definition-box">
   <h3>定義</h3>
-  <p><span style="color: #4CAF50; font-weight: bold; background: #E8F5E8; padding: 2px 6px; border-radius: 3px;">{topic}</span>とは...</p>
+  <p><strong>{topic}</strong>とは...</p>
   <div class="mathematical-statement">\\[ 数式 \\]</div>
 </div>
 ```
@@ -106,12 +106,12 @@ class ArticleGenerator:
 <div class="proof-section">
   <h3>証明</h3>
   <div class="step-by-step">
-    <p><span style="color: #2196F3; font-weight: bold;">Step 1:</span> 仮定の整理</p>
+    <p><strong>Step 1:</strong> 仮定の整理</p>
     <p>具体的な仮定内容...</p>
-    <p><span style="color: #2196F3; font-weight: bold;">Step 2:</span> 変形・導出</p>
+    <p><strong>Step 2:</strong> 変形・導出</p>
     <p>\\[ 数式変形 \\]</p>
-    <p><span style="color: #2196F3; font-weight: bold;">Step 3:</span> 結論</p>
-    <p>∴ 結論文 <span style="color: #4CAF50; font-weight: bold;">■</span></p>
+    <p><strong>Step 3:</strong> 結論</p>
+    <p>∴ 結論文 <strong>■</strong></p>
   </div>
 </div>
 ```
@@ -121,11 +121,11 @@ class ArticleGenerator:
 ```html
 <div class="example-box">
   <h3>例題</h3>
-  <p><span style="color: #FF9800; font-weight: bold;">【例題1】</span></p>
+  <p><strong>【例題1】</strong></p>
   <p>問題文...</p>
-  <p><span style="color: #FF9800; font-weight: bold;">【解】</span></p>
+  <p><strong>【解】</strong></p>
   <p>\\[ 計算過程 \\]</p>
-  <p><span style="color: #4CAF50; font-weight: bold;">答え: ...</span></p>
+  <p><strong>答え: ...</strong></p>
 </div>
 ```
 
