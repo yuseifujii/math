@@ -44,6 +44,7 @@ const nicknameCounter = document.getElementById('nickname-counter');
 
 // ランキング関連
 const rankingDashboardBtn = document.getElementById('ranking-dashboard-btn');
+const rankingDashboardBtnNew = document.getElementById('ranking-dashboard-btn-new');
 const rankingModal = document.getElementById('ranking-modal');
 const closeRankingBtn = document.getElementById('close-ranking-btn');
 const rankingTableBody = document.getElementById('ranking-table-body');
@@ -815,17 +816,29 @@ document.addEventListener('DOMContentLoaded', () => {
         rankingDashboardBtn_id: rankingDashboardBtn?.id,
         rankingDashboardBtn_className: rankingDashboardBtn?.className,
         rankingDashboardBtn_style_display: rankingDashboardBtn?.style.display,
-        rankingDashboardBtn_disabled: rankingDashboardBtn?.disabled
+        rankingDashboardBtn_disabled: rankingDashboardBtn?.disabled,
+        rankingDashboardBtnNew_element: rankingDashboardBtnNew,
+        rankingDashboardBtnNew_id: rankingDashboardBtnNew?.id
     });
     
     if (rankingDashboardBtn) {
         rankingDashboardBtn.addEventListener('click', function(event) {
-            console.log('🎯 ランキングダッシュボードボタンがクリックされました！', event);
+            console.log('🎯 ランキングダッシュボードボタン（元）がクリックされました！', event);
             showRankingDashboard();
         });
         console.log('✅ ランキングダッシュボードボタンのイベントリスナー設定完了');
     } else {
         console.error('❌ ランキングダッシュボードボタンが見つかりません');
+    }
+    
+    if (rankingDashboardBtnNew) {
+        rankingDashboardBtnNew.addEventListener('click', function(event) {
+            console.log('🎯 ランキングダッシュボードボタン（新）がクリックされました！', event);
+            showRankingDashboard();
+        });
+        console.log('✅ 新しいランキングダッシュボードボタンのイベントリスナー設定完了');
+    } else {
+        console.error('❌ 新しいランキングダッシュボードボタンが見つかりません');
     }
     
     if (rankingBtn) {
