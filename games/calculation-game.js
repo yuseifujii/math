@@ -15,7 +15,7 @@ let questionsAnswered = 0;
 let correctAnswers = 0;
 let highScore = 0;
 let gameStartTime = null;
-let hintUsed = false;
+// ヒント機能は削除済み
 
 // 難易度設定
 const LEVEL_CONFIG = {
@@ -23,22 +23,19 @@ const LEVEL_CONFIG = {
         time: 90,
         numberRange: { min: 1, max: 9 },
         operations: ['+', '-', '×'],
-        scoreMultiplier: 1,
-        hintPenalty: 5
+        scoreMultiplier: 1
     },
     medium: {
         time: 75,
         numberRange: { min: 10, max: 99 },
         operations: ['+', '-', '×', '÷'],
-        scoreMultiplier: 1.5,
-        hintPenalty: 8
+        scoreMultiplier: 1.5
     },
     hard: {
         time: 60,
         numberRange: { min: 10, max: 999 },
         operations: ['+', '-', '×', '÷'],
-        scoreMultiplier: 2,
-        hintPenalty: 10
+        scoreMultiplier: 2
     }
 };
 
@@ -50,8 +47,7 @@ const problemDisplay = document.getElementById('problem-display');
 const answerInput = document.getElementById('answer-input');
 const submitBtn = document.getElementById('submit-btn');
 const resultMessage = document.getElementById('result-message');
-const hintBtn = document.getElementById('hint-btn');
-const hintDisplay = document.getElementById('hint-display');
+// ヒント関連のDOM要素は削除済み
 const startBtn = document.getElementById('start-btn');
 const gameContent = document.querySelector('.game-content');
 const levelSelection = document.getElementById('level-selection');
@@ -327,7 +323,7 @@ function generateProblem() {
     const config = LEVEL_CONFIG[selectedLevel];
     const operation = config.operations[Math.floor(Math.random() * config.operations.length)];
     
-    let num1, num2, answer, problemText, hint;
+    let num1, num2, answer, problemText;
     
     // 数値の範囲を取得
     const min = config.numberRange.min;
@@ -339,7 +335,6 @@ function generateProblem() {
             num2 = Math.floor(Math.random() * (max - min + 1)) + min;
             answer = num1 + num2;
             problemText = `${num1} + ${num2}`;
-            hint = `足し算のコツ: 大きい数から小さい数を足すと計算しやすいです`;
             break;
             
         case '-':
@@ -347,7 +342,6 @@ function generateProblem() {
             num2 = Math.floor(Math.random() * num1) + 1; // 負の数を避ける
             answer = num1 - num2;
             problemText = `${num1} - ${num2}`;
-            hint = `引き算のコツ: ${num1} から ${num2} を引くには、${num1} - ${num2} = ${answer} です`;
             break;
             
         case '×':
@@ -357,7 +351,6 @@ function generateProblem() {
             num2 = Math.floor(Math.random() * maxMul) + 1;
             answer = num1 * num2;
             problemText = `${num1} × ${num2}`;
-            hint = `九九を思い出してみましょう: ${num1} × ${num2} = ${answer}`;
             break;
             
         case '÷':
@@ -366,14 +359,12 @@ function generateProblem() {
             answer = Math.floor(Math.random() * 20) + 1;
             num1 = num2 * answer;
             problemText = `${num1} ÷ ${num2}`;
-            hint = `割り算のコツ: ${num1} ÷ ${num2} = ${answer} (${num2} × ${answer} = ${num1})`;
             break;
     }
     
     return {
         text: problemText,
         answer: answer,
-        hint: hint,
         operation: operation
     };
 }
@@ -382,7 +373,6 @@ function generateProblem() {
 function showNewProblem() {
     currentProblem = generateProblem();
     correctAnswer = currentProblem.answer;
-    hintUsed = false;
     
     // 問題表示のアニメーション
     problemDisplay.classList.add('changing');
@@ -396,8 +386,6 @@ function showNewProblem() {
     answerInput.classList.remove('correct', 'incorrect');
     resultMessage.textContent = '';
     resultMessage.className = 'result-message';
-    hintDisplay.classList.remove('show');
-    hintBtn.disabled = false;
     
     // 入力フィールドにフォーカス
     setTimeout(() => {
@@ -465,11 +453,6 @@ function checkAnswer() {
         const baseScore = Math.round(10 * LEVEL_CONFIG[selectedLevel].scoreMultiplier);
         let earnedScore = baseScore;
         
-        // ヒント使用時のペナルティ
-        if (hintUsed) {
-            earnedScore = Math.max(1, baseScore - LEVEL_CONFIG[selectedLevel].hintPenalty);
-        }
-        
         score += earnedScore;
         streak += 1;
         
@@ -518,22 +501,15 @@ function checkAnswer() {
     }, 1500);
 }
 
-// ヒント表示
-function showHint() {
-    if (!currentProblem || hintUsed) return;
-    
-    hintDisplay.textContent = currentProblem.hint;
-    hintDisplay.classList.add('show');
-    hintBtn.disabled = true;
-    hintUsed = true;
-}
+// ヒント機能は削除済み
 
 // ゲームオーバー処理
 async function gameOver() {
     isGameActive = false;
     stopTimer();
     gameContent.classList.remove('active');
-    gameOverScreen.style.display = 'block';
+    gameContent.style.display = 'none';
+    gameOverScreen.style.display = 'flex';
     
     const accuracy = questionsAnswered > 0 ? Math.round((correctAnswers / questionsAnswered) * 100) : 0;
     
@@ -622,6 +598,7 @@ function startGame() {
     levelSelection.style.display = 'none';
     userInfoForm.style.display = 'none';
     gameOverScreen.style.display = 'none';
+    gameContent.style.display = 'block';
     gameContent.classList.add('active');
     
     updateHighScoreDisplay();
@@ -743,6 +720,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     restartBtn.addEventListener('click', () => {
         gameOverScreen.style.display = 'none';
+        gameContent.style.display = 'none';
         levelSelection.style.display = 'block';
         userInfoForm.style.display = 'none';
         startBtn.style.display = 'none';
@@ -761,6 +739,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     backToLevelBtn.addEventListener('click', () => {
+        gameContent.style.display = 'none';
+        gameOverScreen.style.display = 'none';
         levelSelection.style.display = 'block';
         startBtn.style.display = 'none';
         backToLevelBtn.style.display = 'none';
@@ -780,7 +760,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 回答関連
     submitBtn.addEventListener('click', checkAnswer);
-    hintBtn.addEventListener('click', showHint);
     
     answerInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {

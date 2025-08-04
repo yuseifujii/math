@@ -482,7 +482,8 @@ function checkAnswer(userSaysPrime) {
 async function gameOver() {
     isGameActive = false;
     gameContent.classList.remove('active');
-    gameOverScreen.style.display = 'block';
+    gameContent.style.display = 'none';
+    gameOverScreen.style.display = 'flex';
     finalScoreElement.textContent = score;
     
     // セッションデータを作成
@@ -558,6 +559,7 @@ function startGame() {
     levelSelection.style.display = 'none';
     userInfoForm.style.display = 'none';
     gameOverScreen.style.display = 'none';
+    gameContent.style.display = 'block';
     gameContent.classList.add('active');
     
     updateHighScoreDisplay();
@@ -691,6 +693,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     restartBtn.addEventListener('click', () => {
         gameOverScreen.style.display = 'none';
+        gameContent.style.display = 'none';
         levelSelection.style.display = 'block';
         userInfoForm.style.display = 'none';
         startBtn.style.display = 'none';
@@ -711,6 +714,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     backToLevelBtn.addEventListener('click', () => {
+        gameContent.style.display = 'none';
+        gameOverScreen.style.display = 'none';
         levelSelection.style.display = 'block';
         startBtn.style.display = 'none';
         backToLevelBtn.style.display = 'none';
