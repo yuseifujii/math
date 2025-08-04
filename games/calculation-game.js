@@ -11,6 +11,7 @@ let selectedLevel = null;
 let gameTime = 60; // デフォルト時間
 let timeLeft = 60;
 let timer = null;
+let gameTimer = null;
 let questionsAnswered = 0;
 let correctAnswers = 0;
 let highScore = 0;
@@ -409,7 +410,7 @@ function updateProgressDisplay() {
 
 // タイマー機能
 function startTimer() {
-    timer = setInterval(() => {
+    gameTimer = setInterval(() => {
         timeLeft--;
         timerElement.textContent = timeLeft;
         
@@ -428,9 +429,9 @@ function startTimer() {
 }
 
 function stopTimer() {
-    if (timer) {
-        clearInterval(timer);
-        timer = null;
+    if (gameTimer) {
+        clearInterval(gameTimer);
+        gameTimer = null;
     }
 }
 
