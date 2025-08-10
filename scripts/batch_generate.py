@@ -162,6 +162,8 @@ class BatchGenerator:
             # Firestoreに保存
             for topic in topics:
                 firestore_manager.save_topic(topic)
+                # generated_topics.jsonにも保存
+                self.topic_selector._save_new_topic(topic)
                 print(f"   ✅ トピック保存: {topic.name}")
             
             return topics

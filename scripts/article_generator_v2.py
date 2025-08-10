@@ -92,17 +92,14 @@ class ArticleGenerator:
 - **注意点**: <em>注意</em>
 
 ### 【CSSクラス使用ルール】
-```html
 <div class="definition-box">
   <h3>定義</h3>
   <p><strong>{topic}</strong>とは...</p>
   <div class="mathematical-statement">\\[ 数式 \\]</div>
 </div>
-```
 
 ### 【証明書式ルール（最優先）】
 証明可能なトピックでは**必ず完全な証明**を含める：
-```html
 <div class="proof-section">
   <h3>証明</h3>
   <div class="step-by-step">
@@ -114,11 +111,9 @@ class ArticleGenerator:
     <p>∴ 結論文 <strong>■</strong></p>
   </div>
 </div>
-```
 
 ### 【例題書式ルール】
 例題を含める場合：
-```html
 <div class="example-box">
   <h3>例題</h3>
   <p><strong>【例題1】</strong></p>
@@ -127,7 +122,6 @@ class ArticleGenerator:
   <p>\\[ 計算過程 \\]</p>
   <p><strong>答え: ...</strong></p>
 </div>
-```
 
 ### 【論理記号統一ルール】
 - 従って: ∴ 

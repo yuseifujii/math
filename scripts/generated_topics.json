@@ -1,0 +1,135 @@
+{
+  "topics": [
+    {
+      "name": "リフティング・ザ・エクスポーネント・レンマ",
+      "category": "number_theory",
+      "added_date": "2025-08-05"
+    },
+    {
+      "name": "クーポンコレクター問題",
+      "category": "probability",
+      "added_date": "2025-08-05"
+    },
+    {
+      "name": "ガンマ関数",
+      "category": "analysis",
+      "added_date": "2025-08-05"
+    },
+    {
+      "name": "カルダノの公式",
+      "category": "algebra",
+      "added_date": "2025-08-05"
+    },
+    {
+      "name": "アイゼンシュタインの既約判定法",
+      "category": "algebra",
+      "added_date": "2025-08-05"
+    },
+    {
+      "name": "アーベルの総和法",
+      "category": "analysis",
+      "added_date": "2025-08-05"
+    },
+    {
+      "name": "ウォリスの公式",
+      "category": "analysis",
+      "added_date": "2025-08-05"
+    },
+    {
+      "name": "ヴィエタジャンピング",
+      "category": "algebra",
+      "added_date": "2025-08-05"
+    },
+    {
+      "name": "ラグランジュの補間多項式",
+      "category": "algebra",
+      "added_date": "2025-08-05"
+    },
+    {
+      "name": "ペル方程式",
+      "category": "number_theory",
+      "added_date": "2025-08-05"
+    },
+    {
+      "name": "オイラー＝マクローリンの公式",
+      "category": "analysis",
+      "added_date": "2025-08-05"
+    },
+    {
+      "name": "秘書問題（最適停止問題）",
+      "category": "probability",
+      "added_date": "2025-08-05"
+    },
+    {
+      "name": "リュカの定理",
+      "category": "number_theory",
+      "added_date": "2025-08-10"
+    },
+    {
+      "name": "ベンフォードの法則",
+      "category": "probability",
+      "added_date": "2025-08-10"
+    },
+    {
+      "name": "フェルマーの二平方和の定理",
+      "category": "number_theory",
+      "added_date": "2025-08-10"
+    },
+    {
+      "name": "フロベニウスの硬貨問題（チキンマックナゲット問題）",
+      "category": "number_theory",
+      "added_date": "2025-08-10"
+    },
+    {
+      "name": "ベータ関数",
+      "category": "analysis",
+      "added_date": "2025-08-10"
+    },
+    {
+      "name": "デカルトの符号法則",
+      "category": "algebra",
+      "added_date": "2025-08-10"
+    },
+    {
+      "name": "カントール集合",
+      "category": "analysis",
+      "added_date": "2025-08-10"
+    },
+    {
+      "name": "バナッハの不動点定理",
+      "category": "analysis",
+      "added_date": "2025-08-10"
+    },
+    {
+      "name": "ニュートンの恒等式",
+      "category": "algebra",
+      "added_date": "2025-08-10"
+    },
+    {
+      "name": "ドイツ戦車問題",
+      "category": "probability",
+      "added_date": "2025-08-10"
+    },
+    {
+      "name": "中国剰余定理",
+      "category": "algebra",
+      "added_date": "2025-08-10"
+    },
+    {
+      "name": "ガウス整数",
+      "category": "algebra",
+      "added_date": "2025-08-10"
+    },
+    {
+      "name": "ギブズ現象",
+      "category": "analysis",
+      "added_date": "2025-08-10"
+    },
+    {
+      "name": "シュトゥルムの定理",
+      "category": "algebra",
+      "added_date": "2025-08-10"
+    }
+  ],
+  "last_updated": "2025-08-10T18:32:46.570420"
+}

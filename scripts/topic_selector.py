@@ -7,6 +7,8 @@ import sys
 import argparse
 import logging
 import random
+import json
+import os
 from typing import List, Dict, Any
 from datetime import datetime
 
@@ -21,14 +23,99 @@ logger = logging.getLogger(__name__)
 class TopicSelector:
     """ニッチ数学トピック選定クラス"""
     
+    # カテゴリ別の重み付け（トピックの豊富さに基づく）
+    CATEGORY_WEIGHTS = {
+        "algebra": 0.40,        # 代数学: 最も豊富（35%）
+        "analysis": 0.30,       # 解析学: 豊富（30%）
+        "number_theory": 0.20,  # 整数論: 中程度（20%）
+        "probability": 0.10,    # 確率論: 限定的（10%）
+    }
+    
     def __init__(self):
         self.model = config.gemini_model
         if not self.model:
             raise ValueError("Gemini モデルが初期化されていません")
+        
+        # 既出トピックのロード
+        self.generated_topics_file = os.path.join('scripts', 'generated_topics.json')
+        self.existing_topics = self._load_existing_topics()
+        logger.info(f"既出トピック数: {len(self.existing_topics)}個")
+    
+    def _load_existing_topics(self) -> List[str]:
+        """既出トピックをJSONファイルから読み込む"""
+        
+        if not os.path.exists(self.generated_topics_file):
+            logger.warning("generated_topics.jsonが見つかりません。新規作成します。")
+            self._initialize_topics_file()
+            return []
+        
+        try:
+            with open(self.generated_topics_file, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+                topics = [topic['name'] for topic in data.get('topics', [])]
+                return topics
+        except Exception as e:
+            logger.error(f"既出トピックの読み込みエラー: {e}")
+            return []
+    
+    def _initialize_topics_file(self):
+        """トピックファイルを初期化"""
+        
+        initial_data = {
+            "topics": [],
+            "last_updated": datetime.now().isoformat()
+        }
+        
+        try:
+            with open(self.generated_topics_file, 'w', encoding='utf-8') as f:
+                json.dump(initial_data, f, ensure_ascii=False, indent=2)
+            logger.info("generated_topics.jsonを初期化しました")
+        except Exception as e:
+            logger.error(f"トピックファイルの初期化エラー: {e}")
+    
+    def _save_new_topic(self, topic: MathTopic):
+        """新しいトピックをJSONファイルに追加"""
+        
+        try:
+            # 既存データを読み込む
+            with open(self.generated_topics_file, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+            
+            # 新しいトピックを追加
+            new_entry = {
+                "name": topic.name,
+                "category": topic.category,
+                "added_date": datetime.now().strftime('%Y-%m-%d')
+            }
+            
+            # 重複チェック
+            if not any(t['name'] == topic.name for t in data['topics']):
+                data['topics'].append(new_entry)
+                data['last_updated'] = datetime.now().isoformat()
+                
+                # ファイルに保存
+                with open(self.generated_topics_file, 'w', encoding='utf-8') as f:
+                    json.dump(data, f, ensure_ascii=False, indent=2)
+                
+                # メモリ上のリストも更新
+                self.existing_topics.append(topic.name)
+                logger.info(f"新規トピックを保存: {topic.name}")
+            else:
+                logger.warning(f"トピック '{topic.name}' は既に存在します")
+                
+        except Exception as e:
+            logger.error(f"トピック保存エラー: {e}")
     
     def generate_niche_topics(self, count: int = 10, 
-                             target_categories: List[str] = None) -> List[MathTopic]:
-        """ニッチな数学トピックを生成"""
+                             target_categories: List[str] = None,
+                             use_weights: bool = True) -> List[MathTopic]:
+        """ニッチな数学トピックを生成
+        
+        Args:
+            count: 生成するトピック数
+            target_categories: 対象カテゴリのリスト（Noneの場合は全カテゴリ）
+            use_weights: カテゴリの重み付けを使用するかどうか
+        """
         
         logger.info(f"ニッチトピック選定開始: {count}個のトピックを生成")
         
@@ -37,8 +124,13 @@ class TopicSelector:
         
         topics = []
         
-        for category in target_categories:
-            category_count = max(1, count // len(target_categories))
+        # カテゴリ別のトピック数を計算
+        category_counts = self._calculate_category_counts(count, target_categories, use_weights)
+        
+        for category, category_count in category_counts.items():
+            if category_count == 0:
+                continue
+                
             logger.info(f"カテゴリ '{category}' で {category_count}個のトピック生成")
             
             category_topics = self._generate_category_topics(category, category_count)
@@ -50,6 +142,48 @@ class TopicSelector:
         # シャッフルして多様性を確保
         random.shuffle(topics)
         return topics[:count]
+    
+    def _calculate_category_counts(self, total_count: int, 
+                                  categories: List[str], 
+                                  use_weights: bool) -> Dict[str, int]:
+        """カテゴリ別のトピック数を計算"""
+        
+        if not use_weights:
+            # 均等割り
+            base_count = total_count // len(categories)
+            remainder = total_count % len(categories)
+            counts = {cat: base_count for cat in categories}
+            # 余りを最初のカテゴリに追加
+            for i, cat in enumerate(categories):
+                if i < remainder:
+                    counts[cat] += 1
+        else:
+            # 重み付けに基づく配分
+            # 指定されたカテゴリの重みを正規化
+            selected_weights = {cat: self.CATEGORY_WEIGHTS.get(cat, 0.25) 
+                              for cat in categories}
+            total_weight = sum(selected_weights.values())
+            
+            counts = {}
+            allocated = 0
+            
+            for cat in categories[:-1]:  # 最後のカテゴリ以外
+                count = round(total_count * selected_weights[cat] / total_weight)
+                counts[cat] = count
+                allocated += count
+            
+            # 最後のカテゴリで調整（端数処理）
+            if categories:
+                counts[categories[-1]] = total_count - allocated
+        
+        # 最低1個は生成するように調整（小さい数の場合）
+        if total_count >= len(categories):
+            for cat in categories:
+                if counts[cat] == 0:
+                    counts[cat] = 1
+        
+        logger.info(f"カテゴリ別配分: {counts}")
+        return counts
     
     def _generate_category_topics(self, category: str, count: int) -> List[MathTopic]:
         """特定カテゴリのニッチトピックを生成"""
@@ -74,11 +208,25 @@ class TopicSelector:
         
         category_jp = CATEGORY_MAP.get(category, category)
         
+        # 既出トピックリストを作成
+        existing_topics_text = ""
+        if self.existing_topics:
+            existing_topics_text = f"""
+## ⚠️ 重要: 既出トピック（以下のトピックは選定しないでください）
+
+以下のトピックはすでに記事化されているため、**絶対に選定しないでください**：
+
+{chr(10).join(f"- {topic}" for topic in self.existing_topics)}
+
+上記のトピックと同じ名前のものや、実質的に同じ内容のものは避けてください。
+"""
+        
         prompt = f"""
 # ニッチな数学トピック選定
 
 ## 目標
 {category_jp}分野で、以下の条件を満たすニッチな数学トピックを{count}個選定してください。
+{existing_topics_text}
 
 ## 選定基準
 
@@ -177,15 +325,22 @@ class TopicSelector:
                 data = json.loads(json_str)
                 
                 for item in data:
+                    topic_name = item.get('name', '不明なトピック')
+                    
+                    # 既出トピックのチェック
+                    if topic_name in self.existing_topics:
+                        logger.warning(f"既出トピック '{topic_name}' をスキップします")
+                        continue
+                    
                     topic = MathTopic(
-                        name=item.get('name', '不明なトピック'),
+                        name=topic_name,
                         category=category,
                         description=item.get('description', ''),
-                        title=item.get('title', f"{item.get('name', '不明なトピック')}の完全解説"),
-                        summary=item.get('summary', f"{item.get('name', '不明なトピック')}について解説します。"),
+                        title=item.get('title', f"{topic_name}の完全解説"),
+                        summary=item.get('summary', f"{topic_name}について解説します。"),
                         difficulty_level=item.get('difficulty_level', 5),
                         niche_score=item.get('niche_score', 7),
-                        tags=item.get('tags', [item.get('name', ''), CATEGORY_MAP.get(category, category)]),
+                        tags=item.get('tags', [topic_name, CATEGORY_MAP.get(category, category)]),
                         priority=item.get('priority', 5)
                     )
                     topics.append(topic)
@@ -292,6 +447,8 @@ def main():
                 try:
                     firestore_manager.save_topic(topic)
                     saved_count += 1
+                    # generated_topics.jsonにも保存
+                    selector._save_new_topic(topic)
                 except Exception as e:
                     logger.error(f"トピック保存エラー ({topic.name}): {e}")
             
