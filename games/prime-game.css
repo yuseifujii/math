@@ -43,7 +43,7 @@
 }
 
 .game-title {
-    font-size: 3.5rem;
+    font-size: 3rem;
     font-weight: 700;
     margin-bottom: 20px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
@@ -57,10 +57,19 @@
 }
 
 .game-subtitle {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     line-height: 1.6;
     margin-bottom: 40px;
     opacity: 0.9;
+}
+
+.tagline-en {
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.85;
+    margin-top: -20px;
+    color: rgba(255,255,255,0.9);
 }
 
 .ranking-button-container {
@@ -91,7 +100,7 @@
 /* === メインゲームセクション === */
 .main-game-section {
     padding: 80px 0;
-    background: var(--light-gray);
+    background: linear-gradient(180deg, #F7F9FC 0%, #EFF3F9 100%);
     min-height: 70vh;
 }
 
@@ -99,11 +108,12 @@
     max-width: 600px;
     margin: 0 auto;
     background: var(--white);
-    border-radius: 25px;
-    padding: 40px;
-    box-shadow: var(--shadow-heavy);
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 6px 24px rgba(10, 22, 49, 0.06);
     position: relative;
-    transition: all 0.3s ease;
+    transition: all 0.25s ease;
+    border: 1px solid rgba(13, 71, 161, 0.08);
 }
 
 .game-container.streak-5 {
@@ -225,17 +235,17 @@
 .number-display {
     background: var(--gradient-primary);
     color: var(--white);
-    font-size: 4rem;
+    font-size: 3.2rem;
     font-weight: 700;
-    padding: 40px;
-    border-radius: 20px;
+    padding: 32px;
+    border-radius: 16px;
     margin-bottom: 30px;
     min-height: 140px;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: var(--shadow-medium);
-    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(21, 101, 192, 0.15);
+    transition: all 0.25s ease;
 }
 
 .number-display.changing {
@@ -278,19 +288,19 @@
 }
 
 .game-btn {
-    padding: 18px 35px;
+    padding: 16px 30px;
     border: none;
-    border-radius: 25px;
-    font-size: 1.1rem;
-    font-weight: 600;
+    border-radius: 14px;
+    font-size: 1.05rem;
+    font-weight: 700;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.25s ease;
     display: flex;
     align-items: center;
     gap: 8px;
     min-width: 180px;
     justify-content: center;
-    box-shadow: var(--shadow-light);
+    box-shadow: 0 6px 18px rgba(21, 101, 192, 0.15);
 }
 
 .game-btn:hover {
@@ -303,7 +313,7 @@
 }
 
 .prime-btn {
-    background: linear-gradient(135deg, #4CAF50, #8BC34A);
+    background: linear-gradient(135deg, #4CAF50, #7CB342);
     color: var(--white);
 }
 
@@ -312,7 +322,7 @@
 }
 
 .not-prime-btn {
-    background: linear-gradient(135deg, #F44336, #FF7043);
+    background: linear-gradient(135deg, #F44336, #FF6F61);
     color: var(--white);
 }
 
@@ -632,12 +642,12 @@
 
 .ranking-modal-content {
     background: var(--white);
-    border-radius: 20px;
+    border-radius: 16px;
     max-width: 900px;
     width: 95%;
     max-height: 85vh;
     overflow: hidden;
-    box-shadow: var(--shadow-heavy);
+    box-shadow: 0 12px 36px rgba(10, 22, 49, 0.18);
     margin: 20px;
 }
 
