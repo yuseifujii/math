@@ -121,16 +121,16 @@ class ArticleLoader {
         setAttr('link#canonical-link', 'href', currentUrl);
         setAttr('meta#og-url', 'content', currentUrl);
         setAttr('meta#og-title', 'content', `${article.title} | Mt.MATH`);
-        setAttr('meta#og-description', 'content', stripHtml(article.summary).slice(0, 120));
+        setAttr('meta#og-description', 'content', this.stripHtml(article.summary).slice(0, 120));
         setAttr('meta#twitter-title', 'content', `${article.title} | Mt.MATH`);
-        setAttr('meta#twitter-description', 'content', stripHtml(article.summary).slice(0, 120));
+        setAttr('meta#twitter-description', 'content', this.stripHtml(article.summary).slice(0, 120));
 
         // JSON-LD Article を挿入
         const ld = {
             '@context': 'https://schema.org',
             '@type': 'Article',
             headline: article.title,
-            description: stripHtml(article.summary),
+            description: this.stripHtml(article.summary),
             inLanguage: 'ja',
             author: { '@type': 'Person', name: article.author || 'Mt.MATH AI' },
             publisher: { '@type': 'Organization', name: 'Mt.MATH' },
@@ -152,11 +152,11 @@ class ArticleLoader {
         console.log('✅ 記事表示完了:', article.title);
     }
 
-function stripHtml(html) {
-    const div = document.createElement('div');
-    div.innerHTML = html || '';
-    return (div.textContent || div.innerText || '').replace(/\s+/g, ' ').trim();
-}
+    stripHtml(html) {
+        const div = document.createElement('div');
+        div.innerHTML = html || '';
+        return (div.textContent || div.innerText || '').replace(/\s+/g, ' ').trim();
+    }
 
     /**
      * タグ表示
