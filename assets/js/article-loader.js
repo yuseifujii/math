@@ -111,6 +111,35 @@ class ArticleLoader {
         
         // タイトル更新
         document.title = `${article.title} | Mt.MATH`;
+
+        // Canonical/OG/Twitter を動的更新
+        const currentUrl = `https://mtmath.net/article.html?slug=${this.currentSlug}`;
+        const setAttr = (selector, attr, value) => {
+            const el = document.querySelector(selector);
+            if (el) el.setAttribute(attr, value);
+        };
+        setAttr('link#canonical-link', 'href', currentUrl);
+        setAttr('meta#og-url', 'content', currentUrl);
+        setAttr('meta#og-title', 'content', `${article.title} | Mt.MATH`);
+        setAttr('meta#og-description', 'content', stripHtml(article.summary).slice(0, 120));
+        setAttr('meta#twitter-title', 'content', `${article.title} | Mt.MATH`);
+        setAttr('meta#twitter-description', 'content', stripHtml(article.summary).slice(0, 120));
+
+        // JSON-LD Article を挿入
+        const ld = {
+            '@context': 'https://schema.org',
+            '@type': 'Article',
+            headline: article.title,
+            description: stripHtml(article.summary),
+            inLanguage: 'ja',
+            author: { '@type': 'Person', name: article.author || 'Mt.MATH AI' },
+            publisher: { '@type': 'Organization', name: 'Mt.MATH' },
+            mainEntityOfPage: currentUrl
+        };
+        const ldScript = document.createElement('script');
+        ldScript.type = 'application/ld+json';
+        ldScript.textContent = JSON.stringify(ld);
+        document.head.appendChild(ldScript);
         
         // 記事セクション表示
         document.getElementById('article-section').style.display = 'block';
@@ -122,6 +151,12 @@ class ArticleLoader {
         
         console.log('✅ 記事表示完了:', article.title);
     }
+
+function stripHtml(html) {
+    const div = document.createElement('div');
+    div.innerHTML = html || '';
+    return (div.textContent || div.innerText || '').replace(/\s+/g, ' ').trim();
+}
 
     /**
      * タグ表示
