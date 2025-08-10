@@ -65,25 +65,27 @@
 
 .ranking-button-container {
     margin-top: 30px;
+    display: flex;
+    justify-content: center;
 }
 
 .ranking-dashboard-btn {
-    background: rgba(255, 255, 255, 0.2);
-    color: #333;
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: linear-gradient(135deg, #FFD700, #FFC107, #FFB300);
+    color: #3b2c00;
+    border: 1px solid rgba(255, 215, 0, 0.7);
     padding: 15px 30px;
     border-radius: 30px;
     font-size: 1.1rem;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
+    transition: all 0.25s ease;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255,255,255,0.3);
 }
 
 .ranking-dashboard-btn:hover {
-    background: rgba(255, 255, 255, 0.3);
+    filter: brightness(1.05);
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    box-shadow: 0 12px 28px rgba(255, 193, 7, 0.35);
 }
 
 /* === メインゲームセクション === */
