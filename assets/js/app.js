@@ -340,10 +340,10 @@ class MtMathApp {
 
   // Statistics Update
   updateStats() {
-    // Update article count
-    const articleCount = document.getElementById('article-count');
-    if (articleCount) {
-      this.animateNumber(articleCount, 0, this.state.articles.length, 1000);
+    // Update sidebar article count (統計情報セクション)
+    const sidebarArticleCount = document.getElementById('sidebar-article-count');
+    if (sidebarArticleCount) {
+      this.animateNumber(sidebarArticleCount, 0, this.state.articles.length, 1000);
     }
     
     // Update other stats

@@ -120,18 +120,44 @@
                     <div class="spot-side">
                         <div class="card" style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);">
                             <div class="card-header" style="border-bottom:1px solid rgba(255,255,255,0.2);">
-                                <div class="card-title" style="color:white;">プラットフォーム状況</div>
+                                <div class="card-title" style="color:white;">Conway's Life Pattern</div>
                             </div>
-                            <div class="card-body">
-                                <div class="row cols-2">
-                                    <div class="card-kpi" style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2);">
-                                        <div class="kpi-value" id="article-count" style="color:white;">0</div>
-                                        <div class="kpi-label" style="color:rgba(255,255,255,0.8);">公開記事</div>
-                                    </div>
-                                    <div class="card-kpi" style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2);">
-                                        <div class="kpi-value" id="category-count" style="color:white;">0</div>
-                                        <div class="kpi-label" style="color:rgba(255,255,255,0.8);">カテゴリー</div>
-                                    </div>
+                            <div class="card-body" style="padding: 2rem; text-align: center;">
+                                <!-- ライフゲーム風のイラスト -->
+                                <div style="display: inline-block; padding: 1rem;">
+                                    <svg width="120" height="80" viewBox="0 0 120 80" style="filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));">
+                                        <!-- グリッド背景 -->
+                                        <defs>
+                                            <pattern id="grid" width="8" height="8" patternUnits="userSpaceOnUse">
+                                                <path d="M 8 0 L 0 0 0 8" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="0.5"/>
+                                            </pattern>
+                                        </defs>
+                                        <rect width="120" height="80" fill="url(#grid)"/>
+                                        
+                                        <!-- グライダーパターン -->
+                                        <rect x="24" y="16" width="8" height="8" fill="#22d3ee" opacity="0.9"/>
+                                        <rect x="40" y="24" width="8" height="8" fill="#22d3ee" opacity="0.9"/>
+                                        <rect x="16" y="32" width="8" height="8" fill="#22d3ee" opacity="0.9"/>
+                                        <rect x="24" y="32" width="8" height="8" fill="#22d3ee" opacity="0.9"/>
+                                        <rect x="40" y="32" width="8" height="8" fill="#22d3ee" opacity="0.9"/>
+                                        
+                                        <!-- パルサーの一部 -->
+                                        <rect x="64" y="24" width="8" height="8" fill="#a78bfa" opacity="0.8"/>
+                                        <rect x="72" y="24" width="8" height="8" fill="#a78bfa" opacity="0.8"/>
+                                        <rect x="80" y="24" width="8" height="8" fill="#a78bfa" opacity="0.8"/>
+                                        <rect x="64" y="40" width="8" height="8" fill="#a78bfa" opacity="0.8"/>
+                                        <rect x="72" y="40" width="8" height="8" fill="#a78bfa" opacity="0.8"/>
+                                        <rect x="80" y="40" width="8" height="8" fill="#a78bfa" opacity="0.8"/>
+                                        
+                                        <!-- 追加のセル -->
+                                        <rect x="96" y="32" width="8" height="8" fill="#10b981" opacity="0.7"/>
+                                        <rect x="104" y="32" width="8" height="8" fill="#10b981" opacity="0.7"/>
+                                        <rect x="32" y="56" width="8" height="8" fill="#f59e0b" opacity="0.6"/>
+                                        <rect x="56" y="56" width="8" height="8" fill="#f59e0b" opacity="0.6"/>
+                                    </svg>
+                                </div>
+                                <div style="color: rgba(255,255,255,0.9); font-size: 0.9rem; margin-top: 1rem;">
+                                    生命の進化を数学で表現
                                 </div>
                             </div>
                         </div>
@@ -186,8 +212,8 @@
                                         <div class="kpi-label">数学的発見</div>
                                     </div>
                                     <div class="card-kpi">
-                                        <div class="kpi-value">24/7</div>
-                                        <div class="kpi-label">利用可能</div>
+                                        <div class="kpi-value" id="sidebar-article-count">0</div>
+                                        <div class="kpi-label">公開記事</div>
                                     </div>
                                 </div>
                             </div>
