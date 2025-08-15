@@ -22,7 +22,6 @@
     <meta name="twitter:description" content="数学の定理を探求する革新的な学習プラットフォーム">
     <meta name="twitter:image" content="https://mtmath.net/logo.png">
     <link rel="stylesheet" href="assets/css/modern-style.css">
-    <link rel="stylesheet" href="assets/css/app.css">
     <link rel="stylesheet" href="assets/css/article.css">
     <script type="text/javascript" async 
         src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
@@ -30,67 +29,9 @@
         src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
    
-<body class="app-shell">
-    <div class="shell">
-        <aside class="sidebar">
-            <div class="sb-brand">
-                <img src="logo.png" alt="Mt.MATH">
-            </div>
-            <nav class="sb-nav">
-                <div class="sb-group">
-                    <h4>Explore</h4>
-                    <a class="sb-link" href="index.html">ホーム</a>
-                    <a class="sb-link" href="#articles">記事</a>
-                    <a class="sb-link" href="conways.html">Conway's Game of Life</a>
-                </div>
-                <div class="sb-group">
-                    <h4>Legal</h4>
-                    <a class="sb-link" href="privacy.html">プライバシー</a>
-                    <a class="sb-link" href="legal.html">特商表記</a>
-                </div>
-            </nav>
-            <div class="sb-footer">
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span class="status-dot"></span><span class="status-text">Online</span>
-                </div>
-                <button id="theme-toggle" class="btn-ghost" aria-label="テーマ切替">🌙</button>
-            </div>
-        </aside>
-        <main>
-            <div class="topbar">
-                <div class="search">
-                    <input type="search" id="search-input" placeholder="記事・キーワードを検索" />
-                    <span class="kbd">Ctrl K</span>
-                </div>
-                <div class="actions">
-                    <button class="btn-ghost" onclick="location.href='conways.html'">Conway</button>
-                    <div class="avatar" title="Mt.MATH"></div>
-                </div>
-            </div>
-
-            <!-- Spotlight -->
-            <section class="spotlight fade-in">
-                <div class="spot-main">
-                    <div class="inner">
-                        <h3>Conway's Game of Life — ブラウザで体験する美しいセル・オートマトン</h3>
-                        <p>超高速・高機能なスタンドアロン実装: RLE入出力、ルール編集、スタンプ、保存スロットなど。</p>
-                        <div class="spot-actions">
-                            <a href="conways.html" class="btn-primary">体験する</a>
-                            <a href="#articles" class="btn-outline">関連記事</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="spot-side">
-                    <div class="card">
-                        <div class="card-header"><div class="card-title">プラットフォーム状況</div></div>
-                        <div class="card-body">
-                            <div class="row cols-2">
-                                <div class="card card-kpi"><div class="card-body-lg"><div class="kpi-value" id="article-count">0</div><div class="muted">公開記事</div></div></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section">
         <div class="hero-background">
             <div class="mathematical-symbols">
                 <span class="symbol">∑</span>
@@ -170,47 +111,132 @@
         </header>
     </section>
 
-            
-
-            <!-- Articles Explorer -->
-            <section id="articles" class="content fade-in">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-title">数学記事コレクション</div>
-                        <div class="chips" id="category-chips">
-                            <span class="chip active" data-category="all">All</span>
-                            <span class="chip" data-category="algebra">代数学</span>
-                            <span class="chip" data-category="analysis">解析学</span>
-                            <span class="chip" data-category="number_theory">整数論</span>
-                            <span class="chip" data-category="probability">確率論</span>
-                            <span class="chip" data-category="others">その他</span>
-                        </div>
+    <!-- Spotlight: Conway's Game of Life -->
+    <section class="games-showcase" id="life-spotlight">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="icon">✨</span>
+                    インタラクティブ・スポットライト
+                </h2>
+                <p class="section-subtitle">
+                    ブラウザで楽しめる美しいセル・オートマトン「Conway's Game of Life」
+                </p>
+            </div>
+            <div class="games-grid">
+                <div class="game-card featured premium">
+                    <div class="game-icon">🧬</div>
+                    <h3>Conway's Game of Life</h3>
+                    <p>超高速・高機能なスタンドアロン実装。RLE入出力、ルール編集、スタンプ、保存スロットなど多彩な機能を搭載。</p>
+                    <div class="game-stats">
+                        <span class="difficulty">楽しく探索</span>
+                        <span class="players">フルスクリーン体験</span>
                     </div>
-                    <div class="card-body">
-                        <div class="grid" id="articles-grid">
-                            <div class="loading-articles" style="grid-column:1/-1;text-align:center;padding:24px;">
-                                <div class="spinner" style="margin:0 auto 10px;"></div>
-                                <p class="muted">記事を読み込み中...</p>
-                            </div>
-                        </div>
-                        <div class="row-gap"></div>
-                        <div style="text-align:center">
-                            <button id="load-more-btn" class="btn-outline" style="display:none">さらに読み込む</button>
-                        </div>
+                    <a href="conways.html" class="game-btn primary">体験する</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Articles Section -->
+    <section id="articles" class="articles-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="icon">📖</span>
+                    数学記事コレクション
+                </h2>
+                <p class="section-subtitle">
+                    厳密な証明と美しい数式で構成された高品質な数学記事
+                </p>
+            </div>
+            
+            <!-- Category Tabs -->
+            <div class="category-tabs">
+                <button class="tab-btn active" data-category="all">全て</button>
+                <button class="tab-btn" data-category="algebra">代数学</button>
+                <button class="tab-btn" data-category="analysis">解析学</button>
+                <button class="tab-btn" data-category="number_theory">整数論</button>
+                <button class="tab-btn" data-category="probability">確率論</button>
+                <button class="tab-btn" data-category="others">その他</button>
+            </div>
+            
+            <!-- Articles Grid -->
+            <div class="articles-grid" id="articles-grid">
+                <!-- 動的に記事が読み込まれる -->
+                <div class="loading-articles">
+                    <div class="spinner"></div>
+                    <p>記事を読み込み中...</p>
+                </div>
+            </div>
+            
+            <div class="articles-footer">
+                <button id="load-more-btn" class="btn btn-outline" style="display: none;">
+                    さらに記事を読み込む
+                    <span class="btn-arrow">↓</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔬</div>
+                    <h3>厳密な証明</h3>
+                    <p>数学的に正確で完全な証明を重視し、深い理解を促進します</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>ニッチな内容</h3>
+                    <p>他では見つからない専門的で興味深い数学トピックを扱います</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>レスポンシブ</h3>
+                    <p>スマートフォンからデスクトップまで、あらゆるデバイスで最適表示</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🧪</div>
+                    <h3>インタラクティブ</h3>
+                    <p>セル・オートマトンなどのインタラクティブ体験で直観的に学べます</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="modern-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="logo.png" alt="Mt.MATH" class="footer-logo">
+                    <p>数学の美しさを探求し、知識の頂点を目指す</p>
+                </div>
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h4>コンテンツ</h4>
+                        <a href="#articles">数学記事</a>
+                        <a href="conways.html">Conway's Life</a>
+                    </div>
+                    <div class="link-group">
+                        <h4>法的情報</h4>
+                        <a href="privacy.html">プライバシーポリシー</a>
+                        <a href="legal.html">特定商取引法に基づく表記</a>
                     </div>
                 </div>
-            </section>
-
-            
-
-    
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Mt.MATH | Operated by ToreMock LLC</p>
+            </div>
+        </div>
+    </footer>
 
     <!-- Scripts -->
     <script type="module" src="firebase-config.js"></script>
     <script src="assets/js/site-core.js"></script>
     <script src="assets/js/modern-home.js"></script>
-    <script src="assets/js/app.js"></script>
-        </main>
-    </div>
 </body>
 </html>

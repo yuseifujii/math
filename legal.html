@@ -7,34 +7,31 @@
     <title>特定商取引法に基づく表記 | Mt.MATH</title>
     <link rel="icon" href="Mt.MATH_icon.png" type="image/png">
     <link rel="stylesheet" href="assets/css/modern-style.css">
-    <link rel="stylesheet" href="assets/css/app.css">
 </head>
    
-<body class="app-shell">
-    <div class="shell">
-        <aside class="sidebar">
-            <div class="sb-brand"><img src="logo.png" alt="Mt.MATH"></div>
-            <nav class="sb-nav">
-                <div class="sb-group">
-                    <h4>Explore</h4>
-                    <a class="sb-link" href="index.html">ホーム</a>
-                    <a class="sb-link" href="index.html#articles">記事</a>
-                    <a class="sb-link" href="conways.html">Conway's Game of Life</a>
-                </div>
-                <div class="sb-group">
-                    <h4>Legal</h4>
-                    <a class="sb-link" href="privacy.html">プライバシー</a>
-                    <a class="sb-link" href="legal.html">特商表記</a>
-                </div>
-            </nav>
-            <div class="sb-footer">
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span class="status-dot"></span><span class="status-text">Online</span>
-                </div>
-                <button id="theme-toggle" class="btn-ghost" aria-label="テーマ切替">🌙</button>
+<body>
+    <!-- Modern Header -->
+    <header class="modern-header">
+        <nav class="navbar navbar-with-menu">
+            <div class="nav-brand">
+                <a href="index.html">
+                    <img src="logo.png" alt="Mt.MATH" class="brand-logo">
+                </a>
             </div>
-        </aside>
-        <main>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html#articles" class="nav-link">記事</a>
+                <a href="conways.html" class="nav-link">Conway's Life</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" aria-label="テーマ切替">🌙</button>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
 
     <!-- Content Section -->
     <section style="padding: 80px 0; min-height: 70vh;">
@@ -96,10 +93,33 @@
         </div>
     </section>
 
-        </main>
-    </div>
+    <!-- Footer -->
+    <footer class="modern-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="logo.png" alt="Mt.MATH" class="footer-logo">
+                    <p>数学の美しさを探求し、知識の頂点を目指す</p>
+                </div>
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h4>コンテンツ</h4>
+                        <a href="index.html#articles">数学記事</a>
+                        <a href="conways.html">Conway's Life</a>
+                    </div>
+                    <div class="link-group">
+                        <h4>法的情報</h4>
+                        <a href="privacy.html">プライバシーポリシー</a>
+                        <a href="legal.html">特定商取引法に基づく表記</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Mt.MATH | Operated by ToreMock LLC</p>
+            </div>
+        </div>
+    </footer>
 
     <script src="assets/js/site-core.js"></script>
-    <script src="assets/js/app.js"></script>
 </body>
 </html>
