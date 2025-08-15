@@ -43,8 +43,22 @@ class MtMathApp {
 
   // Theme Management
   initTheme() {
-    const savedTheme = localStorage.getItem('mt.theme') || 'light';
+    // Initialize theme - check system preference if no saved theme
+    let savedTheme = localStorage.getItem('mt.theme');
+    if (!savedTheme) {
+      // Check device preference
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      savedTheme = prefersDark ? 'dark' : 'light';
+    }
     this.setTheme(savedTheme);
+
+    // Listen for system theme changes
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+      // Only auto-switch if user hasn't explicitly set a preference
+      if (!localStorage.getItem('mt.theme')) {
+        this.setTheme(e.matches ? 'dark' : 'light');
+      }
+    });
     
     const themeToggle = document.getElementById('theme-toggle');
     if (themeToggle) {
