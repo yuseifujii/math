@@ -34,36 +34,8 @@
     headings.forEach(h=>obs.observe(h));
   }
 
-  // Sparklines (simple)
-  function sparkline(canvas, data, color){
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    const w = canvas.width = canvas.clientWidth * devicePixelRatio;
-    const h = canvas.height = canvas.clientHeight * devicePixelRatio;
-    ctx.scale(devicePixelRatio, devicePixelRatio);
-    ctx.clearRect(0,0,w,h);
-    const max = Math.max(...data), min = Math.min(...data);
-    const xstep = (canvas.clientWidth-6)/(data.length-1);
-    ctx.strokeStyle = color || '#2563eb';
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    data.forEach((v,i)=>{
-      const x = 3 + i*xstep;
-      const y = 3 + (canvas.clientHeight-6) * (1 - (v-min)/(Math.max(1,max-min)));
-      i?ctx.lineTo(x,y):ctx.moveTo(x,y);
-    });
-    ctx.stroke();
-  }
-
-  function initSparklines(){
-    document.querySelectorAll('.sparkline').forEach(el=>{
-      const seed = el.dataset.seed ? parseInt(el.dataset.seed,10) : 123;
-      const len = el.dataset.len ? parseInt(el.dataset.len,10) : 24;
-      let x = seed % 97;
-      const data = Array.from({length: len}, ()=> (x = (x*17+11)%97) );
-      sparkline(el, data, el.dataset.color || '#2563eb');
-    });
-  }
+  // Remove dummy sparkline (not enterprise-grade)
+  function initSparklines(){}
 
   // Command palette
   function initCmdK(){
@@ -71,7 +43,7 @@
     overlay.className = 'cmdk-overlay';
     overlay.innerHTML = `
       <div class="cmdk">
-        <div class="cmdk-header"><input id="cmdk-input" placeholder="コマンドを入力 (記事検索 / 移動 / Conway)"/></div>
+        <div class="cmdk-header"><input id="cmdk-input" placeholder="コマンドを入力（検索 / 移動 / Conway）"/></div>
         <div class="cmdk-list" id="cmdk-list"></div>
       </div>`;
     document.body.appendChild(overlay);
@@ -82,13 +54,13 @@
     function render(q){
       const list = $('#cmdk-list');
       const entries = [
-        {icon:'🏠', label:'ホームへ移動', action:()=>location.href='index.html'},
-        {icon:'📜', label:'記事に移動', action:()=>document.querySelector('#articles')?.scrollIntoView({behavior:'smooth'})},
-        {icon:'🧬', label:"Conway's Game of Life を開く", action:()=>location.href='conways.html'},
-        {icon:'🔒', label:'法務情報を開く', action:()=>location.href='legal.html'},
-        {icon:'🔐', label:'プライバシーポリシーを開く', action:()=>location.href='privacy.html'},
+        { label:'ホームへ移動', action:()=>location.href='index.html' },
+        { label:'記事（一覧）へ移動', action:()=>document.querySelector('#articles')?.scrollIntoView({behavior:'smooth'}) },
+        { label:"Conway's Game of Life を開く", action:()=>location.href='conways.html' },
+        { label:'法務情報を開く', action:()=>location.href='legal.html' },
+        { label:'プライバシーポリシーを開く', action:()=>location.href='privacy.html' },
       ].filter(it=> !q || it.label.toLowerCase().includes(q.toLowerCase()));
-      list.innerHTML = entries.map(it=> `<div class="cmdk-item"><div>${it.icon}</div><div>${it.label}</div></div>`).join('');
+      list.innerHTML = entries.map(it=> `<div class="cmdk-item"><div class="muted">›</div><div>${it.label}</div></div>`).join('');
       Array.from(list.children).forEach((row, i)=> row.onclick = entries[i].action);
     }
 

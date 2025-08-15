@@ -112,10 +112,10 @@
     gap: 10px;
     padding: 14px 16px;
     border-bottom: 1px solid var(--hairline);
-    background: linear-gradient(180deg, var(--surface), var(--surface-2));
+    background: var(--ink-8);
 }
-.sb-brand img { height: 28px; width: auto; }
-.sb-brand .title { font-weight: 800; letter-spacing: 0.3px; color: var(--ink-7); }
+.sb-brand img { height: 28px; width: auto; filter: none; }
+.sb-brand .title { font-weight: 800; letter-spacing: 0.3px; color: var(--ink-0); }
 
 .sb-nav {
     padding: 14px 10px;
