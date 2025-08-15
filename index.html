@@ -21,222 +21,261 @@
     <meta name="twitter:title" content="Mt.MATH | 数学の頂を目指そう">
     <meta name="twitter:description" content="数学の定理を探求する革新的な学習プラットフォーム">
     <meta name="twitter:image" content="https://mtmath.net/logo.png">
-    <link rel="stylesheet" href="assets/css/modern-style.css">
-    <link rel="stylesheet" href="assets/css/article.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/app.css">
+    
+    <!-- MathJax -->
     <script type="text/javascript" async 
         src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
     <script type="text/javascript" id="MathJax-script" async 
         src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
    
-<body>
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="hero-background">
-            <div class="mathematical-symbols">
-                <span class="symbol">∑</span>
-                <span class="symbol">∮</span>
-                <span class="symbol">∞</span>
-                <span class="symbol">π</span>
-                <span class="symbol">∇</span>
-                <span class="symbol">∂</span>
-                <span class="symbol">∫</span>
-                <span class="symbol">√</span>
+<body class="app-shell">
+    <div class="progress-bar"></div>
+    <div class="shell">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sb-brand">
+                <img src="logo.png" alt="Mt.MATH">
             </div>
-        </div>
-        
-        <header class="modern-header">
-            <nav class="navbar navbar-with-menu">
-                <div class="nav-brand">
-                    <a href="index.html">
-                        <img src="logo.png" alt="Mt.MATH" class="brand-logo">
+            <nav class="sb-nav">
+                <div class="sb-group">
+                    <h4>Explore</h4>
+                    <a class="sb-link active" href="#" data-view="dashboard">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M8 1.5a.5.5 0 0 0-1 0V8H.5a.5.5 0 0 0 0 1H7v6.5a.5.5 0 0 0 1 0V9h6.5a.5.5 0 0 0 0-1H8V1.5z"/>
+                        </svg>
+                        ダッシュボード
+                    </a>
+                    <a class="sb-link" href="#articles" data-view="articles">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M4 1h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H4z"/>
+                            <path d="M4.5 4.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5z"/>
+                        </svg>
+                        記事コレクション
+                    </a>
+                    <a class="sb-link" href="conways.html">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M2 2a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V2zm1 0v10h10V2H3z"/>
+                            <path d="M5 5v2h2V5H5zm3 0v2h2V5H8zm3 0v2h2V5h-2zM5 8v2h2V8H5zm3 0v2h2V8H8zm3 0v2h2V8h-2z"/>
+                        </svg>
+                        Conway's Game of Life
                     </a>
                 </div>
-                <div class="nav-menu" id="nav-menu">
-                    <a href="#articles" class="nav-link">記事</a>
-                    <a href="conways.html" class="nav-link">Conway's Life</a>
+                <div class="sb-group">
+                    <h4>Categories</h4>
+                    <a class="sb-link" href="#" data-category="algebra">代数学</a>
+                    <a class="sb-link" href="#" data-category="analysis">解析学</a>
+                    <a class="sb-link" href="#" data-category="number_theory">整数論</a>
+                    <a class="sb-link" href="#" data-category="probability">確率論</a>
+                    <a class="sb-link" href="#" data-category="others">その他</a>
                 </div>
-                <div class="nav-actions">
-                    <button id="theme-toggle" class="theme-toggle" aria-label="テーマ切替">🌙</button>
-                </div>
-                <div class="nav-toggle" id="nav-toggle">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
+                <div class="sb-group">
+                    <h4>Legal</h4>
+                    <a class="sb-link" href="privacy.html">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm0 1a6 6 0 1 1 0 12A6 6 0 0 1 8 2z"/>
+                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                        </svg>
+                        プライバシーポリシー
+                    </a>
+                    <a class="sb-link" href="legal.html">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/>
+                        </svg>
+                        特定商取引法表記
+                    </a>
                 </div>
             </nav>
-            
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    数学の<span class="highlight">頂</span>を目指そう
-                </h1>
-                <p class="hero-subtitle">
-                    定理の美しさを探求する<br>
-                    革新的な数学学習プラットフォーム
-                </p>
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <span class="stat-number" id="article-count">0</span>
-                        <span class="stat-label">記事</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">∞</span>
-                        <span class="stat-label">発見</span>
-                    </div>
+            <div class="sb-footer">
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span class="status-dot"></span>
+                    <span class="status-text">Online</span>
                 </div>
-                <div class="hero-actions">
-                    <a href="#articles" class="btn btn-primary">
-                        <span class="btn-icon">📚</span>
-                        記事を探索
-                    </a>
-                </div>
-                <div class="trust-bar">
-                    <div class="trust-item">
-                        <span class="trust-icon">📐</span>
-                        <span class="trust-text">厳密性と完全性</span>
-                    </div>
-                    <div class="trust-item">
-                        <span class="trust-icon">📖</span>
-                        <span class="trust-text">一次資料への忠実さ</span>
-                    </div>
-                    <div class="trust-item">
-                        <span class="trust-icon">∑</span>
-                        <span class="trust-text">MathJax による美しい組版</span>
-                    </div>
-                </div>
-                <div class="search-bar">
-                    <input type="search" id="search-input" placeholder="記事を検索..." aria-label="記事を検索">
-                </div>
+                <button id="theme-toggle" class="btn-ghost" aria-label="テーマ切替">🌙</button>
             </div>
-        </header>
-    </section>
+        </aside>
 
-    <!-- Spotlight: Conway's Game of Life -->
-    <section class="games-showcase" id="life-spotlight">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">
-                    <span class="icon">✨</span>
-                    インタラクティブ・スポットライト
-                </h2>
-                <p class="section-subtitle">
-                    ブラウザで楽しめる美しいセル・オートマトン「Conway's Game of Life」
-                </p>
-            </div>
-            <div class="games-grid">
-                <div class="game-card featured premium">
-                    <div class="game-icon">🧬</div>
-                    <h3>Conway's Game of Life</h3>
-                    <p>超高速・高機能なスタンドアロン実装。RLE入出力、ルール編集、スタンプ、保存スロットなど多彩な機能を搭載。</p>
-                    <div class="game-stats">
-                        <span class="difficulty">楽しく探索</span>
-                        <span class="players">フルスクリーン体験</span>
-                    </div>
-                    <a href="conways.html" class="game-btn primary">体験する</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Articles Section -->
-    <section id="articles" class="articles-section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">
-                    <span class="icon">📖</span>
-                    数学記事コレクション
-                </h2>
-                <p class="section-subtitle">
-                    厳密な証明と美しい数式で構成された高品質な数学記事
-                </p>
-            </div>
-            
-            <!-- Category Tabs -->
-            <div class="category-tabs">
-                <button class="tab-btn active" data-category="all">全て</button>
-                <button class="tab-btn" data-category="algebra">代数学</button>
-                <button class="tab-btn" data-category="analysis">解析学</button>
-                <button class="tab-btn" data-category="number_theory">整数論</button>
-                <button class="tab-btn" data-category="probability">確率論</button>
-                <button class="tab-btn" data-category="others">その他</button>
-            </div>
-            
-            <!-- Articles Grid -->
-            <div class="articles-grid" id="articles-grid">
-                <!-- 動的に記事が読み込まれる -->
-                <div class="loading-articles">
-                    <div class="spinner"></div>
-                    <p>記事を読み込み中...</p>
-                </div>
-            </div>
-            
-            <div class="articles-footer">
-                <button id="load-more-btn" class="btn btn-outline" style="display: none;">
-                    さらに記事を読み込む
-                    <span class="btn-arrow">↓</span>
+        <!-- Main Content -->
+        <main>
+            <!-- Top Bar -->
+            <div class="topbar">
+                <button id="sidebar-toggle" class="btn-ghost">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                    </svg>
                 </button>
+                <div class="search">
+                    <input type="search" id="search-input" placeholder="記事・定理・キーワードを検索..." />
+                    <span class="kbd">Ctrl K</span>
+                </div>
+                <div class="actions">
+                    <button class="btn-ghost" onclick="location.href='conways.html'">
+                        Conway
+                    </button>
+                    <div class="avatar" title="Mt.MATH"></div>
+                </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Features Section -->
-    <section class="features-section">
-        <div class="container">
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🔬</div>
-                    <h3>厳密な証明</h3>
-                    <p>数学的に正確で完全な証明を重視し、深い理解を促進します</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h3>ニッチな内容</h3>
-                    <p>他では見つからない専門的で興味深い数学トピックを扱います</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📱</div>
-                    <h3>レスポンシブ</h3>
-                    <p>スマートフォンからデスクトップまで、あらゆるデバイスで最適表示</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🧪</div>
-                    <h3>インタラクティブ</h3>
-                    <p>セル・オートマトンなどのインタラクティブ体験で直観的に学べます</p>
-                </div>
-            </div>
-        </div>
-    </section>
+            <!-- Content Area -->
+            <div class="content fade-in">
+                <!-- Spotlight Section -->
+                <section class="spotlight">
+                    <div class="spot-main">
+                        <div class="inner">
+                            <h3>Conway's Game of Life — ブラウザで体験する美しいセル・オートマトン</h3>
+                            <p>超高速・高機能なスタンドアロン実装。RLE入出力、ルール編集、スタンプ、保存スロットなど多彩な機能を搭載。</p>
+                            <div class="spot-actions">
+                                <a href="conways.html" class="btn btn-primary">体験する</a>
+                                <a href="#articles" class="btn btn-outline" style="background:rgba(255,255,255,0.1);border-color:white;color:white;">関連記事を見る</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="spot-side">
+                        <div class="card" style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);">
+                            <div class="card-header" style="border-bottom:1px solid rgba(255,255,255,0.2);">
+                                <div class="card-title" style="color:white;">プラットフォーム状況</div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row cols-2">
+                                    <div class="card-kpi" style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2);">
+                                        <div class="kpi-value" id="article-count" style="color:white;">0</div>
+                                        <div class="kpi-label" style="color:rgba(255,255,255,0.8);">公開記事</div>
+                                    </div>
+                                    <div class="card-kpi" style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2);">
+                                        <div class="kpi-value" id="category-count" style="color:white;">0</div>
+                                        <div class="kpi-label" style="color:rgba(255,255,255,0.8);">カテゴリー</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
-    <!-- Footer -->
-    <footer class="modern-footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <img src="logo.png" alt="Mt.MATH" class="footer-logo">
-                    <p>数学の美しさを探求し、知識の頂点を目指す</p>
-                </div>
-                <div class="footer-links">
-                    <div class="link-group">
-                        <h4>コンテンツ</h4>
-                        <a href="#articles">数学記事</a>
-                        <a href="conways.html">Conway's Life</a>
+                <!-- Main Dashboard -->
+                <section class="row" style="margin-top:2rem;">
+                    <!-- Recent Articles -->
+                    <div style="flex:2;">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">最新の数学記事</div>
+                                <div class="chips" id="category-chips">
+                                    <span class="chip active" data-category="all">すべて</span>
+                                    <span class="chip" data-category="algebra">代数学</span>
+                                    <span class="chip" data-category="analysis">解析学</span>
+                                    <span class="chip" data-category="number_theory">整数論</span>
+                                    <span class="chip" data-category="probability">確率論</span>
+                                    <span class="chip" data-category="others">その他</span>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="grid grid-2" id="articles-grid">
+                                    <!-- Articles will be loaded here -->
+                                    <div class="text-center" style="grid-column: 1 / -1;">
+                                        <div class="spinner" style="margin: 0 auto;"></div>
+                                        <p class="muted mt-2">記事を読み込み中...</p>
+                                    </div>
+                                </div>
+                                <div class="row-gap"></div>
+                                <div class="text-center">
+                                    <button id="load-more-btn" class="btn btn-outline" style="display:none;">
+                                        さらに読み込む
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="link-group">
-                        <h4>法的情報</h4>
-                        <a href="privacy.html">プライバシーポリシー</a>
-                        <a href="legal.html">特定商取引法に基づく表記</a>
+
+                    <!-- Sidebar Info -->
+                    <div style="flex:1;max-width:400px;">
+                        <!-- Quick Stats -->
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <div class="card-title">統計情報</div>
+                            </div>
+                            <div class="card-body">
+                                <div class="grid grid-2" style="gap:1rem;">
+                                    <div class="card-kpi">
+                                        <div class="kpi-value">∞</div>
+                                        <div class="kpi-label">数学的発見</div>
+                                    </div>
+                                    <div class="card-kpi">
+                                        <div class="kpi-value">24/7</div>
+                                        <div class="kpi-label">利用可能</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Features -->
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">プラットフォーム特徴</div>
+                            </div>
+                            <div class="card-body">
+                                <div style="display:flex;flex-direction:column;gap:1rem;">
+                                    <div style="display:flex;align-items:center;gap:0.75rem;">
+                                        <div style="width:40px;height:40px;background:var(--primary);border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-size:1.2rem;">
+                                            📐
+                                        </div>
+                                        <div>
+                                            <div style="font-weight:600;">厳密な証明</div>
+                                            <div style="font-size:0.85rem;color:var(--text-secondary);">数学的に完全で正確</div>
+                                        </div>
+                                    </div>
+                                    <div style="display:flex;align-items:center;gap:0.75rem;">
+                                        <div style="width:40px;height:40px;background:var(--secondary);border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-size:1.2rem;">
+                                            🎯
+                                        </div>
+                                        <div>
+                                            <div style="font-weight:600;">ニッチな内容</div>
+                                            <div style="font-size:0.85rem;color:var(--text-secondary);">他では見つからない専門知識</div>
+                                        </div>
+                                    </div>
+                                    <div style="display:flex;align-items:center;gap:0.75rem;">
+                                        <div style="width:40px;height:40px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-size:1.2rem;">
+                                            ∑
+                                        </div>
+                                        <div>
+                                            <div style="font-weight:600;">MathJax組版</div>
+                                            <div style="font-size:0.85rem;color:var(--text-secondary);">美しい数式表現</div>
+                                        </div>
+                                    </div>
+                                    <div style="display:flex;align-items:center;gap:0.75rem;">
+                                        <div style="width:40px;height:40px;background:var(--success);border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-size:1.2rem;">
+                                            🧬
+                                        </div>
+                                        <div>
+                                            <div style="font-weight:600;">インタラクティブ</div>
+                                            <div style="font-size:0.85rem;color:var(--text-secondary);">Conway's Life等の体験型学習</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </section>
+
+                <!-- Footer Info -->
+                <section style="margin-top:4rem;padding-top:2rem;border-top:1px solid var(--border);">
+                    <div class="text-center muted">
+                        <p>&copy; 2025 Mt.MATH | Operated by ToreMock LLC</p>
+                        <p style="font-size:0.85rem;">数学の美しさを探求し、知識の頂点を目指す</p>
+                    </div>
+                </section>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Mt.MATH | Operated by ToreMock LLC</p>
-            </div>
-        </div>
-    </footer>
+        </main>
+    </div>
 
     <!-- Scripts -->
     <script type="module" src="firebase-config.js"></script>
-    <script src="assets/js/site-core.js"></script>
-    <script src="assets/js/modern-home.js"></script>
+    <script src="assets/js/app.js"></script>
 </body>
 </html>
