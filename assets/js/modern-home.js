@@ -51,11 +51,22 @@ class ModernHomePage {
      * イベントリスナー設定
      */
     setupEventListeners() {
-        // カテゴリタブ
+        // カテゴリ（従来のボタンUI）
         document.querySelectorAll('.tab-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 const category = e.target.dataset.category;
                 this.filterByCategory(category);
+            });
+        });
+
+        // カテゴリ（新ダッシュボードUIのチップ）
+        document.querySelectorAll('.chip[data-category]').forEach(chip => {
+            chip.addEventListener('click', (e) => {
+                const category = e.currentTarget.dataset.category;
+                this.filterByCategory(category);
+                // Active表示切替
+                document.querySelectorAll('.chip[data-category]').forEach(c => c.classList.remove('active'));
+                e.currentTarget.classList.add('active');
             });
         });
 
@@ -220,11 +231,15 @@ class ModernHomePage {
         this.currentCategory = category;
         this.currentPage = 1;
 
-        // タブの状態更新
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.classList.remove('active');
-        });
-        document.querySelector(`[data-category="${category}"]`).classList.add('active');
+        // タブの状態更新（従来UI）
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        const legacy = document.querySelector(`.tab-btn[data-category="${category}"]`);
+        if (legacy) legacy.classList.add('active');
+
+        // チップの状態更新（新UI）
+        document.querySelectorAll('.chip[data-category]').forEach(c => c.classList.remove('active'));
+        const chip = document.querySelector(`.chip[data-category="${category}"]`);
+        if (chip) chip.classList.add('active');
 
         // 記事再表示
         this.displayArticles();
