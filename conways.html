@@ -174,19 +174,100 @@
     </main>
 
     <footer>
-      <span>Conway's Game of Life — 高速・高機能スタンドアロン</span> ·
-      <a href="#" id="aboutLink">About</a> ·
-      <a href="index.html">Mt.MATH Home</a> ·
-      <a href="privacy.html">Privacy</a> ·
-      <a href="legal.html">Legal</a>
+      <span>コンウェイのライフゲーム — 高速・高機能スタンドアロン</span> ·
+      <a href="#" id="aboutLink">説明</a> ·
+      <a href="index.html">Mt.MATH ホーム</a> ·
+      <a href="privacy.html">プライバシーポリシー</a> ·
+      <a href="legal.html">特定商法取引法に基づく表記</a>
     </footer>
   </div>
 
   <dialog id="about">
-    <form method="dialog" style="background:var(--panel);border:1px solid #1f2937;border-radius:16px;padding:16px;min-width:320px;color:var(--text)">
-      <h3 style="margin-top:0">About</h3>
-      <p>大規模グリッド、ルールエディタ、RLE入出力、残像・年齢カラー、パターンスタンプ、保存スロット（localStorage）などを備えた単一HTML版です。</p>
-      <button>閉じる</button>
+    <form method="dialog" style="background:var(--panel);border:1px solid #1f2937;border-radius:16px;padding:24px;min-width:600px;max-width:800px;color:var(--text);max-height:90vh;overflow-y:auto">
+      <h3 style="margin-top:0;color:var(--accent);font-size:1.5em">コンウェイのライフゲーム</h3>
+      
+      <div style="margin-bottom:1.5rem">
+        <p style="line-height:1.6;margin-bottom:1rem">
+          1970年にイギリスの数学者ジョン・ホートン・コンウェイによって考案されたセル・オートマトンです。
+          2次元グリッド上の各セルが「生」または「死」の状態を持ち、簡単なルールに従って世代を重ねます。
+        </p>
+      </div>
+
+      <div style="background:rgba(34,211,238,0.1);border-left:4px solid var(--accent);padding:1rem;margin:1rem 0;border-radius:8px">
+        <h4 style="color:var(--accent);margin:0 0 0.5rem 0">基本ルール（B3/S23）</h4>
+        <ul style="margin:0.5rem 0;padding-left:1.5rem;line-height:1.6">
+          <li><strong>誕生（Birth）:</strong> 死んでいるセルの隣に生きているセルがちょうど3個あると、次世代で誕生する</li>
+          <li><strong>生存（Survival）:</strong> 生きているセルの隣に生きているセルが2個または3個あると、次世代でも生存する</li>
+          <li><strong>死亡:</strong> 上記以外の場合、セルは死亡する（過疎または過密）</li>
+        </ul>
+      </div>
+
+      <div style="margin:1.5rem 0">
+        <h4 style="color:var(--text);margin:0 0 0.8rem 0">隣接セルの数え方</h4>
+        <div style="background:var(--panel-2);padding:1rem;border-radius:8px;margin-bottom:1rem">
+          <p style="margin:0 0 0.5rem 0;font-size:0.9em">各セルには8つの隣接セル（上下左右＋4つの対角）があります：</p>
+          <div style="font-family:monospace;text-align:center;background:rgba(0,0,0,0.3);padding:0.5rem;border-radius:4px;font-size:0.8em">
+            □ □ □<br>
+            □ ● □<br>
+            □ □ □
+          </div>
+          <p style="margin:0.5rem 0 0 0;font-size:0.85em;color:var(--muted)">●が対象セル、□が隣接セル</p>
+        </div>
+      </div>
+
+      <div style="margin:1.5rem 0">
+        <h4 style="color:var(--text);margin:0 0 0.8rem 0">ルール記法について</h4>
+        <div style="background:var(--panel-2);padding:1rem;border-radius:8px">
+          <p style="margin:0 0 0.5rem 0;line-height:1.5">
+            <code style="background:rgba(255,255,255,0.1);padding:2px 6px;border-radius:3px;color:var(--accent)">B3/S23</code> 形式で表記：
+          </p>
+          <ul style="margin:0.5rem 0;padding-left:1.5rem;line-height:1.6;font-size:0.9em">
+            <li><strong>B（Birth）:</strong> 誕生条件の隣接生セル数</li>
+            <li><strong>S（Survival）:</strong> 生存条件の隣接生セル数</li>
+          </ul>
+          <p style="margin:0.5rem 0 0 0;font-size:0.85em;color:var(--muted)">
+            例: B36/S125 → 隣接3個または6個で誕生、隣接1個・2個・5個で生存
+          </p>
+        </div>
+      </div>
+
+      <div style="margin:1.5rem 0">
+        <h4 style="color:var(--text);margin:0 0 0.8rem 0">有名なパターン</h4>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;font-size:0.9em">
+          <div style="background:var(--panel-2);padding:0.8rem;border-radius:6px">
+            <strong style="color:var(--accent)">グライダー</strong><br>
+            <span style="color:var(--muted)">5セルで構成される移動パターン</span>
+          </div>
+          <div style="background:var(--panel-2);padding:0.8rem;border-radius:6px">
+            <strong style="color:var(--accent)">パルサー</strong><br>
+            <span style="color:var(--muted)">3世代周期で振動するパターン</span>
+          </div>
+          <div style="background:var(--panel-2);padding:0.8rem;border-radius:6px">
+            <strong style="color:var(--accent)">グライダーガン</strong><br>
+            <span style="color:var(--muted)">定期的にグライダーを生成</span>
+          </div>
+          <div style="background:var(--panel-2);padding:0.8rem;border-radius:6px">
+            <strong style="color:var(--accent)">R-ペントミノ</strong><br>
+            <span style="color:var(--muted)">1103世代で安定化するカオス</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:rgba(167,139,250,0.1);border-left:4px solid var(--accent-2);padding:1rem;margin:1rem 0;border-radius:8px">
+        <h4 style="color:var(--accent-2);margin:0 0 0.5rem 0">このシミュレーターの特徴</h4>
+        <ul style="margin:0.5rem 0;padding-left:1.5rem;line-height:1.6;font-size:0.9em">
+          <li>大規模グリッド対応（数万×数万セル）</li>
+          <li>カスタムルール設定（B/S記法）</li>
+          <li>RLE形式のパターン入出力</li>
+          <li>年齢カラー・残像表示機能</li>
+          <li>保存スロット（ブラウザローカル保存）</li>
+          <li>高速レンダリング（最大300fps）</li>
+        </ul>
+      </div>
+
+      <div style="text-align:center;margin-top:1.5rem">
+        <button style="background:var(--accent);color:#000;border:none;padding:0.5rem 1.5rem;border-radius:8px;font-weight:600;cursor:pointer">閉じる</button>
+      </div>
     </form>
   </dialog>
 
