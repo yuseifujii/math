@@ -5,121 +5,299 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Mt.MATH - 特定商取引法に基づく表記">
     <title>特定商取引法に基づく表記 | Mt.MATH</title>
-    <link rel="icon" href="Mt.MATH_icon.png" type="image/png">
-    <link rel="stylesheet" href="assets/css/modern-style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/app.css">
 </head>
    
-<body>
-    <!-- Modern Header -->
-    <header class="modern-header">
-        <nav class="navbar navbar-with-menu">
-            <div class="nav-brand">
-                <a href="index.html">
-                    <img src="logo.png" alt="Mt.MATH" class="brand-logo">
-                </a>
+<body class="app-shell">
+    <div class="progress-bar"></div>
+    <div class="shell">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sb-brand">
+                <img src="logo.png" alt="Mt.MATH">
             </div>
-            <div class="nav-menu" id="nav-menu">
-                <a href="index.html#articles" class="nav-link">記事</a>
-                <a href="conways.html" class="nav-link">Conway's Life</a>
+            <nav class="sb-nav">
+                <div class="sb-group">
+                    <h4>Navigate</h4>
+                    <a class="sb-link" href="index.html">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                        </svg>
+                        ホーム
+                    </a>
+                    <a class="sb-link" href="index.html#articles">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M4 1h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H4z"/>
+                        </svg>
+                        記事コレクション
+                    </a>
+                    <a class="sb-link" href="conways.html">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M2 2a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V2zm1 0v10h10V2H3z"/>
+                        </svg>
+                        Conway's Life
+                    </a>
+                </div>
+                <div class="sb-group">
+                    <h4>Legal</h4>
+                    <a class="sb-link" href="privacy.html">プライバシーポリシー</a>
+                    <a class="sb-link active" href="legal.html">特定商取引法表記</a>
+                </div>
+            </nav>
+            <div class="sb-footer">
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span class="status-dot"></span>
+                    <span class="status-text">Online</span>
+                </div>
+                <button id="theme-toggle" class="btn-ghost" aria-label="テーマ切替">🌙</button>
             </div>
-            <div class="nav-actions">
-                <button id="theme-toggle" class="theme-toggle" aria-label="テーマ切替">🌙</button>
-            </div>
-            <div class="nav-toggle" id="nav-toggle">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </nav>
-    </header>
+        </aside>
 
-    <!-- Content Section -->
-    <section style="padding: 80px 0; min-height: 70vh;">
-        <div class="container">
-            <div style="max-width: 800px; margin: 0 auto;">
-                <h1 style="color: var(--dark-blue); margin-bottom: 30px;">特定商取引法に基づく表記</h1>
-                
-                <div style="background: var(--white); padding: 40px; border-radius: 15px; box-shadow: var(--shadow-medium);">
-                    <table style="width: 100%; border-collapse: collapse;">
-                        <tr style="border-bottom: 1px solid #eee;">
-                            <td style="padding: 15px 10px; font-weight: 600; color: var(--dark-blue); width: 200px;">事業者名</td>
-                            <td style="padding: 15px 10px;"><a href="https://toremock.com/info" target="_blank" rel="noopener">合同会社ToreMock</a></td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #eee;">
-                            <td style="padding: 15px 10px; font-weight: 600; color: var(--dark-blue);">所在地</td>
-                            <td style="padding: 15px 10px;">千葉県船橋市薬円台６丁目８番２号</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #eee;">
-                            <td style="padding: 15px 10px; font-weight: 600; color: var(--dark-blue);">メールアドレス</td>
-                            <td style="padding: 15px 10px;">info@toremock.com</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #eee;">
-                            <td style="padding: 15px 10px; font-weight: 600; color: var(--dark-blue);">サービス内容</td>
-                            <td style="padding: 15px 10px;">数学教育情報の提供</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #eee;">
-                            <td style="padding: 15px 10px; font-weight: 600; color: var(--dark-blue);">料金</td>
-                            <td style="padding: 15px 10px;">無料</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #eee;">
-                            <td style="padding: 15px 10px; font-weight: 600; color: var(--dark-blue);">支払方法</td>
-                            <td style="padding: 15px 10px;">該当なし（無料サービスのため）</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #eee;">
-                            <td style="padding: 15px 10px; font-weight: 600; color: var(--dark-blue);">サービス提供時期</td>
-                            <td style="padding: 15px 10px;">お申込み確認後、即時</td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #eee;">
-                            <td style="padding: 15px 10px; font-weight: 600; color: var(--dark-blue);">返金・キャンセル</td>
-                            <td style="padding: 15px 10px;">該当なし（無料サービスのため）</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 15px 10px; font-weight: 600; color: var(--dark-blue);">個人情報の取扱い</td>
-                            <td style="padding: 15px 10px;">プライバシーポリシーをご確認ください</td>
-                        </tr>
-                    </table>
-                    
-                    <div style="margin-top: 30px; padding: 20px; background: var(--sky-blue); border-radius: 10px;">
-                        <p style="margin: 0; color: var(--dark-blue); line-height: 1.6;">
-                            <strong>ご注意：</strong>本サイトは教育目的の情報提供を行っており、商取引は発生いたしません。
-                        </p>
+        <!-- Main Content -->
+        <main>
+            <!-- Top Bar -->
+            <div class="topbar">
+                <button id="sidebar-toggle" class="btn-ghost">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                    </svg>
+                </button>
+                <div class="search">
+                    <input type="search" placeholder="法的情報を検索..." disabled />
+                    <span class="kbd">Legal</span>
+                </div>
+                <div class="actions">
+                    <button class="btn-ghost" onclick="window.print()">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+                            <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/>
+                        </svg>
+                    </button>
+                    <div class="avatar" title="Mt.MATH"></div>
+                </div>
+            </div>
+
+            <!-- Content -->
+            <div class="content fade-in">
+                <!-- Header -->
+                <div class="row" style="align-items: center; margin-bottom: 2rem;">
+                    <div style="flex: 1;">
+                        <nav style="margin-bottom: 1rem;">
+                            <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; color: var(--text-tertiary);">
+                                <a href="index.html" style="color: var(--primary); text-decoration: none;">ホーム</a>
+                                <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                </svg>
+                                <span>法的情報</span>
+                                <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                </svg>
+                                <span>特定商取引法表記</span>
+                            </div>
+                        </nav>
+                        <h1 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem;">特定商取引法に基づく表記</h1>
+                        <p style="font-size: 1.1rem; color: var(--text-secondary);">Mt.MATHの事業者情報および法的事項について</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="width: 80px; height: 80px; background: var(--primary); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem;">
+                            <svg width="40" height="40" fill="white" viewBox="0 0 16 16">
+                                <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/>
+                            </svg>
+                        </div>
+                        <div style="font-size: 0.85rem; color: var(--text-tertiary);">Legal Document</div>
                     </div>
                 </div>
-                
-                <div style="text-align: center; margin-top: 40px;">
-                    <a href="index.html" class="btn btn-outline">ホームに戻る</a>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="modern-footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <img src="logo.png" alt="Mt.MATH" class="footer-logo">
-                    <p>数学の美しさを探求し、知識の頂点を目指す</p>
-                </div>
-                <div class="footer-links">
-                    <div class="link-group">
-                        <h4>コンテンツ</h4>
-                        <a href="index.html#articles">数学記事</a>
-                        <a href="conways.html">Conway's Life</a>
-                    </div>
-                    <div class="link-group">
-                        <h4>法的情報</h4>
-                        <a href="privacy.html">プライバシーポリシー</a>
-                        <a href="legal.html">特定商取引法に基づく表記</a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Mt.MATH | Operated by ToreMock LLC</p>
-            </div>
-        </div>
-    </footer>
+                <!-- Main Content -->
+                <div class="row" style="gap: 2rem;">
+                    <!-- Legal Information -->
+                    <div style="flex: 1;">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">事業者情報</div>
+                                <div style="font-size: 0.85rem; color: var(--text-tertiary);">
+                                    最終更新: 2025年1月
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div style="display: grid; gap: 1.5rem;">
+                                    <div class="row" style="align-items: flex-start; gap: 2rem;">
+                                        <div style="min-width: 140px; font-weight: 600; color: var(--text-primary);">事業者名</div>
+                                        <div style="flex: 1;">
+                                            <a href="https://toremock.com/info" target="_blank" rel="noopener" 
+                                               style="color: var(--primary); text-decoration: none; font-weight: 500;">
+                                                合同会社ToreMock
+                                                <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16" style="margin-left: 0.25rem;">
+                                                    <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                                                    <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
 
-    <script src="assets/js/site-core.js"></script>
+                                    <div class="row" style="align-items: flex-start; gap: 2rem;">
+                                        <div style="min-width: 140px; font-weight: 600; color: var(--text-primary);">所在地</div>
+                                        <div style="flex: 1;">千葉県船橋市薬円台６丁目８番２号</div>
+                                    </div>
+
+                                    <div class="row" style="align-items: flex-start; gap: 2rem;">
+                                        <div style="min-width: 140px; font-weight: 600; color: var(--text-primary);">メールアドレス</div>
+                                        <div style="flex: 1;">
+                                            <a href="mailto:info@toremock.com" style="color: var(--primary); text-decoration: none;">
+                                                info@toremock.com
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="align-items: flex-start; gap: 2rem;">
+                                        <div style="min-width: 140px; font-weight: 600; color: var(--text-primary);">サービス内容</div>
+                                        <div style="flex: 1;">数学教育情報の提供</div>
+                                    </div>
+
+                                    <div class="row" style="align-items: flex-start; gap: 2rem;">
+                                        <div style="min-width: 140px; font-weight: 600; color: var(--text-primary);">料金</div>
+                                        <div style="flex: 1;">
+                                            <span style="color: var(--success); font-weight: 600;">無料</span>
+                                            <div style="font-size: 0.9rem; color: var(--text-tertiary); margin-top: 0.25rem;">
+                                                すべてのサービスを無料で提供しています
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="align-items: flex-start; gap: 2rem;">
+                                        <div style="min-width: 140px; font-weight: 600; color: var(--text-primary);">支払方法</div>
+                                        <div style="flex: 1;">該当なし（無料サービスのため）</div>
+                                    </div>
+
+                                    <div class="row" style="align-items: flex-start; gap: 2rem;">
+                                        <div style="min-width: 140px; font-weight: 600; color: var(--text-primary);">サービス提供時期</div>
+                                        <div style="flex: 1;">お申込み確認後、即時</div>
+                                    </div>
+
+                                    <div class="row" style="align-items: flex-start; gap: 2rem;">
+                                        <div style="min-width: 140px; font-weight: 600; color: var(--text-primary);">返金・キャンセル</div>
+                                        <div style="flex: 1;">該当なし（無料サービスのため）</div>
+                                    </div>
+
+                                    <div class="row" style="align-items: flex-start; gap: 2rem;">
+                                        <div style="min-width: 140px; font-weight: 600; color: var(--text-primary);">個人情報の取扱い</div>
+                                        <div style="flex: 1;">
+                                            <a href="privacy.html" style="color: var(--primary); text-decoration: none;">
+                                                プライバシーポリシーをご確認ください
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Important Notice -->
+                        <div class="card mt-3" style="border-left: 4px solid var(--primary);">
+                            <div class="card-body">
+                                <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                                    <div style="width: 40px; height: 40px; background: var(--primary); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                        <svg width="20" height="20" fill="white" viewBox="0 0 16 16">
+                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                            <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                                        </svg>
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <div style="font-weight: 600; margin-bottom: 0.5rem;">重要なお知らせ</div>
+                                        <p style="margin: 0; line-height: 1.6; color: var(--text-secondary);">
+                                            本サイトは教育目的の情報提供を行っており、商取引は発生いたしません。
+                                            すべてのコンテンツを無料でご利用いただけます。
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sidebar -->
+                    <div style="width: 300px; flex-shrink: 0;">
+                        <!-- Quick Actions -->
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <div class="card-title">クイックアクション</div>
+                            </div>
+                            <div class="card-body">
+                                <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                                    <a href="index.html" class="btn btn-primary btn-sm">
+                                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                                            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                                        </svg>
+                                        ホームに戻る
+                                    </a>
+                                    <a href="privacy.html" class="btn btn-outline btn-sm">
+                                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                                            <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm0 1a6 6 0 1 1 0 12A6 6 0 0 1 8 2z"/>
+                                        </svg>
+                                        プライバシーポリシー
+                                    </a>
+                                    <button onclick="window.print()" class="btn btn-outline btn-sm">
+                                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                                            <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+                                            <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/>
+                                        </svg>
+                                        印刷する
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Legal Navigation -->
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">法的情報</div>
+                            </div>
+                            <div class="card-body">
+                                <div style="display: flex; flex-direction: column; gap: 1rem;">
+                                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                        <div style="width: 32px; height: 32px; background: var(--success); border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+                                            <svg width="16" height="16" fill="white" viewBox="0 0 16 16">
+                                                <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <div style="font-weight: 600; color: var(--text-primary);">特定商取引法表記</div>
+                                            <div style="font-size: 0.85rem; color: var(--text-tertiary);">現在のページ</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <a href="privacy.html" style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: inherit;">
+                                        <div style="width: 32px; height: 32px; background: var(--bg-tertiary); border: 1px solid var(--border); border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+                                            <svg width="16" height="16" fill="var(--text-secondary)" viewBox="0 0 16 16">
+                                                <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm0 1a6 6 0 1 1 0 12A6 6 0 0 1 8 2z"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <div style="font-weight: 600; color: var(--text-primary);">プライバシーポリシー</div>
+                                            <div style="font-size: 0.85rem; color: var(--text-tertiary);">個人情報の取扱い</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); text-center;">
+                    <p style="color: var(--text-tertiary); margin: 0;">&copy; 2025 Mt.MATH | Operated by ToreMock LLC</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/app.js"></script>
 </body>
 </html>
