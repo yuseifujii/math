@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Conway's Game of Life | Mt.MATH</title>
+  <title>ライフゲームをプレイ</title>
   <meta name="description" content="コンウェイのライフゲーム。ブラウザで動く高速・高機能な実装。RLE入出力、ルール編集、スタンプ、保存スロットなど搭載。" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://mtmath.net/conways.html" />
@@ -11,11 +11,11 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Mt.MATH" />
   <meta property="og:url" content="https://mtmath.net/conways.html" />
-  <meta property="og:title" content="Conway's Game of Life | Mt.MATH" />
+  <meta property="og:title" content="ライフゲームをプレイ" />
   <meta property="og:description" content="高速・高機能なスタンドアロン版。RLE入出力やルール編集、スタンプ、保存スロットに対応。" />
   <meta property="og:image" content="https://mtmath.net/logo.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Conway's Game of Life | Mt.MATH" />
+  <meta name="twitter:title" content="ライフゲームをプレイ" />
   <meta name="twitter:description" content="高速・高機能なスタンドアロン版。RLE入出力やルール編集、スタンプ、保存スロットに対応。" />
   <meta name="twitter:image" content="https://mtmath.net/logo.png" />
   <style>
@@ -75,7 +75,7 @@
         </div>
         <div class="group">
           <label>速度</label>
-          <input id="speed" type="range" min="1" max="120" value="30" />
+          <input id="speed" type="range" min="1" max="300" value="30" />
           <span id="speedVal" class="stat">30 fps</span>
         </div>
         <div class="group">
@@ -156,8 +156,9 @@
             <div class="row">
               ブラシ: <input id="brush" type="range" min="1" max="5" value="1"> <span id="brushVal" class="stat">1</span>
             </div>
-            <div class="row" style="font-size:12px;color:var(--muted)">
-              ショートカット: <span class="kbd">Space</span> 再生 / <span class="kbd">S</span> ステップ / <span class="kbd">C</span> クリア / <span class="kbd">R</span> ランダム / <span class="kbd">G</span> グリッド / <span class="kbd">W</span> ラップ
+            <div class="row" style="font-size:11px;color:var(--muted);line-height:1.2">
+              <span class="kbd">Space</span>再生 <span class="kbd">S</span>ステップ <span class="kbd">C</span>クリア<br/>
+              <span class="kbd">R</span>ランダム <span class="kbd">G</span>グリッド <span class="kbd">W</span>ラップ
             </div>
           </div>
           <div class="card">
@@ -513,12 +514,12 @@
       else if(e.key==='r' || e.key==='R'){ e.preventDefault(); randomize(parseInt(densityInput.value,10)); render(true); }
       else if(e.key==='g' || e.key==='G'){ showGrid=!showGrid; gridToggle.checked=showGrid; render(true); }
       else if(e.key==='w' || e.key==='W'){ wrap=!wrap; wrapToggle.checked=wrap; }
-      else if(e.key==='+'){ speedInput.value = Math.min(120, parseInt(speedInput.value,10)+5); speedInput.oninput(); }
+      else if(e.key==='+'){ speedInput.value = Math.min(300, parseInt(speedInput.value,10)+5); speedInput.oninput(); }
       else if(e.key==='-'){ speedInput.value = Math.max(1, parseInt(speedInput.value,10)-5); speedInput.oninput(); }
     });
 
     // Save/Load (localStorage)
-    const SLOT_MAX = 6;
+    const SLOT_MAX = 3;
     function refreshSlots(){
       slotsRow.innerHTML = '';
       for(let i=0;i<SLOT_MAX;i++){
