@@ -5,127 +5,360 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Mt.MATH - プライバシーポリシー">
     <title>プライバシーポリシー | Mt.MATH</title>
-    <link rel="icon" href="Mt.MATH_icon.png" type="image/png">
-    <link rel="stylesheet" href="assets/css/modern-style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/app.css">
 </head>
    
-<body>
-    <!-- Modern Header -->
-    <header class="modern-header">
-        <nav class="navbar navbar-with-menu">
-            <div class="nav-brand">
-                <a href="index.html">
-                    <img src="logo.png" alt="Mt.MATH" class="brand-logo">
-                </a>
+<body class="app-shell">
+    <div class="progress-bar"></div>
+    <div class="shell">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sb-brand">
+                <img src="logo.png" alt="Mt.MATH">
             </div>
-            <div class="nav-menu" id="nav-menu">
-                <a href="index.html#articles" class="nav-link">記事</a>
-                <a href="conways.html" class="nav-link">Conway's Life</a>
+            <nav class="sb-nav">
+                <div class="sb-group">
+                    <h4>Navigate</h4>
+                    <a class="sb-link" href="index.html">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                        </svg>
+                        ホーム
+                    </a>
+                    <a class="sb-link" href="index.html#articles">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M4 1h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H4z"/>
+                        </svg>
+                        記事コレクション
+                    </a>
+                    <a class="sb-link" href="conways.html">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M2 2a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V2zm1 0v10h10V2H3z"/>
+                        </svg>
+                        Conway's Life
+                    </a>
+                </div>
+                <div class="sb-group">
+                    <h4>Legal</h4>
+                    <a class="sb-link active" href="privacy.html">プライバシーポリシー</a>
+                    <a class="sb-link" href="legal.html">特定商取引法表記</a>
+                </div>
+            </nav>
+            <div class="sb-footer">
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span class="status-dot"></span>
+                    <span class="status-text">Online</span>
+                </div>
+                <button id="theme-toggle" class="btn-ghost" aria-label="テーマ切替">🌙</button>
             </div>
-            <div class="nav-actions">
-                <button id="theme-toggle" class="theme-toggle" aria-label="テーマ切替">🌙</button>
-            </div>
-            <div class="nav-toggle" id="nav-toggle">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </nav>
-    </header>
+        </aside>
 
-    <!-- Content Section -->
-    <section style="padding: 80px 0; min-height: 70vh;">
-        <div class="container">
-            <div style="max-width: 800px; margin: 0 auto;">
-                <h1 style="color: var(--dark-blue); margin-bottom: 30px;">プライバシーポリシー</h1>
-                
-                <div style="background: var(--white); padding: 40px; border-radius: 15px; box-shadow: var(--shadow-medium); line-height: 1.8;">
-                    
-                    <h2 style="color: var(--primary-blue); margin-top: 30px; margin-bottom: 15px;">1. 個人情報の取扱いについて</h2>
-                    <p>Mt.MATH（以下「当サイト」）は、利用者の個人情報の保護を重要な責務と考え、以下のプライバシーポリシーに従って個人情報を取り扱います。</p>
-                    
-                    <h2 style="color: var(--primary-blue); margin-top: 30px; margin-bottom: 15px;">2. 収集する情報</h2>
-                    <p>当サイトでは、以下の情報を収集する場合があります：</p>
-                    <ul style="margin-left: 20px;">
-                        
-                        <li>サイト利用状況（アクセス解析のため）</li>
-                        <li>IPアドレス、ブラウザ情報等の技術的情報</li>
-                    </ul>
-                    
-                    <h2 style="color: var(--primary-blue); margin-top: 30px; margin-bottom: 15px;">3. 情報の利用目的</h2>
-                    <p>収集した情報は以下の目的で利用します：</p>
-                    <ul style="margin-left: 20px;">
-                        
-                        <li>サイトの品質向上およびユーザー体験の改善</li>
-                        <li>技術的問題の解決およびセキュリティの確保</li>
-                        <li>利用状況の分析（匿名化されたデータのみ）</li>
-                    </ul>
-                    
-                    <h2 style="color: var(--primary-blue); margin-top: 30px; margin-bottom: 15px;">4. 第三者への提供</h2>
-                    <p>当サイトは、以下の場合を除き、個人情報を第三者に提供することはありません：</p>
-                    <ul style="margin-left: 20px;">
-                        <li>利用者の同意がある場合</li>
-                        <li>法令に基づく場合</li>
-                        <li>人の生命、身体または財産の保護のために必要がある場合</li>
-                    </ul>
-                    
-                    <h2 style="color: var(--primary-blue); margin-top: 30px; margin-bottom: 15px;">5. クッキー（Cookie）について</h2>
-                    <p>当サイトでは、より良いユーザー体験を提供するためにクッキーを使用する場合があります。クッキーは個人を特定する情報を含まず、ブラウザの設定により無効にすることが可能です。</p>
-                    
-                    <h2 style="color: var(--primary-blue); margin-top: 30px; margin-bottom: 15px;">6. アクセス解析ツール</h2>
-                    <p>当サイトでは、サイトの利用状況を分析するために、Googleアナリティクス等のアクセス解析ツールを使用する場合があります。これらのツールはクッキーを使用してデータを収集しますが、個人を特定する情報は含まれません。</p>
-                    
-                    <h2 style="color: var(--primary-blue); margin-top: 30px; margin-bottom: 15px;">7. セキュリティ</h2>
-                    <p>当サイトは、収集した情報の漏洩、滅失、毀損の防止その他の管理のために、合理的かつ適切な安全管理措置を講じます。</p>
-                    
-                    <h2 style="color: var(--primary-blue); margin-top: 30px; margin-bottom: 15px;">8. お問い合わせ</h2>
-                    <p>個人情報の取扱いに関するご質問やご意見がございましたら、当サイトのお問い合わせフォームよりご連絡ください。</p>
-                    
-                    <h2 style="color: var(--primary-blue); margin-top: 30px; margin-bottom: 15px;">9. プライバシーポリシーの変更</h2>
-                    <p>当サイトは、必要に応じて本プライバシーポリシーを変更することがあります。変更後のプライバシーポリシーは、当サイトに掲載された時点から効力を生じるものとします。</p>
-                    
-                    <div style="margin-top: 40px; padding: 20px; background: var(--sky-blue); border-radius: 10px;">
-                        <p style="margin: 0; color: var(--dark-blue); font-weight: 600;">
-                            制定日：2025年7月30日<br>
-                            運営者：合同会社ToreMock
-                        </p>
+        <!-- Main Content -->
+        <main>
+            <!-- Top Bar -->
+            <div class="topbar">
+                <button id="sidebar-toggle" class="btn-ghost">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                    </svg>
+                </button>
+                <div class="search">
+                    <input type="search" placeholder="プライバシー情報を検索..." disabled />
+                    <span class="kbd">Privacy</span>
+                </div>
+                <div class="actions">
+                    <button class="btn-ghost" onclick="window.print()">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+                            <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/>
+                        </svg>
+                    </button>
+                    <div class="avatar" title="Mt.MATH"></div>
+                </div>
+            </div>
+
+            <!-- Content -->
+            <div class="content fade-in">
+                <!-- Header -->
+                <div class="row" style="align-items: center; margin-bottom: 2rem;">
+                    <div style="flex: 1;">
+                        <nav style="margin-bottom: 1rem;">
+                            <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; color: var(--text-tertiary);">
+                                <a href="index.html" style="color: var(--primary); text-decoration: none;">ホーム</a>
+                                <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                </svg>
+                                <span>法的情報</span>
+                                <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                </svg>
+                                <span>プライバシーポリシー</span>
+                            </div>
+                        </nav>
+                        <h1 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem;">プライバシーポリシー</h1>
+                        <p style="font-size: 1.1rem; color: var(--text-secondary);">個人情報の取扱いと保護に関する方針について</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="width: 80px; height: 80px; background: var(--secondary); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.5rem;">
+                            <svg width="40" height="40" fill="white" viewBox="0 0 16 16">
+                                <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm0 1a6 6 0 1 1 0 12A6 6 0 0 1 8 2z"/>
+                                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                            </svg>
+                        </div>
+                        <div style="font-size: 0.85rem; color: var(--text-tertiary);">Privacy Policy</div>
                     </div>
                 </div>
-                
-                <div style="text-align: center; margin-top: 40px;">
-                    <a href="index.html" class="btn btn-outline">ホームに戻る</a>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="modern-footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <img src="logo.png" alt="Mt.MATH" class="footer-logo">
-                    <p>数学の美しさを探求し、知識の頂点を目指す</p>
-                </div>
-                <div class="footer-links">
-                    <div class="link-group">
-                        <h4>コンテンツ</h4>
-                        <a href="index.html#articles">数学記事</a>
-                        <a href="conways.html">Conway's Life</a>
-                    </div>
-                    <div class="link-group">
-                        <h4>法的情報</h4>
-                        <a href="privacy.html">プライバシーポリシー</a>
-                        <a href="legal.html">特定商取引法に基づく表記</a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Mt.MATH | Operated by ToreMock LLC</p>
-            </div>
-        </div>
-    </footer>
+                <!-- Main Content -->
+                <div class="row" style="gap: 2rem;">
+                    <!-- Privacy Policy Content -->
+                    <div style="flex: 1;">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">個人情報保護方針</div>
+                                <div style="font-size: 0.85rem; color: var(--text-tertiary);">
+                                    制定日: 2025年1月 | 最終更新: 2025年1月
+                                </div>
+                            </div>
+                            <div class="card-body" style="line-height: 1.7;">
+                                <!-- Section 1 -->
+                                <section style="margin-bottom: 2rem;">
+                                    <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.25rem; display: flex; align-items: center; gap: 0.5rem;">
+                                        <span style="width: 24px; height: 24px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 600;">1</span>
+                                        個人情報の取扱いについて
+                                    </h3>
+                                    <p>Mt.MATH（以下「当サイト」）は、利用者の個人情報の保護を重要な責務と考え、以下のプライバシーポリシーに従って個人情報を取り扱います。</p>
+                                </section>
 
-    <script src="assets/js/site-core.js"></script>
+                                <!-- Section 2 -->
+                                <section style="margin-bottom: 2rem;">
+                                    <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.25rem; display: flex; align-items: center; gap: 0.5rem;">
+                                        <span style="width: 24px; height: 24px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 600;">2</span>
+                                        収集する情報
+                                    </h3>
+                                    <p>当サイトでは、以下の情報を収集する場合があります：</p>
+                                    <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                                        <li style="margin-bottom: 0.5rem;">サイト利用状況（アクセス解析のため）</li>
+                                        <li style="margin-bottom: 0.5rem;">IPアドレス、ブラウザ情報等の技術的情報</li>
+                                        <li style="margin-bottom: 0.5rem;">Cookie及び類似技術による情報</li>
+                                    </ul>
+                                </section>
+
+                                <!-- Section 3 -->
+                                <section style="margin-bottom: 2rem;">
+                                    <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.25rem; display: flex; align-items: center; gap: 0.5rem;">
+                                        <span style="width: 24px; height: 24px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 600;">3</span>
+                                        情報の利用目的
+                                    </h3>
+                                    <p>収集した情報は以下の目的で利用します：</p>
+                                    <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                                        <li style="margin-bottom: 0.5rem;">サイトの品質向上およびユーザー体験の改善</li>
+                                        <li style="margin-bottom: 0.5rem;">技術的問題の解決およびセキュリティの確保</li>
+                                        <li style="margin-bottom: 0.5rem;">利用状況の分析（匿名化されたデータのみ）</li>
+                                        <li style="margin-bottom: 0.5rem;">法的義務の履行</li>
+                                    </ul>
+                                </section>
+
+                                <!-- Section 4 -->
+                                <section style="margin-bottom: 2rem;">
+                                    <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.25rem; display: flex; align-items: center; gap: 0.5rem;">
+                                        <span style="width: 24px; height: 24px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 600;">4</span>
+                                        第三者への提供
+                                    </h3>
+                                    <p>当サイトは、以下の場合を除き、個人情報を第三者に提供することはありません：</p>
+                                    <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                                        <li style="margin-bottom: 0.5rem;">利用者の同意がある場合</li>
+                                        <li style="margin-bottom: 0.5rem;">法令に基づく場合</li>
+                                        <li style="margin-bottom: 0.5rem;">人の生命、身体または財産の保護のために必要がある場合</li>
+                                        <li style="margin-bottom: 0.5rem;">公共の利益のために特に必要がある場合</li>
+                                    </ul>
+                                </section>
+
+                                <!-- Section 5 -->
+                                <section style="margin-bottom: 2rem;">
+                                    <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.25rem; display: flex; align-items: center; gap: 0.5rem;">
+                                        <span style="width: 24px; height: 24px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 600;">5</span>
+                                        クッキー（Cookie）について
+                                    </h3>
+                                    <p>当サイトでは、より良いユーザー体験を提供するためにクッキーを使用する場合があります。クッキーは個人を特定する情報を含まず、ブラウザの設定により無効にすることが可能です。</p>
+                                </section>
+
+                                <!-- Section 6 -->
+                                <section style="margin-bottom: 2rem;">
+                                    <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.25rem; display: flex; align-items: center; gap: 0.5rem;">
+                                        <span style="width: 24px; height: 24px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 600;">6</span>
+                                        アクセス解析ツール
+                                    </h3>
+                                    <p>当サイトでは、サイトの利用状況を分析するために、Googleアナリティクス等のアクセス解析ツールを使用する場合があります。これらのツールはクッキーを使用してデータを収集しますが、個人を特定する情報は含まれません。</p>
+                                </section>
+
+                                <!-- Section 7 -->
+                                <section style="margin-bottom: 2rem;">
+                                    <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.25rem; display: flex; align-items: center; gap: 0.5rem;">
+                                        <span style="width: 24px; height: 24px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 600;">7</span>
+                                        セキュリティ
+                                    </h3>
+                                    <p>当サイトは、収集した情報の漏洩、滅失、毀損の防止その他の管理のために、合理的かつ適切な安全管理措置を講じます。技術的・組織的対策を継続的に見直し、改善に努めています。</p>
+                                </section>
+
+                                <!-- Section 8 -->
+                                <section style="margin-bottom: 2rem;">
+                                    <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.25rem; display: flex; align-items: center; gap: 0.5rem;">
+                                        <span style="width: 24px; height: 24px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 600;">8</span>
+                                        お問い合わせ
+                                    </h3>
+                                    <p>個人情報の取扱いに関するご質問やご意見がございましたら、以下のメールアドレスまでお気軽にご連絡ください：</p>
+                                    <div style="margin-top: 1rem; padding: 1rem; background: var(--bg-secondary); border-radius: 8px;">
+                                        <a href="mailto:info@toremock.com" style="color: var(--primary); text-decoration: none; font-weight: 600;">info@toremock.com</a>
+                                    </div>
+                                </section>
+
+                                <!-- Section 9 -->
+                                <section>
+                                    <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.25rem; display: flex; align-items: center; gap: 0.5rem;">
+                                        <span style="width: 24px; height: 24px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 600;">9</span>
+                                        プライバシーポリシーの変更
+                                    </h3>
+                                    <p>当サイトは、必要に応じて本プライバシーポリシーを変更することがあります。変更後のプライバシーポリシーは、当サイトに掲載された時点から効力を生じるものとします。重要な変更がある場合は、適切な方法で利用者に通知いたします。</p>
+                                </section>
+                            </div>
+                        </div>
+
+                        <!-- Contact Information -->
+                        <div class="card mt-3" style="border-left: 4px solid var(--secondary);">
+                            <div class="card-body">
+                                <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                                    <div style="width: 40px; height: 40px; background: var(--secondary); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                        <svg width="20" height="20" fill="white" viewBox="0 0 16 16">
+                                            <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0zM1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5V9a.5.5 0 0 1 .5-.5z"/>
+                                        </svg>
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <div style="font-weight: 600; margin-bottom: 0.5rem;">運営者情報</div>
+                                        <div style="margin-bottom: 0.75rem;">
+                                            <div style="font-weight: 600;">制定日・運営者</div>
+                                            <div style="color: var(--text-secondary);">2025年1月30日 制定</div>
+                                            <div style="color: var(--text-secondary);">
+                                                運営者: <a href="https://toremock.com/info" target="_blank" rel="noopener" style="color: var(--primary); text-decoration: none;">合同会社ToreMock</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sidebar -->
+                    <div style="width: 300px; flex-shrink: 0;">
+                        <!-- Quick Navigation -->
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <div class="card-title">クイックナビゲーション</div>
+                            </div>
+                            <div class="card-body">
+                                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                                    <a href="#" onclick="document.querySelector('h3:nth-of-type(1)').scrollIntoView({behavior:'smooth'})" style="color: var(--text-secondary); text-decoration: none; padding: 0.25rem 0; font-size: 0.9rem;">1. 個人情報の取扱い</a>
+                                    <a href="#" onclick="document.querySelector('h3:nth-of-type(2)').scrollIntoView({behavior:'smooth'})" style="color: var(--text-secondary); text-decoration: none; padding: 0.25rem 0; font-size: 0.9rem;">2. 収集する情報</a>
+                                    <a href="#" onclick="document.querySelector('h3:nth-of-type(3)').scrollIntoView({behavior:'smooth'})" style="color: var(--text-secondary); text-decoration: none; padding: 0.25rem 0; font-size: 0.9rem;">3. 情報の利用目的</a>
+                                    <a href="#" onclick="document.querySelector('h3:nth-of-type(4)').scrollIntoView({behavior:'smooth'})" style="color: var(--text-secondary); text-decoration: none; padding: 0.25rem 0; font-size: 0.9rem;">4. 第三者への提供</a>
+                                    <a href="#" onclick="document.querySelector('h3:nth-of-type(5)').scrollIntoView({behavior:'smooth'})" style="color: var(--text-secondary); text-decoration: none; padding: 0.25rem 0; font-size: 0.9rem;">5. クッキーについて</a>
+                                    <a href="#" onclick="document.querySelector('h3:nth-of-type(6)').scrollIntoView({behavior:'smooth'})" style="color: var(--text-secondary); text-decoration: none; padding: 0.25rem 0; font-size: 0.9rem;">6. アクセス解析ツール</a>
+                                    <a href="#" onclick="document.querySelector('h3:nth-of-type(7)').scrollIntoView({behavior:'smooth'})" style="color: var(--text-secondary); text-decoration: none; padding: 0.25rem 0; font-size: 0.9rem;">7. セキュリティ</a>
+                                    <a href="#" onclick="document.querySelector('h3:nth-of-type(8)').scrollIntoView({behavior:'smooth'})" style="color: var(--text-secondary); text-decoration: none; padding: 0.25rem 0; font-size: 0.9rem;">8. お問い合わせ</a>
+                                    <a href="#" onclick="document.querySelector('h3:nth-of-type(9)').scrollIntoView({behavior:'smooth'})" style="color: var(--text-secondary); text-decoration: none; padding: 0.25rem 0; font-size: 0.9rem;">9. ポリシーの変更</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quick Actions -->
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <div class="card-title">クイックアクション</div>
+                            </div>
+                            <div class="card-body">
+                                <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                                    <a href="index.html" class="btn btn-primary btn-sm">
+                                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                                            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                                        </svg>
+                                        ホームに戻る
+                                    </a>
+                                    <a href="legal.html" class="btn btn-outline btn-sm">
+                                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                                            <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/>
+                                        </svg>
+                                        特定商取引法表記
+                                    </a>
+                                    <a href="mailto:info@toremock.com" class="btn btn-outline btn-sm">
+                                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                                            <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083A2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0zM1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5V9a.5.5 0 0 1 .5-.5z"/>
+                                        </svg>
+                                        お問い合わせ
+                                    </a>
+                                    <button onclick="window.print()" class="btn btn-outline btn-sm">
+                                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                                            <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+                                            <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/>
+                                        </svg>
+                                        印刷する
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Legal Navigation -->
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">法的情報</div>
+                            </div>
+                            <div class="card-body">
+                                <div style="display: flex; flex-direction: column; gap: 1rem;">
+                                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                        <div style="width: 32px; height: 32px; background: var(--success); border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+                                            <svg width="16" height="16" fill="white" viewBox="0 0 16 16">
+                                                <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <div style="font-weight: 600; color: var(--text-primary);">プライバシーポリシー</div>
+                                            <div style="font-size: 0.85rem; color: var(--text-tertiary);">現在のページ</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <a href="legal.html" style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: inherit;">
+                                        <div style="width: 32px; height: 32px; background: var(--bg-tertiary); border: 1px solid var(--border); border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+                                            <svg width="16" height="16" fill="var(--text-secondary)" viewBox="0 0 16 16">
+                                                <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <div style="font-weight: 600; color: var(--text-primary);">特定商取引法表記</div>
+                                            <div style="font-size: 0.85rem; color: var(--text-tertiary);">事業者情報</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); text-center;">
+                    <p style="color: var(--text-tertiary); margin: 0;">&copy; 2025 Mt.MATH | Operated by ToreMock LLC</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/app.js"></script>
 </body>
 </html>
