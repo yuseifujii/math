@@ -152,6 +152,34 @@ body {
     gap: 30px;
 }
 
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.theme-toggle {
+    appearance: none;
+    border: 1px solid rgba(255,255,255,0.35);
+    background: rgba(255,255,255,0.08);
+    color: var(--white);
+    border-radius: 10px;
+    padding: 8px 10px;
+    cursor: pointer;
+    transition: background .2s ease, transform .2s ease;
+}
+.theme-toggle:hover { background: rgba(255,255,255,0.18); transform: translateY(-1px); }
+
+/* ダークテーマ（コントラスト最適化） */
+[data-theme="dark"] body { color: #e8e8e8; }
+[data-theme="dark"] .hero-section { background: linear-gradient(135deg, #050b1a, #0a1631); }
+[data-theme="dark"] .navbar { background: rgba(0,0,0,0.25); }
+[data-theme="dark"] .games-showcase { background: #0f1b38; }
+[data-theme="dark"] .articles-section { background: #09142b; }
+[data-theme="dark"] .feature-card { background: #0e1b37; box-shadow: none; }
+[data-theme="dark"] .article-card { background: #0e1b37; box-shadow: none; }
+[data-theme="dark"] .footer-links a { opacity: 0.9; }
+
 .nav-link {
     color: var(--white);
     text-decoration: none;
@@ -341,6 +369,18 @@ body {
     margin: 0 auto;
     padding: 0 20px;
 }
+.search-bar { max-width: 720px; margin: 18px auto 0; }
+.search-bar input[type="search"]{
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.35);
+    background: rgba(255,255,255,0.06);
+    color: #fff;
+    outline: none;
+}
+.search-bar input[type="search"]::placeholder { color: rgba(255,255,255,0.85); }
+
 
 /* === Section Headers === */
 .section-header {

@@ -9,6 +9,7 @@ class ModernHomePage {
         this.articlesPerPage = 6;
         this.currentPage = 1;
         this.allArticles = [];
+        this.searchQuery = '';
         this.init();
     }
 
@@ -63,6 +64,16 @@ class ModernHomePage {
         if (loadMoreBtn) {
             loadMoreBtn.addEventListener('click', () => {
                 this.loadMoreArticles();
+            });
+        }
+
+        // 検索バー
+        const searchInput = document.getElementById('search-input');
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                this.searchQuery = (e.target.value || '').trim().toLowerCase();
+                this.currentPage = 1;
+                this.displayArticles();
             });
         }
 
@@ -223,10 +234,16 @@ class ModernHomePage {
      * フィルタリングされた記事取得
      */
     getFilteredArticles() {
-        if (this.currentCategory === 'all') {
-            return this.allArticles;
-        }
-        return this.allArticles.filter(article => article.category === this.currentCategory);
+        const byCategory = (article) => this.currentCategory === 'all' || article.category === this.currentCategory;
+        const q = this.searchQuery;
+        const bySearch = (article) => {
+            if (!q) return true;
+            const title = (article.title || '').toLowerCase();
+            const summary = (article.summary || '').toLowerCase();
+            const tags = (article.tags || []).join(' ').toLowerCase();
+            return title.includes(q) || summary.includes(q) || tags.includes(q);
+        };
+        return this.allArticles.filter(a => byCategory(a) && bySearch(a));
     }
 
     /**

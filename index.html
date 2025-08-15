@@ -56,6 +56,9 @@
                     <a href="#articles" class="nav-link">記事</a>
                     <a href="conways.html" class="nav-link">Conway's Life</a>
                 </div>
+                <div class="nav-actions">
+                    <button id="theme-toggle" class="theme-toggle" aria-label="テーマ切替">🌙</button>
+                </div>
                 <div class="nav-toggle" id="nav-toggle">
                     <span class="bar"></span>
                     <span class="bar"></span>
@@ -100,6 +103,9 @@
                         <span class="trust-icon">∑</span>
                         <span class="trust-text">MathJax による美しい組版</span>
                     </div>
+                </div>
+                <div class="search-bar">
+                    <input type="search" id="search-input" placeholder="記事を検索..." aria-label="記事を検索">
                 </div>
             </div>
         </header>
@@ -230,6 +236,7 @@
 
     <!-- Scripts -->
     <script type="module" src="firebase-config.js"></script>
+    <script src="assets/js/site-core.js"></script>
     <script src="assets/js/modern-home.js"></script>
 </body>
 </html>

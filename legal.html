@@ -22,6 +22,9 @@
                 <a href="index.html#articles" class="nav-link">記事</a>
                 <a href="conways.html" class="nav-link">Conway's Life</a>
             </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" aria-label="テーマ切替">🌙</button>
+            </div>
             <div class="nav-toggle" id="nav-toggle">
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -117,28 +120,6 @@
         </div>
     </footer>
 
-    <!-- Navigation Script -->
-    <script>
-        // モバイルナビゲーション
-        document.addEventListener('DOMContentLoaded', function() {
-            const navToggle = document.getElementById('nav-toggle');
-            const navMenu = document.getElementById('nav-menu');
-
-            if (navToggle && navMenu) {
-                navToggle.addEventListener('click', () => {
-                    navMenu.classList.toggle('active');
-                    navToggle.classList.toggle('active');
-                });
-
-                // メニューリンククリック時にメニューを閉じる
-                navMenu.querySelectorAll('.nav-link').forEach(link => {
-                    link.addEventListener('click', () => {
-                        navMenu.classList.remove('active');
-                        navToggle.classList.remove('active');
-                    });
-                });
-            }
-        });
-    </script>
+    <script src="assets/js/site-core.js"></script>
 </body>
 </html>
