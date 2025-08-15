@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Conway's Game of Life | Mt.MATH</title>
+  <meta name="description" content="コンウェイのライフゲーム。ブラウザで動く高速・高機能な実装。RLE入出力、ルール編集、スタンプ、保存スロットなど搭載。" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://mtmath.net/conways.html" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Mt.MATH" />
+  <meta property="og:url" content="https://mtmath.net/conways.html" />
+  <meta property="og:title" content="Conway's Game of Life | Mt.MATH" />
+  <meta property="og:description" content="高速・高機能なスタンドアロン版。RLE入出力やルール編集、スタンプ、保存スロットに対応。" />
+  <meta property="og:image" content="https://mtmath.net/logo.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Conway's Game of Life | Mt.MATH" />
+  <meta name="twitter:description" content="高速・高機能なスタンドアロン版。RLE入出力やルール編集、スタンプ、保存スロットに対応。" />
+  <meta name="twitter:image" content="https://mtmath.net/logo.png" />
+  <style>
+    :root{
+      --bg:#0b0f14;--panel:#111827;--panel-2:#0f172a;--text:#e5e7eb;--muted:#94a3b8;--accent:#22d3ee;--accent-2:#a78bfa;--danger:#ef4444;--ok:#10b981;
+      --grid:#1f2937;--grid-strong:#2d3748;--btn:#1f2937;--btn-hover:#334155;--shadow:0 10px 30px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:linear-gradient(180deg,var(--bg),#06090f 60%);color:var(--text);font:14px/1.4 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji"}
+    .app{display:grid;grid-template-rows:auto 1fr auto;min-height:100vh}
+    header{position:sticky;top:0;z-index:5;background:linear-gradient(180deg,rgba(17,24,39,.9),rgba(17,24,39,.6));backdrop-filter:saturate(140%) blur(8px);box-shadow:var(--shadow)}
+    .toolbar{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;padding:.6rem .8rem}
+    .group{display:flex;gap:.35rem;align-items:center;background:var(--panel-2);border:1px solid #1f2937;border-radius:14px;padding:.35rem .5rem}
+    .group label{color:var(--muted);margin-right:.25rem}
+    .spacer{flex:1}
+    button,.select, input[type="range"], input[type="number"], input[type="text"]{
+      background:var(--btn);border:1px solid #273244;color:var(--text);border-radius:12px;padding:.4rem .7rem;cursor:pointer;transition:.2s;outline:none
+    }
+    button:hover, .select:hover{background:var(--btn-hover)}
+    button.primary{background:linear-gradient(180deg,var(--accent),#0ea5b7);border-color:#0891b2;color:#062025;font-weight:700}
+    button.primary:hover{filter:brightness(1.05)}
+    button.danger{background:linear-gradient(180deg,var(--danger),#b91c1c);border-color:#991b1b;color:#1b0b0b}
+    .toggle{display:inline-flex;align-items:center;gap:.4rem}
+    .toggle input{accent-color:var(--accent)}
+    .stat{font-variant-numeric:tabular-nums;background:var(--panel-2);border:1px solid #1f2937;border-radius:12px;padding:.35rem .6rem}
+
+    main{position:relative}
+    #wrap{position:absolute;inset:0;display:grid;grid-template-columns:1fr 320px}
+    #wrap.sidebar-hidden{grid-template-columns:1fr}
+    canvas{width:100%;height:100%;display:block;background:radial-gradient(1200px 800px at 20% 10%, #0b1220 0%, #0a101a 35%, #070d16 100%)}
+    .sidebar{border-left:1px solid #1f2937;background:linear-gradient(180deg,rgba(2,6,23,.7),rgba(2,6,23,.5));backdrop-filter:blur(8px);padding:10px 12px;overflow:auto}
+
+    .card{background:var(--panel);border:1px solid #1f2937;border-radius:16px;padding:10px 12px;margin-bottom:10px;box-shadow:var(--shadow)}
+    .card h3{margin:.2rem 0 .6rem;font-size:13px;color:#cbd5e1;text-transform:uppercase;letter-spacing:.08em}
+
+    .row{display:flex;gap:.4rem;align-items:center;margin:.25rem 0}
+    .row input[type="range"]{flex:1}
+
+    .kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;background:#0b1320;border:1px solid #1e293b;border-radius:6px;padding:0 .35rem;color:#93c5fd}
+
+    footer{display:flex;gap:.8rem;align-items:center;justify-content:center;padding:.6rem;color:var(--muted)}
+    footer a{color:var(--accent)}
+    a{color:var(--accent)}
+    .hidden{display:none}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div class="toolbar">
+        <div class="group">
+          <button id="play" class="primary" title="Play/Pause (Space)">▶︎ 再生</button>
+          <button id="step" title="1ステップ (S)">⏭︎ ステップ</button>
+          <button id="clear" class="danger" title="全消去 (C)">⟲ クリア</button>
+          <button id="rand" title="ランダム初期化 (R)">🎲 ランダム</button>
+        </div>
+        <div class="group">
+          <label>速度</label>
+          <input id="speed" type="range" min="1" max="120" value="30" />
+          <span id="speedVal" class="stat">30 fps</span>
+        </div>
+        <div class="group">
+          <label>セルサイズ</label>
+          <input id="cellSize" type="range" min="2" max="24" value="8" />
+          <span id="cellSizeVal" class="stat">8 px</span>
+        </div>
+        <div class="group">
+          <label>密度</label>
+          <input id="density" type="range" min="1" max="100" value="35" />
+          <span id="densityVal" class="stat">35%</span>
+        </div>
+        <div class="group">
+          <label>ルール</label>
+          <input id="rule" type="text" value="B3/S23" size="8" title="B/S 形式のルール" />
+        </div>
+        <div class="group">
+          <label>パターン</label>
+          <select id="pattern" class="select" title="選んでキャンバス上でクリックして配置">
+            <option value="none">なし (描画モード)</option>
+            <option value="glider">グライダー</option>
+            <option value="lwss">軽量級宇宙船 (LWSS)</option>
+            <option value="pulsar">パルサー</option>
+            <option value="pentadecathlon">ペンタデカスロン</option>
+            <option value="gosper">グライダーガン (Gosper)</option>
+            <option value="rPentomino">R-ペントミノ</option>
+            <option value="acorn">Acorn</option>
+          </select>
+          <button id="mirror">↔︎ 反転</button>
+          <button id="rotate">⟲ 回転</button>
+        </div>
+        <div class="group toggle">
+          <input id="wrapToggle" type="checkbox" checked />
+          <label for="wrapToggle">トーラス（端をつなぐ）</label>
+        </div>
+        <div class="group toggle">
+          <input id="gridToggle" type="checkbox" checked />
+          <label for="gridToggle">グリッド</label>
+        </div>
+        <div class="group toggle">
+          <input id="trailToggle" type="checkbox" />
+          <label for="trailToggle">残像</label>
+        </div>
+        <div class="group toggle">
+          <input id="heatToggle" type="checkbox" />
+          <label for="heatToggle">年齢カラー</label>
+        </div>
+        <div class="spacer"></div>
+        <div class="group">
+          <button id="save">💾 保存</button>
+          <button id="load">📂 読込</button>
+          <button id="exportRLE">⬇︎ RLE</button>
+          <button id="importRLE">⬆︎ RLE</button>
+          <button id="hideSidebar" title="サイドバー表示/非表示">⫷⫸</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div id="wrap">
+        <canvas id="life"></canvas>
+        <aside class="sidebar" id="sidebar">
+          <div class="card">
+            <h3>統計</h3>
+            <div class="row">世代: <span id="gen" class="stat">0</span></div>
+            <div class="row">生存数: <span id="alive" class="stat">0</span></div>
+            <div class="row">FPS: <span id="fps" class="stat">0</span></div>
+            <div class="row">サイズ: <span id="size" class="stat">-</span></div>
+          </div>
+          <div class="card">
+            <h3>描画・操作</h3>
+            <div class="row">モード: <span id="mode" class="stat">描画</span></div>
+            <div class="row">
+              <button id="drawMode">✍️ 描画</button>
+              <button id="eraseMode">🧽 消しゴム</button>
+              <button id="stampMode">📌 スタンプ</button>
+            </div>
+            <div class="row">
+              ブラシ: <input id="brush" type="range" min="1" max="5" value="1"> <span id="brushVal" class="stat">1</span>
+            </div>
+            <div class="row" style="font-size:12px;color:var(--muted)">
+              ショートカット: <span class="kbd">Space</span> 再生 / <span class="kbd">S</span> ステップ / <span class="kbd">C</span> クリア / <span class="kbd">R</span> ランダム / <span class="kbd">G</span> グリッド / <span class="kbd">W</span> ラップ
+            </div>
+          </div>
+          <div class="card">
+            <h3>保存スロット</h3>
+            <div class="row" id="slots"></div>
+          </div>
+          <div class="card">
+            <h3>ヘルプ</h3>
+            <p>パターンを選んでキャンバスをクリックで配置。ドラッグで描画/消去。セルサイズを小さくすると、より多くのセルを表示できます。</p>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <footer>
+      <span>Conway's Game of Life — 高速・高機能スタンドアロン</span> ·
+      <a href="#" id="aboutLink">About</a> ·
+      <a href="index.html">Mt.MATH Home</a> ·
+      <a href="privacy.html">Privacy</a> ·
+      <a href="legal.html">Legal</a>
+    </footer>
+  </div>
+
+  <dialog id="about">
+    <form method="dialog" style="background:var(--panel);border:1px solid #1f2937;border-radius:16px;padding:16px;min-width:320px;color:var(--text)">
+      <h3 style="margin-top:0">About</h3>
+      <p>大規模グリッド、ルールエディタ、RLE入出力、残像・年齢カラー、パターンスタンプ、保存スロット（localStorage）などを備えた単一HTML版です。</p>
+      <button>閉じる</button>
+    </form>
+  </dialog>
+
+  <input id="rleFile" type="file" accept=".rle,text/plain" style="display:none"/>
+
+  <script>
+  (()=>{
+    'use strict';
+    // ====== DOM refs ======
+    const canvas = document.getElementById('life');
+    const ctx = canvas.getContext('2d', { alpha: true });
+    const playBtn = document.getElementById('play');
+    const stepBtn = document.getElementById('step');
+    const clearBtn = document.getElementById('clear');
+    const randBtn = document.getElementById('rand');
+    const speedInput = document.getElementById('speed');
+    const speedVal = document.getElementById('speedVal');
+    const cellSizeInput = document.getElementById('cellSize');
+    const cellSizeVal = document.getElementById('cellSizeVal');
+    const densityInput = document.getElementById('density');
+    const densityVal = document.getElementById('densityVal');
+    const ruleInput = document.getElementById('rule');
+    const patternSel = document.getElementById('pattern');
+    const mirrorBtn = document.getElementById('mirror');
+    const rotateBtn = document.getElementById('rotate');
+    const wrapToggle = document.getElementById('wrapToggle');
+    const gridToggle = document.getElementById('gridToggle');
+    const trailToggle = document.getElementById('trailToggle');
+    const heatToggle = document.getElementById('heatToggle');
+    const genEl = document.getElementById('gen');
+    const aliveEl = document.getElementById('alive');
+    const fpsEl = document.getElementById('fps');
+    const sizeEl = document.getElementById('size');
+    const drawModeBtn = document.getElementById('drawMode');
+    const eraseModeBtn = document.getElementById('eraseMode');
+    const stampModeBtn = document.getElementById('stampMode');
+    const modeEl = document.getElementById('mode');
+    const brushInput = document.getElementById('brush');
+    const brushVal = document.getElementById('brushVal');
+    const saveBtn = document.getElementById('save');
+    const loadBtn = document.getElementById('load');
+    const exportBtn = document.getElementById('exportRLE');
+    const importBtn = document.getElementById('importRLE');
+    const rleFile = document.getElementById('rleFile');
+    const aboutLink = document.getElementById('aboutLink');
+    const aboutDlg = document.getElementById('about');
+    const slotsRow = document.getElementById('slots');
+    const hideSidebarBtn = document.getElementById('hideSidebar');
+    const wrapDiv = document.getElementById('wrap');
+
+    // ====== State ======
+    let cellSize = parseInt(cellSizeInput.value,10);
+    let cols=0, rows=0, N=0;
+    let A = new Uint8Array(0); // alive (0/1)
+    let next = new Uint8Array(0);
+    let age = new Uint16Array(0); // for heat coloring
+
+    let playing = false; let req = 0; let last = 0; let stepInterval = 1000/parseInt(speedInput.value,10);
+    let gen = 0; let aliveCount=0; let lastFpsT=0; let frames=0;
+
+    let drawMode = 'draw'; // 'draw' | 'erase' | 'stamp'
+    let brush = parseInt(brushInput.value,10);
+
+    let wrap = wrapToggle.checked;
+    let showGrid = gridToggle.checked;
+    let trail = trailToggle.checked;
+    let heat = heatToggle.checked;
+
+    let rule = parseRule(ruleInput.value); // {B:Set,S:Set}
+
+    let pattern = 'none';
+    let stamp = getPattern(pattern);
+
+    let mirror = false;
+
+    // Resize observer for canvas
+    const ro = new ResizeObserver(()=>fitCanvas());
+    ro.observe(canvas);
+    fitCanvas();
+
+    // ====== Utility ======
+    function fitCanvas(){
+      const dpr = window.devicePixelRatio||1;
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = Math.floor(rect.width*dpr);
+      canvas.height = Math.floor(rect.height*dpr);
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      computeGrid();
+      render(true);
+    }
+
+    function computeGrid(){
+      const w = canvas.clientWidth, h = canvas.clientHeight;
+      const newCols = Math.max(8, Math.floor(w/cellSize));
+      const newRows = Math.max(8, Math.floor(h/cellSize));
+      if(newCols===cols && newRows===rows) return;
+      const oldA=A, oldAge=age, oldCols=cols, oldRows=rows;
+      cols = newCols; rows = newRows; N = cols*rows;
+      A = new Uint8Array(N); next = new Uint8Array(N); age = new Uint16Array(N);
+      // center copy
+      if(oldA.length){
+        const xoff = Math.floor((cols-oldCols)/2);
+        const yoff = Math.floor((rows-oldRows)/2);
+        for(let y=0;y<oldRows;y++){
+          for(let x=0;x<oldCols;x++){
+            const nx=x+xoff, ny=y+yoff;
+            if(nx>=0&&nx<cols&&ny>=0&&ny<rows){
+              const o = y*oldCols+x; const n = ny*cols+nx;
+              A[n]=oldA[o]; age[n]=oldAge[o];
+            }
+          }
+        }
+      }
+      sizeEl.textContent = cols+"×"+rows+" ("+(cols*rows).toLocaleString()+" cells)";
+    }
+
+    function parseRule(str){
+      // format: B3/S23
+      const m = /B([0-8]*)\/S([0-8]*)/i.exec(str.trim());
+      if(!m) return {B:new Set([3]), S:new Set([2,3])};
+      return {B:new Set(m[1].split('').map(Number)), S:new Set(m[2].split('').map(Number))};
+    }
+
+    function coord(x,y){ return y*cols+x; }
+
+    function wrapCoord(x,y){
+      if(x<0) x+=cols; else if(x>=cols) x-=cols;
+      if(y<0) y+=rows; else if(y>=rows) y-=rows;
+      return y*cols+x;
+    }
+
+    const neigh = [ -1,-1, 0,-1, 1,-1, -1,0, 1,0, -1,1, 0,1, 1,1 ];
+
+    function step(){
+      aliveCount = 0;
+      const {B,S} = rule;
+      if(wrap){
+        for(let y=0;y<rows;y++){
+          for(let x=0;x<cols;x++){
+            let c=0;
+            for(let i=0;i<16;i+=2){
+              const nx=x+neigh[i], ny=y+neigh[i+1];
+              const idx = wrapCoord(nx,ny);
+              c += A[idx];
+            }
+            const idx = coord(x,y);
+            const alive=A[idx];
+            let n = alive ? (S.has(c)?1:0) : (B.has(c)?1:0);
+            next[idx]=n;
+            age[idx] = n ? (age[idx]+1) : 0;
+            aliveCount += n;
+          }
+        }
+      }else{
+        for(let y=0;y<rows;y++){
+          for(let x=0;x<cols;x++){
+            let c=0;
+            for(let i=0;i<16;i+=2){
+              const nx=x+neigh[i], ny=y+neigh[i+1];
+              if(nx>=0&&nx<cols&&ny>=0&&ny<rows){
+                c += A[ny*cols+nx];
+              }
+            }
+            const idx = coord(x,y);
+            const alive=A[idx];
+            let n = alive ? (S.has(c)?1:0) : (B.has(c)?1:0);
+            next[idx]=n;
+            age[idx] = n ? (age[idx]+1) : 0;
+            aliveCount += n;
+          }
+        }
+      }
+      // swap
+      [A,next]=[next,A];
+      gen++;
+    }
+
+    // ====== Rendering ======
+    function render(force=false){
+      const w = canvas.clientWidth, h = canvas.clientHeight;
+      if(trail){
+        // fade with translucent rect
+        ctx.globalAlpha = 0.2; // stronger trail = smaller alpha
+        ctx.fillStyle = '#000000';
+        ctx.fillRect(0,0,w,h);
+        ctx.globalAlpha = 1;
+      }else{
+        ctx.clearRect(0,0,w,h);
+      }
+
+      // draw alive cells
+      const cs = cellSize;
+      const drawGrid = showGrid && cs>=6;
+      if(drawGrid){
+        ctx.strokeStyle = '#17202c';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        for(let x=0;x<=cols;x++){
+          const xx = Math.floor(x*cs)+.5; ctx.moveTo(xx,0); ctx.lineTo(xx,rows*cs);
+        }
+        for(let y=0;y<=rows;y++){
+          const yy = Math.floor(y*cs)+.5; ctx.moveTo(0,yy); ctx.lineTo(cols*cs,yy);
+        }
+        ctx.stroke();
+      }
+
+      for(let y=0;y<rows;y++){
+        for(let x=0;x<cols;x++){
+          const idx = coord(x,y);
+          if(A[idx]){
+            if(heat){
+              // color by age (cool to warm)
+              const a = Math.min(1, age[idx]/50);
+              const r = Math.floor(40 + a*215);
+              const g = Math.floor(160 + a*40);
+              const b = Math.floor(255 - a*200);
+              ctx.fillStyle = `rgb(${r},${g},${b})`;
+            }else{
+              ctx.fillStyle = '#22d3ee';
+            }
+            ctx.fillRect(x*cs,y*cs,cs,cs);
+          }
+        }
+      }
+
+      // HUD
+      genEl.textContent = gen.toLocaleString();
+      aliveEl.textContent = aliveCount.toLocaleString();
+
+      // FPS calc
+      frames++;
+      const now = performance.now();
+      if(now - lastFpsT > 500){
+        const fps = Math.round(1000*frames/(now-lastFpsT));
+        fpsEl.textContent = String(fps);
+        lastFpsT = now; frames = 0;
+      }
+
+      if(force) return;
+      if(playing){
+        const t = performance.now();
+        if(t - last >= stepInterval){
+          step();
+          last = t;
+        }
+        req = requestAnimationFrame(()=>render());
+      }
+    }
+
+    function start(){ if(!playing){ playing=true; last=performance.now(); req=requestAnimationFrame(()=>render()); playBtn.textContent='⏸︎ 一時停止'; } }
+    function stop(){ if(playing){ playing=false; cancelAnimationFrame(req); playBtn.textContent='▶︎ 再生'; } }
+
+    // ====== Interactions ======
+    function canvasPos(evt){
+      const rect = canvas.getBoundingClientRect();
+      const x = Math.floor((evt.clientX-rect.left)/cellSize);
+      const y = Math.floor((evt.clientY-rect.top)/cellSize);
+      return {x,y};
+    }
+
+    let mouseDown = false;
+    canvas.addEventListener('pointerdown', e=>{
+      canvas.setPointerCapture(e.pointerId);
+      mouseDown=true; handlePaint(e);
+    });
+    canvas.addEventListener('pointermove', e=>{ if(mouseDown) handlePaint(e); });
+    window.addEventListener('pointerup', ()=>{ mouseDown=false; });
+
+    function handlePaint(e){
+      const {x,y} = canvasPos(e);
+      if(x<0||x>=cols||y<0||y>=rows) return;
+      if(drawMode==='stamp' && pattern!=='none'){
+        placePattern(x,y, stamp, mirror);
+        render(true);
+        return;
+      }
+      const val = (drawMode==='draw')?1:0;
+      for(let dy=-brush+1; dy<=brush-1; dy++){
+        for(let dx=-brush+1; dx<=brush-1; dx++){
+          const xx = x+dx, yy=y+dy;
+          if(xx>=0&&xx<cols&&yy>=0&&yy<rows){
+            const idx = coord(xx,yy);
+            A[idx]=val; if(val) age[idx]=Math.max(age[idx],1); else age[idx]=0;
+          }
+        }
+      }
+      aliveCount = A.reduce((s,v)=>s+v,0);
+      render(true);
+    }
+
+    // Buttons & inputs
+    playBtn.onclick=()=> playing?stop():start();
+    stepBtn.onclick=()=>{ stop(); step(); render(true); };
+    clearBtn.onclick=()=>{ A.fill(0); age.fill(0); gen=0; aliveCount=0; render(true); };
+    randBtn.onclick=()=>{ randomize(parseInt(densityInput.value,10)); render(true); };
+
+    speedInput.oninput = ()=>{ stepInterval = 1000/parseInt(speedInput.value,10); speedVal.textContent = `${speedInput.value} fps`; };
+    cellSizeInput.oninput = ()=>{ cellSize = parseInt(cellSizeInput.value,10); cellSizeVal.textContent = `${cellSize} px`; computeGrid(); render(true); };
+    densityInput.oninput = ()=>{ densityVal.textContent = `${densityInput.value}%`; };
+
+    ruleInput.onchange = ()=>{ rule = parseRule(ruleInput.value); };
+
+    patternSel.onchange = ()=>{ pattern = patternSel.value; stamp = getPattern(pattern); if(pattern==='none'){ setMode('draw'); } else { setMode('stamp'); } };
+    mirrorBtn.onclick=()=>{ mirror = !mirror; mirrorBtn.style.filter = mirror? 'brightness(1.2)':'none'; };
+    rotateBtn.onclick=()=>{ if(stamp){ stamp = rotatePattern(stamp); } };
+
+    wrapToggle.onchange=()=>{ wrap = wrapToggle.checked; };
+    gridToggle.onchange=()=>{ showGrid = gridToggle.checked; render(true); };
+    trailToggle.onchange=()=>{ trail = trailToggle.checked; render(true); };
+    heatToggle.onchange=()=>{ heat = heatToggle.checked; render(true); };
+
+    drawModeBtn.onclick=()=>setMode('draw');
+    eraseModeBtn.onclick=()=>setMode('erase');
+    stampModeBtn.onclick=()=>setMode('stamp');
+    function setMode(m){ drawMode=m; modeEl.textContent = (m==='draw'?'描画': m==='erase'?'消去':'スタンプ'); }
+
+    brushInput.oninput=()=>{ brush=parseInt(brushInput.value,10); brushVal.textContent=brush; };
+
+    // Keyboard shortcuts
+    window.addEventListener('keydown', (e)=>{
+      if(e.target && ['INPUT','TEXTAREA'].includes(e.target.tagName)) return;
+      if(e.code==='Space'){ e.preventDefault(); playing?stop():start(); }
+      else if(e.key==='s' || e.key==='S'){ e.preventDefault(); stop(); step(); render(true); }
+      else if(e.key==='c' || e.key==='C'){ e.preventDefault(); A.fill(0); age.fill(0); gen=0; aliveCount=0; render(true); }
+      else if(e.key==='r' || e.key==='R'){ e.preventDefault(); randomize(parseInt(densityInput.value,10)); render(true); }
+      else if(e.key==='g' || e.key==='G'){ showGrid=!showGrid; gridToggle.checked=showGrid; render(true); }
+      else if(e.key==='w' || e.key==='W'){ wrap=!wrap; wrapToggle.checked=wrap; }
+      else if(e.key==='+'){ speedInput.value = Math.min(120, parseInt(speedInput.value,10)+5); speedInput.oninput(); }
+      else if(e.key==='-'){ speedInput.value = Math.max(1, parseInt(speedInput.value,10)-5); speedInput.oninput(); }
+    });
+
+    // Save/Load (localStorage)
+    const SLOT_MAX = 6;
+    function refreshSlots(){
+      slotsRow.innerHTML = '';
+      for(let i=0;i<SLOT_MAX;i++){
+        const btnS = document.createElement('button'); btnS.textContent = `保存${i+1}`; btnS.onclick=()=>saveSlot(i);
+        const btnL = document.createElement('button'); btnL.textContent = `読込${i+1}`; btnL.onclick=()=>loadSlot(i);
+        slotsRow.append(btnS,btnL);
+      }
+    }
+    refreshSlots();
+
+    function serialize(){
+      return JSON.stringify({ cols, rows, rule:ruleInput.value, wrap, data:Array.from(A), age:Array.from(age), gen });
+    }
+    function deserialize(str){
+      const o = JSON.parse(str);
+      ruleInput.value = o.rule; rule=parseRule(o.rule);
+      wrap = !!o.wrap; wrapToggle.checked=wrap;
+      // resize grid to fit
+      cellSize = Math.max(2, Math.min(24, Math.floor(Math.min(canvas.clientWidth/o.cols, canvas.clientHeight/o.rows))));
+      cellSizeInput.value = cellSize; cellSizeVal.textContent = `${cellSize} px`;
+      computeGrid();
+      A.fill(0); age.fill(0);
+      for(let y=0;y<Math.min(rows,o.rows);y++){
+        for(let x=0;x<Math.min(cols,o.cols);x++){
+          const i1 = y*o.cols+x, i2 = y*cols+x;
+          A[i2] = o.data[i1]||0; age[i2] = o.age? (o.age[i1]||0) : (A[i2]?1:0);
+        }
+      }
+      gen = o.gen||0;
+      aliveCount = A.reduce((s,v)=>s+v,0);
+      render(true);
+    }
+
+    function saveSlot(i){ localStorage.setItem(`life.slot.${i}`, serialize()); alert(`スロット${i+1}に保存しました`); }
+    function loadSlot(i){ const s = localStorage.getItem(`life.slot.${i}`); if(s){ deserialize(s); } else { alert('データがありません'); } }
+
+    saveBtn.onclick=()=>{ const key = prompt('任意のキー名を入力（既定: life.auto）','life.auto'); if(!key) return; localStorage.setItem(key, serialize()); alert('保存しました: '+key); };
+    loadBtn.onclick=()=>{ const key = prompt('読み込むキー名を入力（既定: life.auto）','life.auto'); if(!key) return; const s = localStorage.getItem(key); if(s) deserialize(s); else alert('見つかりません: '+key); };
+
+    // RLE import/export
+    exportBtn.onclick=()=>{
+      const rle = toRLE(A, cols, rows, ruleInput.value);
+      const blob = new Blob([rle], {type:'text/plain'});
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download='pattern.rle'; a.click(); URL.revokeObjectURL(a.href);
+    };
+    importBtn.onclick=()=>{ rleFile.click(); };
+    rleFile.onchange=(e)=>{
+      const file=e.target.files[0]; if(!file) return;
+      const reader=new FileReader(); reader.onload=()=>{ try{ fromRLE(String(reader.result)); }catch(err){ alert('RLE読み込み失敗: '+err.message); } };
+      reader.readAsText(file);
+      rleFile.value='';
+    };
+
+    function toRLE(arr, C, R, ruleStr){
+      // export minimal bounding box
+      let minx=C, miny=R, maxx=-1, maxy=-1;
+      for(let y=0;y<R;y++) for(let x=0;x<C;x++){ if(arr[y*C+x]){ if(x<minx)minx=x; if(y<miny)miny=y; if(x>maxx)maxx=x; if(y>maxy)maxy=y; } }
+      if(maxx<minx||maxy<miny){ minx=0;miny=0;maxx=0;maxy=0; }
+      const w=maxx-minx+1, h=maxy-miny+1;
+      let data='';
+      for(let y=miny;y<=maxy;y++){
+        let run=0, cur='b';
+        for(let x=minx;x<=maxx;x++){
+          const c = arr[y*C+x] ? 'o' : 'b';
+          if(c===cur){ run++; }
+          else { data += (run>1?run:'')+cur; cur=c; run=1; }
+        }
+        data += (run>1?run:'')+cur; data+='$';
+      }
+      data = data.replace(/b+\$/g,'$').replace(/\$+$/,'')+'!';
+      const header = `x = ${w}, y = ${h}, rule = ${ruleStr}`;
+      return header+"\n"+data;
+    }
+
+    function fromRLE(text){
+      const lines = text.split(/\r?\n/).filter(l=>!l.startsWith('#') && l.trim().length);
+      const head = lines.shift();
+      const mh = /x\s*=\s*(\d+)\s*,\s*y\s*=\s*(\d+)(?:\s*,\s*rule\s*=\s*([^,]+))?/i.exec(head||'');
+      if(!mh) throw new Error('ヘッダが不正です');
+      const w=parseInt(mh[1],10), h=parseInt(mh[2],10);
+      if(mh[3]){ ruleInput.value = mh[3].trim(); rule = parseRule(ruleInput.value); }
+      const body = lines.join('');
+      const data = [];
+      let n='';
+      let x=0,y=0;
+      for(let i=0;i<body.length;i++){
+        const ch = body[i];
+        if(/[0-9]/.test(ch)){ n+=ch; continue; }
+        const count = n?parseInt(n,10):1; n='';
+        if(ch==='o' || ch==='b'){
+          const v = ch==='o'?1:0;
+          for(let k=0;k<count;k++){ data.push(v); x++; }
+        }else if(ch==='$'){
+          for(let k=0;k<count;k++){ while(data.length%w!==0) data.push(0); y++; x=0; }
+        }else if(ch==='!'){
+          break;
+        }
+      }
+      // place centered
+      const px = Math.floor(cols/2 - w/2);
+      const py = Math.floor(rows/2 - h/2);
+      A.fill(0); age.fill(0);
+      for(let yy=0; yy<h; yy++){
+        for(let xx=0; xx<w; xx++){
+          const v = data[yy*w+xx]||0;
+          const cx = px+xx, cy=py+yy;
+          if(cx>=0&&cx<cols&&cy>=0&&cy<rows){ const idx=coord(cx,cy); A[idx]=v; age[idx]=v?1:0; }
+        }
+      }
+      gen=0; aliveCount = A.reduce((s,v)=>s+v,0);
+      render(true);
+    }
+
+    // Patterns
+    function getPattern(name){
+      switch(name){
+        case 'glider': return [[1,0],[2,1],[0,2],[1,2],[2,2]];
+        case 'lwss': return [[1,0],[2,0],[3,0],[4,0],[0,1],[4,1],[4,2],[0,3],[3,3]];
+        case 'pulsar':{
+          const pts=[]; const base=[[2,0],[3,0],[4,0],[8,0],[9,0],[10,0],[0,2],[5,2],[7,2],[12,2],[0,3],[5,3],[7,3],[12,3],[0,4],[5,4],[7,4],[12,4],[2,5],[3,5],[4,5],[8,5],[9,5],[10,5],[2,7],[3,7],[4,7],[8,7],[9,7],[10,7],[0,8],[5,8],[7,8],[12,8],[0,9],[5,9],[7,9],[12,9],[0,10],[5,10],[7,10],[12,10],[2,12],[3,12],[4,12],[8,12],[9,12],[10,12]]; base.forEach(p=>pts.push(p)); return pts; }
+        case 'pentadecathlon': return [[1,0],[2,0],[3,0],[4,0],[5,0],[6,0],[7,0],[8,0],[0,1],[9,1],[0,2],[9,2],[1,3],[2,3],[3,3],[4,3],[5,3],[6,3],[7,3],[8,3]];
+        case 'gosper':{
+          const r=[[0,4],[0,5],[1,4],[1,5],[10,4],[10,5],[10,6],[11,3],[11,7],[12,2],[12,8],[13,2],[13,8],[14,5],[15,3],[15,7],[16,4],[16,5],[16,6],[17,5],[20,2],[20,3],[20,4],[21,2],[21,3],[21,4],[22,1],[22,5],[24,0],[24,1],[24,5],[24,6],[34,2],[34,3],[35,2],[35,3]]; return r; }
+        case 'rPentomino': return [[1,0],[2,0],[0,1],[1,1],[1,2]];
+        case 'acorn': return [[1,0],[3,1],[0,2],[1,2],[4,2],[5,2],[6,2]];
+        default: return null;
+      }
+    }
+
+    function rotatePattern(pts){
+      if(!pts) return pts;
+      // rotate 90 deg
+      let maxx=0, maxy=0; pts.forEach(([x,y])=>{ if(x>maxx)maxx=x; if(y>maxy)maxy=y; });
+      return pts.map(([x,y])=>[y, maxx-x]);
+    }
+
+    function placePattern(cx,cy, pts, mirrorX=false){
+      if(!pts) return;
+      // center around click
+      let maxx=0, maxy=0; pts.forEach(([x,y])=>{ if(x>maxx)maxx=x; if(y>maxy)maxy=y; });
+      const ox = cx - Math.floor(maxx/2); const oy = cy - Math.floor(maxy/2);
+      for(const [px,py] of pts){
+        const x = ox + (mirrorX? (maxx-px):px);
+        const y = oy + py;
+        if(x>=0&&x<cols&&y>=0&&y<rows){ const idx=coord(x,y); A[idx]=1; age[idx]=Math.max(age[idx],1); }
+      }
+      aliveCount = A.reduce((s,v)=>s+v,0);
+    }
+
+    function randomize(density){
+      // density: 1..100
+      const p = Math.min(100, Math.max(0, density))/100;
+      for(let i=0;i<N;i++){ const v = Math.random()<p?1:0; A[i]=v; age[i]=v?1:0; }
+      gen=0; aliveCount = A.reduce((s,v)=>s+v,0);
+    }
+
+    // Sidebar toggle
+    hideSidebarBtn.onclick=()=>{
+      wrapDiv.classList.toggle('sidebar-hidden');
+      setTimeout(()=>fitCanvas(), 50);
+    };
+
+    // About dialog
+    aboutLink.onclick=(e)=>{ e.preventDefault(); aboutDlg.showModal(); };
+
+    // Init
+    randomize(parseInt(densityInput.value,10));
+    render(true);
+  })();
+  </script>
+</body>
+</html>

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Mt.MATH - 数学の定理を探求し、ゲームで学ぶ革新的な学習プラットフォーム">
-    <meta name="keywords" content="数学, 定理, 証明, ゲーム, 学習, 代数学, 解析学, 整数論">
+    <meta name="description" content="Mt.MATH - 数学の定理を探求する革新的な学習プラットフォーム">
+    <meta name="keywords" content="マウントマス, Mt.MATH, 数学, 定理, 証明, 学習, 代数学, 解析学, 整数論">
     <title>Mt.MATH | 数学の頂を目指そう</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <meta name="robots" content="index, follow">
@@ -14,12 +14,12 @@
     <meta property="og:site_name" content="Mt.MATH">
     <meta property="og:url" content="https://mtmath.net/">
     <meta property="og:title" content="Mt.MATH | 数学の頂を目指そう">
-    <meta property="og:description" content="数学の定理を探求し、ゲームで学ぶ革新的な学習プラットフォーム">
+    <meta property="og:description" content="数学の定理を探求する革新的な学習プラットフォーム">
     <meta property="og:image" content="https://mtmath.net/logo.png">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Mt.MATH | 数学の頂を目指そう">
-    <meta name="twitter:description" content="数学の定理を探求し、ゲームで学ぶ革新的な学習プラットフォーム">
+    <meta name="twitter:description" content="数学の定理を探求する革新的な学習プラットフォーム">
     <meta name="twitter:image" content="https://mtmath.net/logo.png">
     <link rel="stylesheet" href="assets/css/modern-style.css">
     <link rel="stylesheet" href="assets/css/article.css">
@@ -54,7 +54,6 @@
                 </div>
                 <div class="nav-menu" id="nav-menu">
                     <a href="#articles" class="nav-link">記事</a>
-                    <a href="#games" class="nav-link">ゲーム</a>
                 </div>
                 <div class="nav-toggle" id="nav-toggle">
                     <span class="bar"></span>
@@ -68,17 +67,13 @@
                     数学の<span class="highlight">頂</span>を目指そう
                 </h1>
                 <p class="hero-subtitle">
-                    定理の美しさを探求し、ゲームで楽しく学ぶ<br>
+                    定理の美しさを探求する<br>
                     革新的な数学学習プラットフォーム
                 </p>
                 <div class="hero-stats">
                     <div class="stat-item">
                         <span class="stat-number" id="article-count">0</span>
                         <span class="stat-label">記事</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">5</span>
-                        <span class="stat-label">ゲーム</span>
                     </div>
                     <div class="stat-item">
                         <span class="stat-number">∞</span>
@@ -90,68 +85,34 @@
                         <span class="btn-icon">📚</span>
                         記事を探索
                     </a>
-                    <a href="games/index.html" class="btn btn-secondary">
-                        <span class="btn-icon">🎮</span>
-                        ゲームで学習
-                    </a>
                 </div>
             </div>
         </header>
     </section>
 
-    <!-- Featured Games Section -->
-    <section id="games" class="games-showcase">
+    <!-- Spotlight: Conway's Game of Life -->
+    <section class="games-showcase" id="life-spotlight">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">
-                    <span class="icon">🎮</span>
-                    数学ゲーム体験
+                    <span class="icon">✨</span>
+                    インタラクティブ・スポットライト
                 </h2>
                 <p class="section-subtitle">
-                    楽しみながら数学力を向上させる革新的なゲーム群
+                    ブラウザで楽しめる美しいセル・オートマトン「Conway's Game of Life」
                 </p>
             </div>
-            
             <div class="games-grid">
-                <div class="game-card featured">
-                    <div class="game-icon">🧮</div>
-                    <h3>計算チャレンジ</h3>
-                    <p>時間制限内により多くの四則演算問題を解き、世界ランキングを目指そう！</p>
+                <div class="game-card featured premium">
+                    <div class="game-icon">🧬</div>
+                    <h3>Conway's Game of Life</h3>
+                    <p>超高速・高機能なスタンドアロン実装。RLE入出力、ルール編集、スタンプ、保存スロットなど多彩な機能を搭載。</p>
                     <div class="game-stats">
-                        <span class="difficulty">★★★☆☆</span>
-                        <span class="players">上級レベルでランキング挑戦</span>
+                        <span class="difficulty">楽しく探索</span>
+                        <span class="players">フルスクリーン体験</span>
                     </div>
-                    <a href="games/calculation-game.html" class="game-btn">今すぐプレイ</a>
+                    <a href="conways.html" class="game-btn primary">体験する</a>
                 </div>
-                
-                <div class="game-card">
-                    <div class="game-icon">🔢</div>
-                    <h3>素数判定ゲーム</h3>
-                    <p>表示される数字が素数かどうかを判定する直感力ゲーム</p>
-                    <div class="game-stats">
-                        <span class="difficulty">★★★★☆</span>
-                        <span class="players">上級レベルでランキング挑戦</span>
-                    </div>
-                    <a href="games/prime-game.html" class="game-btn">挑戦する</a>
-                </div>
-                
-                <div class="game-card">
-                    <div class="game-icon">📊</div>
-                    <h3>倍数・約数ゲーム</h3>
-                    <p>数の性質を理解して倍数や約数を見極める判定ゲーム</p>
-                    <div class="game-stats">
-                        <span class="difficulty">★★★☆☆</span>
-                        <span class="players">開発中</span>
-                    </div>
-                    <a href="games/index.html" class="game-btn">近日公開</a>
-                </div>
-            </div>
-            
-            <div class="games-footer">
-                <a href="games/index.html" class="btn btn-outline">
-                    全てのゲームを見る
-                    <span class="btn-arrow">→</span>
-                </a>
             </div>
         </div>
     </section>
@@ -217,9 +178,9 @@
                     <p>スマートフォンからデスクトップまで、あらゆるデバイスで最適表示</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🏆</div>
-                    <h3>ランキング</h3>
-                    <p>ゲームでスコアを競い、数学力を客観的に測定できます</p>
+                    <div class="feature-icon">🧪</div>
+                    <h3>インタラクティブ</h3>
+                    <p>セル・オートマトンなどのインタラクティブ体験で直観的に学べます</p>
                 </div>
             </div>
         </div>
@@ -237,8 +198,6 @@
                     <div class="link-group">
                         <h4>コンテンツ</h4>
                         <a href="#articles">数学記事</a>
-                        <a href="games/index.html">ゲーム</a>
-                        <a href="games/rankings.html">ランキング</a>
                     </div>
                     <div class="link-group">
                         <h4>法的情報</h4>
