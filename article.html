@@ -19,132 +19,354 @@
     <meta id="twitter-title" name="twitter:title" content="記事詳細 | Mt.MATH">
     <meta id="twitter-description" name="twitter:description" content="数学の定理と証明を深く学べるMt.MATHの記事ページ">
     <meta name="twitter:image" content="https://mtmath.net/logo.png">
-    <link rel="stylesheet" href="assets/css/modern-style.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/app.css">
     <link rel="stylesheet" href="assets/css/article.css">
-    <link rel="stylesheet" href="assets/css/article-simple.css">
+    
+    <!-- MathJax -->
     <script type="text/javascript" async 
         src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
     <script type="text/javascript" id="MathJax-script" async 
         src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
    
-<body>
-    <!-- Modern Header -->
-    <header class="modern-header">
-        <nav class="navbar navbar-with-menu">
-            <div class="nav-brand">
-                <a href="index.html">
-                    <img src="logo.png" alt="Mt.MATH" class="brand-logo">
+<body class="app-shell">
+    <div class="progress-bar"></div>
+    <div class="shell">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sb-brand">
+                <img src="logo.png" alt="Mt.MATH">
+            </div>
+            <nav class="sb-nav">
+                <div class="sb-group">
+                    <h4>Navigate</h4>
+                    <a class="sb-link" href="index.html">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                        </svg>
+                        ホーム
+                    </a>
+                    <a class="sb-link active" href="index.html#articles">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M4 1h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H4z"/>
+                        </svg>
+                        記事一覧
+                    </a>
+                    <a class="sb-link" href="conways.html">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M2 2a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V2zm1 0v10h10V2H3z"/>
+                        </svg>
+                        Conway's Life
                 </a>
             </div>
-            <div class="nav-menu" id="nav-menu">
-                <a href="index.html#articles" class="nav-link">記事</a>
-                <a href="conways.html" class="nav-link">Conway's Life</a>
-            </div>
-            <div class="nav-actions">
-                <button id="theme-toggle" class="theme-toggle" aria-label="テーマ切替">🌙</button>
-            </div>
-            <div class="nav-toggle" id="nav-toggle">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+                <div class="sb-group">
+                    <h4>Legal</h4>
+                    <a class="sb-link" href="privacy.html">プライバシーポリシー</a>
+                    <a class="sb-link" href="legal.html">特定商取引法表記</a>
             </div>
         </nav>
-    </header>
+            <div class="sb-footer">
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <span class="status-dot"></span>
+                    <span class="status-text">Online</span>
+                </div>
+                <button id="theme-toggle" class="btn-ghost" aria-label="テーマ切替">🌙</button>
+            </div>
+        </aside>
 
-    <!-- Loading Section -->
-    <section id="loading-section">
-        <div class="container">
-            <div class="loading-spinner">
-                <div class="spinner"></div>
-                <p>記事を読み込み中...</p>
+        <!-- Main Content -->
+        <main>
+            <!-- Top Bar -->
+            <div class="topbar">
+                <button id="sidebar-toggle" class="btn-ghost">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                    </svg>
+                </button>
+                <div class="search">
+                    <input type="search" placeholder="記事内検索..." />
+                    <span class="kbd">Ctrl F</span>
+                </div>
+                <div class="actions">
+                    <button class="btn-ghost" onclick="window.print()">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+                            <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/>
+                        </svg>
+                    </button>
+                    <button class="btn-ghost" id="share-btn">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>
+                        </svg>
+                    </button>
+                    <div class="avatar" title="Mt.MATH"></div>
+                </div>
+            </div>
+
+            <!-- Article Content -->
+            <div class="content">
+                <!-- Loading State -->
+                <section id="loading-section" class="fade-in">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <div class="spinner" style="margin: 0 auto;"></div>
+                            <p class="muted mt-2">記事を読み込み中...</p>
             </div>
         </div>
     </section>
 
     <!-- Article Section -->
     <section id="article-section" style="display: none;">
-        <div class="container">
-            <!-- 記事メタデータ -->
-            <div class="article-meta">
-                <div class="breadcrumb">
-                    <a href="index.html">ホーム</a> > 
-                    <span id="article-category">カテゴリ</span> > 
+                    <!-- Breadcrumb -->
+                    <nav style="margin-bottom: 1.5rem;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; color: var(--text-tertiary);">
+                            <a href="index.html" style="color: var(--primary); text-decoration: none;">ホーム</a>
+                            <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                            <span id="article-category-breadcrumb">カテゴリ</span>
+                            <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                            </svg>
                     <span id="article-title-breadcrumb">記事タイトル</span>
                 </div>
-                <h1 id="article-title">記事タイトル</h1>
-                <div class="meta-info">
-                    <span class="difficulty">難易度: <span id="article-difficulty">-</span>/10</span>
-                    <span class="niche-score">ニッチ度: <span id="article-niche">-</span>/10</span>
-                    <span class="author">by <span id="article-author">Mt.MATH AI</span></span>
+                    </nav>
+
+                    <!-- Article Header -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="article-meta mb-3">
+                                <span class="chip" id="article-category">カテゴリ</span>
+                                <div style="display: flex; gap: 1rem; font-size: 0.85rem; color: var(--text-tertiary);">
+                                    <span>難易度: <strong id="article-difficulty">-</strong>/10</span>
+                                    <span>ニッチ度: <strong id="article-niche">-</strong>/10</span>
+                                    <span>by <strong id="article-author">Mt.MATH AI</strong></span>
+                                </div>
+                            </div>
+                            
+                            <h1 id="article-title" style="font-size: 2rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.2;">記事タイトル</h1>
+                            
+                            <div id="article-summary" style="font-size: 1.1rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
+                                記事の要約が表示されます
+                            </div>
+                            
+                            <div id="article-tags-container" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                                <!-- Tags will be inserted here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Article Content -->
+                    <div class="row" style="gap: 2rem;">
+                        <!-- Main Content -->
+                        <div style="flex: 1; min-width: 0;">
+                            <div class="card">
+                                <div class="card-body" style="padding: 2rem;">
+                                    <div id="article-content-html" class="article-content">
+                                        <!-- Article HTML content will be loaded here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sidebar -->
+                        <div style="width: 300px; flex-shrink: 0;">
+                            <!-- Table of Contents -->
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <div class="card-title">目次</div>
+                                </div>
+                                <div class="card-body">
+                                    <div id="toc" style="font-size: 0.9rem;">
+                                        <!-- TOC will be generated here -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Article Actions -->
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <div class="card-title">アクション</div>
                 </div>
-                <div class="article-summary">
-                    <p id="article-summary">記事の要約が表示されます</p>
+                                <div class="card-body">
+                                    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                                        <button class="btn btn-outline btn-sm" onclick="window.print()">
+                                            <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                                                <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+                                                <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/>
+                                            </svg>
+                                            印刷する
+                                        </button>
+                                        <button class="btn btn-outline btn-sm" id="share-article">
+                                            <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                                                <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>
+                                            </svg>
+                                            シェアする
+                                        </button>
+                                        <button class="btn btn-outline btn-sm" onclick="history.back()">
+                                            <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+                                            </svg>
+                                            戻る
+                                        </button>
                 </div>
-                <div class="article-tags">
-                    <div id="article-tags-container"></div>
                 </div>
             </div>
 
-            <!-- 記事本文 -->
-            <div class="article-content">
-                <div id="article-content-html">
-                    <!-- Firebaseから取得したHTMLコンテンツがここに表示 -->
+                            <!-- Reading Progress -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-title">読み進め状況</div>
+                                </div>
+                                <div class="card-body">
+                                    <div style="margin-bottom: 0.5rem;">
+                                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                                            <span style="font-size: 0.9rem;">進捗</span>
+                                            <span id="reading-progress" style="font-size: 0.9rem; font-weight: 600;">0%</span>
+                                        </div>
+                                        <div style="width: 100%; height: 6px; background: var(--bg-tertiary); border-radius: 3px; overflow: hidden;">
+                                            <div id="progress-fill" style="height: 100%; width: 0%; background: var(--primary); transition: width 0.3s ease;"></div>
+                                        </div>
+                                    </div>
+                                    <div style="font-size: 0.85rem; color: var(--text-tertiary);">
+                                        推定読了時間: <span id="read-time">5分</span>
+                                    </div>
+                                </div>
+                            </div>
                 </div>
             </div>
 
-            <!-- 関連記事 -->
-            <div class="related-articles">
-                <h3>関連記事</h3>
-                <div id="related-articles-list">
-                    <!-- 関連記事が動的に表示 -->
+                    <!-- Related Articles -->
+                    <section style="margin-top: 3rem;">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-title">関連記事</div>
+                            </div>
+                            <div class="card-body">
+                                <div id="related-articles-list" class="grid grid-3">
+                                    <!-- Related articles will be loaded here -->
                 </div>
             </div>
         </div>
+                    </section>
     </section>
 
     <!-- Error Section -->
     <section id="error-section" style="display: none;">
-        <div class="container">
-            <div class="error-message">
-                <h2>記事が見つかりません</h2>
-                <p>指定された記事は存在しないか、削除された可能性があります。</p>
-                <p><a href="index.html">ホームページに戻る</a></p>
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <div style="font-size: 3rem; margin-bottom: 1rem;">📚</div>
+                            <h2 style="margin-bottom: 1rem;">記事が見つかりません</h2>
+                            <p class="muted" style="margin-bottom: 2rem;">指定された記事は存在しないか、削除された可能性があります。</p>
+                            <div style="display: flex; gap: 1rem; justify-content: center;">
+                                <a href="index.html" class="btn btn-primary">ホームに戻る</a>
+                                <button onclick="history.back()" class="btn btn-outline">前のページに戻る</button>
+                            </div>
             </div>
         </div>
     </section>
-
-    <!-- Footer Section -->
-    <footer class="modern-footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <img src="logo.png" alt="Mt.MATH" class="footer-logo">
-                    <p>数学の美しさを探求し、知識の頂点を目指す</p>
                 </div>
-                <div class="footer-links">
-                    <div class="link-group">
-                        <h4>コンテンツ</h4>
-                        <a href="index.html#articles">数学記事</a>
-                        <a href="conways.html">Conway's Life</a>
-                    </div>
-                    <div class="link-group">
-                        <h4>法的情報</h4>
-                        <a href="privacy.html">プライバシーポリシー</a>
-                        <a href="legal.html">特定商取引法に基づく表記</a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Mt.MATH | Operated by ToreMock LLC</p>
-            </div>
+        </main>
         </div>
-    </footer>
 
-    <!-- Firebase & Article Loading Script -->
+    <!-- Scripts -->
     <script type="module" src="firebase-config.js"></script>
     <script src="assets/js/article-loader.js"></script>
+    <script src="assets/js/app.js"></script>
     
-    <script src="assets/js/site-core.js"></script>
+    <script>
+        // Article-specific enhancements
+        document.addEventListener('DOMContentLoaded', () => {
+            // Reading progress tracker
+            function updateReadingProgress() {
+                const content = document.getElementById('article-content-html');
+                if (!content) return;
+                
+                const contentTop = content.offsetTop;
+                const contentHeight = content.offsetHeight;
+                const windowHeight = window.innerHeight;
+                const scrollTop = window.scrollY;
+                
+                const progress = Math.min(100, Math.max(0, 
+                    ((scrollTop + windowHeight - contentTop) / contentHeight) * 100
+                ));
+                
+                document.getElementById('reading-progress').textContent = Math.round(progress) + '%';
+                document.getElementById('progress-fill').style.width = progress + '%';
+            }
+            
+            window.addEventListener('scroll', updateReadingProgress);
+            
+            // Share functionality
+            document.getElementById('share-article')?.addEventListener('click', () => {
+                if (navigator.share) {
+                    navigator.share({
+                        title: document.getElementById('article-title')?.textContent,
+                        url: window.location.href
+                    });
+                } else {
+                    navigator.clipboard.writeText(window.location.href);
+                    // Show toast notification
+                    console.log('URLをクリップボードにコピーしました');
+                }
+            });
+            
+            // Generate table of contents
+            function generateTOC() {
+                const content = document.getElementById('article-content-html');
+                const toc = document.getElementById('toc');
+                if (!content || !toc) return;
+                
+                const headings = content.querySelectorAll('h1, h2, h3, h4, h5, h6');
+                if (headings.length === 0) {
+                    toc.innerHTML = '<p class="muted" style="font-size: 0.85rem;">目次がありません</p>';
+                    return;
+                }
+                
+                const tocList = document.createElement('ul');
+                tocList.style.listStyle = 'none';
+                tocList.style.padding = '0';
+                tocList.style.margin = '0';
+                
+                headings.forEach((heading, index) => {
+                    const id = `heading-${index}`;
+                    heading.id = id;
+                    
+                    const li = document.createElement('li');
+                    const a = document.createElement('a');
+                    a.href = `#${id}`;
+                    a.textContent = heading.textContent;
+                    a.style.textDecoration = 'none';
+                    a.style.color = 'var(--text-secondary)';
+                    a.style.display = 'block';
+                    a.style.padding = '0.25rem 0';
+                    a.style.fontSize = '0.85rem';
+                    
+                    const level = parseInt(heading.tagName.charAt(1));
+                    a.style.paddingLeft = `${(level - 1) * 0.75}rem`;
+                    
+                    a.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        heading.scrollIntoView({ behavior: 'smooth' });
+                    });
+                    
+                    li.appendChild(a);
+                    tocList.appendChild(li);
+                });
+                
+                toc.appendChild(tocList);
+            }
+            
+            // Generate TOC after content loads
+            setTimeout(generateTOC, 1000);
+        });
+    </script>
 </body>
 </html>
